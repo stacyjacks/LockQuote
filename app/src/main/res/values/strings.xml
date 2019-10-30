@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LockQuote</string>
+    <string name="query_hint">Search for songs or input your own lyrics</string>
+    <string name="search_results">Search results</string>
+</resources>
