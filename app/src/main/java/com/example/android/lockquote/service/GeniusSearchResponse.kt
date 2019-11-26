@@ -13,7 +13,9 @@ data class GeniusHit(
 )
 
 data class GeniusHitResult(
+    val id: Long,
     val api_path: String,
+    val url: String,
     val title: String,
     val header_image_thumbnail_url: String,
     val primary_artist: GeniusPrimaryArtist

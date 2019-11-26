@@ -1,6 +1,6 @@
 package com.example.android.lockquote
 
-import android.app.ActionBar
+import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +26,10 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var songSearchAdapter: GeniusSongSearchAdapter
 
+    companion object {
+        private val TAG_LYRIC_WEBVIEW_FRAGMENT = "LyricWebViewFragment"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -38,6 +43,8 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         searchViewSetUp()
 
         handleIntent(intent)
+
+        addBackStackListener()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -56,6 +63,8 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
     }
 
     override fun onShowDetails(songSummaryViewData: SongSummaryViewData) {
+        val lyricUrl = songSummaryViewData.url ?: return
+        showLyricWebViewFragment(lyricUrl)
 
     }
 
@@ -84,7 +93,8 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         val layoutManager = LinearLayoutManager(this)
         searchResultRecyclerView.layoutManager = layoutManager
 
-        val dividerItemDecoration = DividerItemDecoration(searchResultRecyclerView.context, layoutManager.orientation)
+        val dividerItemDecoration =
+            DividerItemDecoration(searchResultRecyclerView.context, layoutManager.orientation)
         searchResultRecyclerView.addItemDecoration(dividerItemDecoration)
 
         songSearchAdapter = GeniusSongSearchAdapter(null, this, this)
@@ -103,9 +113,10 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView.setSearchableInfo(
-            searchManager.getSearchableInfo(componentName))
+            searchManager.getSearchableInfo(componentName)
+        )
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
                 performSearch(query)
@@ -118,4 +129,48 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
             }
         })
     }
+
+    private fun createLyricWebViewFragment(): LyricWebViewFragment {
+        var lyricWebViewFragment = supportFragmentManager.findFragmentByTag(
+            TAG_LYRIC_WEBVIEW_FRAGMENT
+        ) as LyricWebViewFragment?
+
+        if (lyricWebViewFragment == null) {
+            lyricWebViewFragment = LyricWebViewFragment.newInstance()
+        }
+        return lyricWebViewFragment
+    }
+
+    private fun showLyricWebViewFragment(lyricUrl: String) {
+        val lyricWebViewFragment = createLyricWebViewFragment()
+        lyricWebViewFragment.lyricUrl = lyricUrl
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.fragment_webview_placeholder,
+                lyricWebViewFragment,
+                TAG_LYRIC_WEBVIEW_FRAGMENT
+            )
+            .addToBackStack("LyricWebViewFragment")
+            .commit()
+
+
+        searchResultRecyclerView.visibility = View.INVISIBLE
+    }
+
+    private fun addBackStackListener() {
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount == 0) {
+                searchResultRecyclerView.visibility = View.VISIBLE
+            }
+        }
+    }
+}
+
+fun showError(context: Context, message: String) {
+    AlertDialog.Builder(context)
+        .setMessage(message)
+        .setPositiveButton(context.getString(R.string.ok_button), null)
+        .create()
+        .show()
 }

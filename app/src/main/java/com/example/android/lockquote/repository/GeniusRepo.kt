@@ -1,6 +1,7 @@
 package com.example.android.lockquote.repository
 
 import com.example.android.lockquote.service.*
+import com.example.android.lockquote.viewmodel.SearchViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
