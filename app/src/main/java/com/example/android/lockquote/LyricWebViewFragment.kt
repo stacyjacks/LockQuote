@@ -1,16 +1,21 @@
 package com.example.android.lockquote
 
-import android.content.Context
+import android.content.ClipboardManager
+import android.content.Context.CLIPBOARD_SERVICE
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings.MENU_ITEM_WEB_SEARCH
 import android.webkit.WebView
-import androidx.fragment.app.Fragment
 import android.webkit.WebViewClient
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_lyric_webview.*
 
 
-class LyricWebViewFragment(): Fragment() {
+class LyricWebViewFragment : Fragment() {
     var lyricUrl: String? = null
 
     companion object {
@@ -25,29 +30,42 @@ class LyricWebViewFragment(): Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val webViewLayout = inflater.inflate(R.layout.fragment_lyric_webview, container, false)
         val lyricWebView: WebView = webViewLayout.findViewById(R.id.lyricWebView)
+        val useSelectionButton = webViewLayout.findViewById<Button>(R.id.useSelectionButton)
 
         // Enable Javascript
-        val webSettings = lyricWebView.getSettings()
+        val webSettings = lyricWebView.settings
         webSettings.javaScriptEnabled = true
+        webSettings.allowContentAccess = true
+        webSettings.disabledActionModeMenuItems = MENU_ITEM_WEB_SEARCH
 
-        // Force links and redirects to open in the WebView instead of in a browser
         lyricWebView.webViewClient = WebViewClient()
+
+        val clipboard: ClipboardManager = activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        clipboard.addPrimaryClipChangedListener {
+            val selectedText = clipboard.primaryClip.getItemAt(0)
+            if (selectedText != null) {
+                lyricSelectionTextView.text = selectedText.text
+            }
+        }
 
         lyricUrl?.let { lyricWebView.loadUrl(it) }
             ?: context?.let { showError(it, "Can't open lyrics") }
 
+        useSelectionButton.setOnClickListener {
+            extractSelection()
+        }
+
         return webViewLayout
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    private fun extractSelection() {
+        var selectedText = lyricSelectionTextView.text.toString().replace("\n", " ")
+        val intent = Intent(context, GeneratedPasswordActivity::class.java)
+        intent.putExtra("selectedText", selectedText)
+        startActivity(intent)
     }
 }
 
