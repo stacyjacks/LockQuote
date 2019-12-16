@@ -1,10 +1,8 @@
 package com.example.android.lockquote
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.text.*
-import android.text.style.StyleSpan
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
@@ -32,9 +30,13 @@ class GeneratedPasswordActivity: AppCompatActivity() {
     private fun makeFirstLetterBold(selectedLyric: String): SpannedString {
         var customString = SpannedString("")
         val lyricWordsArray =  selectedLyric.split(" ").toTypedArray()
-        for (i in lyricWordsArray) {
-            val firstLetterBold = i.first()
-            val normalText = i.drop(1)
+        for (word in lyricWordsArray) {
+            if (word.isBlank()) { continue }
+            if (word.first().toString() == "[") { continue }
+            if (word.last().toString() == "]") { continue }
+
+            val firstLetterBold = word.first()
+            val normalText = word.drop(1)
             val customWord = SpannedString(buildSpannedString {
                 bold {
                     append(firstLetterBold)

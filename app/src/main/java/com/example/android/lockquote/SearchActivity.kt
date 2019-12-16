@@ -62,7 +62,7 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
     }
 
     override fun onShowDetails(songSummaryViewData: SongSummaryViewData) {
-        val lyricUrl = songSummaryViewData.url ?: return
+        val lyricUrl = "https://www.google.com/amp/s/genius.com/amp" + songSummaryViewData.path ?: return // https://www.google.com/amp/s/genius.com/amp/Arctic-monkeys-fluorescent-adolescent-lyrics
         showLyricWebViewFragment(lyricUrl)
 
     }

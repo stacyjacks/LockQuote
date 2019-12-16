@@ -37,7 +37,7 @@ class LyricWebViewFragment : Fragment() {
 
         // Enable Javascript
         val webSettings = lyricWebView.settings
-        webSettings.javaScriptEnabled = true
+        // webSettings.javaScriptEnabled = true
         webSettings.allowContentAccess = true
         webSettings.disabledActionModeMenuItems = MENU_ITEM_WEB_SEARCH
 
@@ -62,7 +62,13 @@ class LyricWebViewFragment : Fragment() {
     }
 
     private fun extractSelection() {
-        var selectedText = lyricSelectionTextView.text.toString().replace("\n", " ")
+        val selectedText = lyricSelectionTextView
+            .text
+            .toString()
+            .replace("\n", " ")
+            .replace("(", "")
+            .replace(")", "")
+
         val intent = Intent(context, GeneratedPasswordActivity::class.java)
         intent.putExtra("selectedText", selectedText)
         startActivity(intent)

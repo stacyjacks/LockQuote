@@ -12,7 +12,7 @@ class SearchViewModel(application: Application): AndroidViewModel(application) {
     data class SongSummaryViewData(
         val id: Long? = 0,
         val api_path: String? = "",
-        val url: String? = "",
+        val path: String? = "",
         val title: String? = "",
         val header_image_thumbnail_url: String? = "",
         val name: String = ""
@@ -22,7 +22,7 @@ class SearchViewModel(application: Application): AndroidViewModel(application) {
         return SongSummaryViewData(
             geniusSong.id,
             geniusSong.api_path,
-            geniusSong.url,
+            geniusSong.path,
             geniusSong.title,
             geniusSong.header_image_thumbnail_url,
             geniusSong.primary_artist.name
