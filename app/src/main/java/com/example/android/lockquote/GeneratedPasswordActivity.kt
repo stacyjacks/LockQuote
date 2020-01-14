@@ -3,6 +3,7 @@ package com.example.android.lockquote
 import android.content.Intent
 import android.os.Bundle
 import android.text.*
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
@@ -14,6 +15,15 @@ class GeneratedPasswordActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generated_password)
         handleIntent(intent)
+
+        val generatedPassTextView = findViewById<TextView>(R.id.generatedPass)
+        generatedPassTextView.text = firstCharOfEveryWordOf(selectedText())
+            .joinToString("")
+            .replace("A", "4")
+            .replace("E", "3")
+            .replace("I", "1")
+            .replace("S", "5")
+            .replace("T", "7")
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -23,8 +33,7 @@ class GeneratedPasswordActivity: AppCompatActivity() {
     }
 
     private fun handleIntent(intent: Intent) {
-        val selectedText = intent.getStringExtra("selectedText")
-        selectedTextFromLyric.text = makeFirstLetterBold(selectedText)
+        selectedTextFromLyric.text = makeFirstLetterBold(selectedText())
     }
 
     private fun makeFirstLetterBold(selectedLyric: String): SpannedString {
@@ -47,5 +56,17 @@ class GeneratedPasswordActivity: AppCompatActivity() {
         }
         return customString.drop(1) as SpannedString
     }
+
+    private fun selectedText(): String {
+        return intent.getStringExtra("selectedText")
+    }
+}
+
+fun firstCharOfEveryWordOf(selectedTextFromLyric: String): ArrayList<String> {
+    return ArrayList(
+        selectedTextFromLyric
+            .split(" ")
+            .map { it.first().toString() }
+    )
 }
 

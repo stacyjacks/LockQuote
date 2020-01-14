@@ -19,7 +19,6 @@ class LyricWebViewFragment : Fragment() {
     var lyricUrl: String? = null
 
     companion object {
-
         fun newInstance(): LyricWebViewFragment {
             return LyricWebViewFragment()
         }
@@ -37,6 +36,7 @@ class LyricWebViewFragment : Fragment() {
 
         // Enable Javascript
         val webSettings = lyricWebView.settings
+
         // webSettings.javaScriptEnabled = true
         webSettings.allowContentAccess = true
         webSettings.disabledActionModeMenuItems = MENU_ITEM_WEB_SEARCH
@@ -45,7 +45,7 @@ class LyricWebViewFragment : Fragment() {
 
         val clipboard: ClipboardManager = activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.addPrimaryClipChangedListener {
-            val selectedText = clipboard.primaryClip.getItemAt(0)
+            val selectedText = clipboard.primaryClip?.getItemAt(0)
             if (selectedText != null) {
                 lyricSelectionTextView.text = selectedText.text
             }
@@ -62,6 +62,7 @@ class LyricWebViewFragment : Fragment() {
     }
 
     private fun extractSelection() {
+        val selectTextHint = getText(R.string.select_text_hint)
         val selectedText = lyricSelectionTextView
             .text
             .toString()
@@ -69,9 +70,20 @@ class LyricWebViewFragment : Fragment() {
             .replace("(", "")
             .replace(")", "")
 
-        val intent = Intent(context, GeneratedPasswordActivity::class.java)
-        intent.putExtra("selectedText", selectedText)
-        startActivity(intent)
+        val numberOfWords = selectedText.split(" ").toTypedArray().count()
+        if (numberOfWords > 20) {
+            context?.let {
+                showError(it, "Please select an excerpt of 20 words or less.")
+            }
+        } else if (lyricSelectionTextView.text.contains(selectTextHint)) {
+            context?.let {
+                showError(it, "You haven't selected a lyric excerpt for your password.")
+            }
+        } else {
+            val intent = Intent(context, GeneratedPasswordActivity::class.java)
+            intent.putExtra("selectedText", selectedText)
+            startActivity(intent)
+        }
     }
 }
 
