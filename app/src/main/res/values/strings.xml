@@ -4,8 +4,16 @@
     <string name="search_results">Search results</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="taskTwo">TASK 2</string>
     <string name="ok_button">OK</string>
     <string name="use_button">Use selection</string>
     <string name="select_text_hint">Select an excerpt from the lyric, up to 20 words, and hit Copy.</string>
+    <string name="try_again_button">Try again with a different lyric</string>
+    <string name="try_again_hint">Not what you wanted?</string>
+    <string name="next_level_button">Help me to remember it!</string>
+    <string name="taskOne">TASK 1</string>
+    <string name="taskOneInputFullPassword">Input full password as it appears here:</string>
+    <string name="clear_pass_button">Clear</string>
+    <string name="continue_button_one">CONTINUE</string>
+    <string name="generated_pass_activity">Your password</string>
 </resources>

@@ -12,8 +12,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_lyric_webview.*
-
+import kotlinx.android.synthetic.main.fragment_lyric_webview.lyricSelectionTextView
 
 class LyricWebViewFragment : Fragment() {
     var lyricUrl: String? = null
@@ -33,6 +32,7 @@ class LyricWebViewFragment : Fragment() {
         val webViewLayout = inflater.inflate(R.layout.fragment_lyric_webview, container, false)
         val lyricWebView: WebView = webViewLayout.findViewById(R.id.lyricWebView)
         val useSelectionButton = webViewLayout.findViewById<Button>(R.id.useSelectionButton)
+        var numberOfWords = 0
 
         // Enable Javascript
         val webSettings = lyricWebView.settings
@@ -45,7 +45,11 @@ class LyricWebViewFragment : Fragment() {
 
         val clipboard: ClipboardManager = activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.addPrimaryClipChangedListener {
+            val regex = Regex("(\\s|\\\\n)")
             val selectedText = clipboard.primaryClip?.getItemAt(0)
+            numberOfWords = selectedText?.text?.split(regex)?.count() ?: 0
+            useSelectionButton.text = String.format(resources.getString(R.string.use_button) + " ($numberOfWords)")
+
             if (selectedText != null) {
                 lyricSelectionTextView.text = selectedText.text
             }
@@ -54,14 +58,16 @@ class LyricWebViewFragment : Fragment() {
         lyricUrl?.let { lyricWebView.loadUrl(it) }
             ?: context?.let { showError(it, "Can't open lyrics") }
 
+        useSelectionButton.text = String.format(resources.getString(R.string.use_button) + " ($numberOfWords)")
+
         useSelectionButton.setOnClickListener {
-            extractSelection()
+            extractSelection(numberOfWords)
         }
 
         return webViewLayout
     }
 
-    private fun extractSelection() {
+    private fun extractSelection(numberOfWords: Int) {
         val selectTextHint = getText(R.string.select_text_hint)
         val selectedText = lyricSelectionTextView
             .text
@@ -70,19 +76,22 @@ class LyricWebViewFragment : Fragment() {
             .replace("(", "")
             .replace(")", "")
 
-        val numberOfWords = selectedText.split(" ").toTypedArray().count()
-        if (numberOfWords > 20) {
-            context?.let {
-                showError(it, "Please select an excerpt of 20 words or less.")
+        when {
+            numberOfWords > 20 -> {
+                context?.let {
+                    showError(it, "Please select an excerpt of 20 words or less.")
+                }
             }
-        } else if (lyricSelectionTextView.text.contains(selectTextHint)) {
-            context?.let {
-                showError(it, "You haven't selected a lyric excerpt for your password.")
+            lyricSelectionTextView.text.contains(selectTextHint) -> {
+                context?.let {
+                    showError(it, "You haven't selected a lyric excerpt for your password.")
+                }
             }
-        } else {
-            val intent = Intent(context, GeneratedPasswordActivity::class.java)
-            intent.putExtra("selectedText", selectedText)
-            startActivity(intent)
+            else -> {
+                val intent = Intent(context, GeneratedPasswordActivity::class.java)
+                intent.putExtra("selectedText", selectedText)
+                startActivity(intent)
+            }
         }
     }
 }
