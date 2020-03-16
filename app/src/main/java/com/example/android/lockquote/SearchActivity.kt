@@ -26,7 +26,7 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
     private lateinit var songSearchAdapter: GeniusSongSearchAdapter
 
     companion object {
-        private val TAG_LYRIC_WEBVIEW_FRAGMENT = "LyricWebViewFragment"
+        const val TAG_LYRIC_WEBVIEW_FRAGMENT = "LyricWebViewFragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

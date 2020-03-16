@@ -10,9 +10,10 @@ import android.widget.TextView
 class GameTaskTwoFragment : Fragment() {
     private lateinit var textBubble: TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.getString(arg)
+    companion object {
+        fun newInstance(): GameTaskTwoFragment {
+            return GameTaskTwoFragment()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,15 +24,5 @@ class GameTaskTwoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         textBubble = view.findViewById(R.id.textBubble)
         // textBubble.text = lyric excerpt words
-    }
-
-    companion object {
-        private val arg: String = "ARG"
-        fun newInstance(arg: String) =
-            GameTaskTwoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(arg, arg)
-                }
-            }
     }
 }
