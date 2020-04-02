@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textBubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/bubble_grey"
+        android:gravity="center"
+        android:hapticFeedbackEnabled="true"
+        android:padding="8dp"
+        android:text="word 1"
+        android:textColor="@color/whiteColor"
+        android:textSize="20sp"/>
+
+</LinearLayout>

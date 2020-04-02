@@ -1,8 +1,10 @@
 package com.example.android.lockquote
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class GameActivity : AppCompatActivity(), OnDataPass {
@@ -38,6 +40,10 @@ class GameActivity : AppCompatActivity(), OnDataPass {
         return intent.getStringExtra("modPasswordString")
     }
 
+    override fun selectedLyric(): String {
+        return intent.getStringExtra("selectedLyric")
+    }
+
     private fun createGameTaskOneFragment(): GameTaskOneFragment {
         var gameTaskOneFragment = supportFragmentManager.findFragmentByTag(
             TAG_GAME_TASK_ONE_FRAGMENT
@@ -55,5 +61,13 @@ class GameActivity : AppCompatActivity(), OnDataPass {
             .beginTransaction()
             .replace(R.id.frameFragmentGame, gameTaskOneFragment, TAG_GAME_TASK_ONE_FRAGMENT)
             .commit()
+    }
+
+    fun showError(context: Context, message: String) {
+        AlertDialog.Builder(context)
+            .setMessage(message)
+            .setPositiveButton(context.getString(R.string.ok_button), null)
+            .create()
+            .show()
     }
 }

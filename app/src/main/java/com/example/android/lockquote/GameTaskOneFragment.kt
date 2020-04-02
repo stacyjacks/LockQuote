@@ -17,6 +17,7 @@ import com.example.android.lockquote.adapter.RecyclerViewEditTextListener
 interface OnDataPass {
     fun onDataPass(data: String)
     fun passwordString(): String
+    fun selectedLyric(): String
 }
 
 class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {

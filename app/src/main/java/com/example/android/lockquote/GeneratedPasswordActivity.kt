@@ -32,7 +32,9 @@ class GeneratedPasswordActivity : AppCompatActivity() {
         val helpMeRemember = findViewById<Button>(R.id.helpMeRemember)
         helpMeRemember.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
-            intent.putExtra("modPasswordString", modPasswordString)
+            intent
+                .putExtra("modPasswordString", modPasswordString)
+                .putExtra("selectedLyric", selectedText())
             startActivity(intent)
         }
 

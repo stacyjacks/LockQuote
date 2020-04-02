@@ -1,4 +1,4 @@
-package com.example.android.lockquote.viewmodel
+package com.example.android.lockquote.adapter
 
 import android.text.TextWatcher
 import android.view.View

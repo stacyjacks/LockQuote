@@ -77,9 +77,9 @@ class LyricWebViewFragment : Fragment() {
             .replace(")", "")
 
         when {
-            numberOfWords > 20 -> {
+            numberOfWords > 15 -> {
                 context?.let {
-                    showError(it, "Please select an excerpt of 20 words or less.")
+                    showError(it, "Please select an excerpt of 15 words or less.")
                 }
             }
             lyricSelectionTextView.text.contains(selectTextHint) -> {
