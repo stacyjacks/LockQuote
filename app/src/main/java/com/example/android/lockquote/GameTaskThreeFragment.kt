@@ -14,40 +14,38 @@ import cdflynn.android.library.checkview.CheckView
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.example.android.lockquote.adapter.*
 
-class GameTaskTwoFragment : Fragment(), OnDataPass, OnTextBubbleStartDragListener, RecyclerViewTextBubbleListener {
+class GameTaskThreeFragment : Fragment(), OnDataPass, OnCharBubbleStartDragListener, RecyclerViewCharBubbleListener {
     lateinit var dataPass: OnDataPass
-    lateinit var textBubbleRecyclerView: RecyclerView
-    lateinit var adapter: TextBubbleRecyclerViewAdapter
+    lateinit var charBubbleRecyclerView: RecyclerView
+    lateinit var adapter: CharBubbleRecyclerViewAdapter
     lateinit var touchHelper: ItemTouchHelper
 
     companion object {
-        fun newInstance(): GameTaskTwoFragment {
-            return GameTaskTwoFragment()
+        fun newInstance(): GameTaskThreeFragment {
+            return GameTaskThreeFragment()
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_game_task_two, container, false)
+        return inflater.inflate(R.layout.fragment_game_task_three, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textBubbleRecyclerView = view.findViewById(R.id.textBubbleRV)
+        charBubbleRecyclerView = view.findViewById(R.id.charBubbleRV)
         val chipsLayoutManager: ChipsLayoutManager = ChipsLayoutManager.newBuilder(this.context)
-                .setChildGravity(Gravity.TOP)
-                .setScrollingEnabled(true)
-                .setGravityResolver { Gravity.CENTER }
-                .build()
-        textBubbleRecyclerView.layoutManager = chipsLayoutManager
-        adapter = TextBubbleRecyclerViewAdapter(divideLyricIntoWordsArray(), this, this)
-        textBubbleRecyclerView.adapter = adapter
+            .setChildGravity(Gravity.TOP)
+            .setScrollingEnabled(true)
+            .setGravityResolver { Gravity.CENTER }
+            .build()
+        charBubbleRecyclerView.layoutManager = chipsLayoutManager
+        adapter = CharBubbleRecyclerViewAdapter(dividePasswordIntoCharArray(), this, this)
+        charBubbleRecyclerView.adapter = adapter
 
-        val callback: ItemTouchHelper.Callback = ItemMoveTextBubbleCallbackListener(adapter)
+        val callback: ItemTouchHelper.Callback = ItemMoveCharBubbleCallbackListener(adapter)
 
         touchHelper = ItemTouchHelper(callback)
-        touchHelper.attachToRecyclerView(textBubbleRecyclerView)
-
-        onContinueTapped()
+        touchHelper.attachToRecyclerView(charBubbleRecyclerView)
     }
 
     override fun onAttach(context: Context) {
@@ -70,12 +68,10 @@ class GameTaskTwoFragment : Fragment(), OnDataPass, OnTextBubbleStartDragListene
         dataPass.onDataPass(data)
     }
 
-    private fun divideLyricIntoWordsArray(): Array<String> {
-        val selectedLyric = selectedLyric()
-        val regex = Regex("(\\s|\\\\n)")
-        val lyricWordsArray = selectedLyric.split(regex).toTypedArray()
+    private fun dividePasswordIntoCharArray(): Array<String> {
+        val passwordString = passwordString()
 
-        return lyricWordsArray.map { it.replace(",", "") }.toTypedArray()
+        return passwordString.split("").toTypedArray()
     }
 
     override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
@@ -88,17 +84,5 @@ class GameTaskTwoFragment : Fragment(), OnDataPass, OnTextBubbleStartDragListene
         checkAnimation?.check()
         val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskOne)
         continueButton?.visibility = View.VISIBLE
-    }
-
-    private fun onContinueTapped() {
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskOne)
-        continueButton?.setOnClickListener {
-            val fragmentTaskThree = GameTaskThreeFragment.newInstance()
-            val transaction = fragmentManager?.beginTransaction()
-            transaction
-                ?.replace(R.id.frameFragmentGame, fragmentTaskThree)
-                ?.addToBackStack(null)
-                ?.commit()
-        }
     }
 }

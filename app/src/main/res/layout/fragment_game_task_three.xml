@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_game_task_two"
+    android:id="@+id/fragment_game_task_three"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,21 +15,21 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/taskTwo"
+            android:id="@+id/taskThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:text="@string/taskTwo"
+            android:text="@string/taskThree"
             android:textSize="36sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/helpfulTextTaskTwo"
+            android:id="@+id/helpfulTextTaskThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="@string/taskTwoOrderLyrics"
+            android:text="@string/taskThreeOrderPassword"
             android:textSize="18sp" />
 
         <com.google.android.material.chip.ChipGroup
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/textBubbleRV"
+                android:id="@+id/charBubbleRV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

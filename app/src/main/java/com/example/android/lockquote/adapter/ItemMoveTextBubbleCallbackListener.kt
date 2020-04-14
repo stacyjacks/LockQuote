@@ -3,7 +3,7 @@ package com.example.android.lockquote.adapter
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class ItemMoveCallbackListener(val adapter: TextBubbleRecyclerViewAdapter) : ItemTouchHelper.Callback() {
+class ItemMoveTextBubbleCallbackListener(val adapter: TextBubbleRecyclerViewAdapter) : ItemTouchHelper.Callback() {
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         val dragFlags = ItemTouchHelper.START or ItemTouchHelper.END
         return makeMovementFlags(dragFlags, 0)

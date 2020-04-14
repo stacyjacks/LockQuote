@@ -10,8 +10,13 @@ import java.util.*
 
 // *** GAME TASK TWO FRAGMENT ADAPTER ***
 
+interface RecyclerViewTextBubbleListener {
+    fun onCorrectOrderCallback()
+}
+
 class TextBubbleRecyclerViewAdapter(private var lyricWordsArray: Array<String>,
-                                    private val startDragListener: OnStartDragListener): RecyclerView.Adapter<TextBubbleViewHolder>(), ItemMoveCallbackListener.Listener {
+                                    private val startDragListener: OnTextBubbleStartDragListener,
+                                    private val textBubbleInterface: RecyclerViewTextBubbleListener ): RecyclerView.Adapter<TextBubbleViewHolder>(), ItemMoveTextBubbleCallbackListener.Listener {
 
     private  var shuffledBubbles =  lyricWordsArray.toMutableList().shuffled()
 
@@ -35,6 +40,7 @@ class TextBubbleRecyclerViewAdapter(private var lyricWordsArray: Array<String>,
 
         if (shuffledBubbles.toTypedArray().contentEquals(lyricWordsArray)) {
             holder.textBubble.background = ContextCompat.getDrawable(holder.textBubble.context, R.drawable.bubble)
+            textBubbleInterface.onCorrectOrderCallback()
         }
     }
 

@@ -5,10 +5,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.lockquote.R
 
-class TextBubbleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-    val textBubble = itemView.findViewById(R.id.textBubble) as TextView
+class CharBubbleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    val charBubble = itemView.findViewById(R.id.charBubble) as TextView
 }
 
-interface OnTextBubbleStartDragListener {
+interface OnCharBubbleStartDragListener {
     fun onStartDrag(viewHolder: RecyclerView.ViewHolder)
 }
