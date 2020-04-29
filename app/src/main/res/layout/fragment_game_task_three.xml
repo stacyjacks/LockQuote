@@ -32,9 +32,12 @@
             android:text="@string/taskThreeOrderPassword"
             android:textSize="18sp" />
 
-        <com.google.android.material.chip.ChipGroup
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:flexWrap="wrap"
+            app:alignItems="flex_start">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/charBubbleRV"
@@ -44,7 +47,7 @@
                 android:fitsSystemWindows="true"
                 android:hapticFeedbackEnabled="true" />
 
-        </com.google.android.material.chip.ChipGroup>
+        </com.google.android.flexbox.FlexboxLayout>
 
         <cdflynn.android.library.checkview.CheckView
             android:id="@+id/checkViewAnimation"
@@ -57,7 +60,7 @@
             app:checkView_strokeWidth="14dp"/>
 
         <Button
-            android:id="@+id/continueButtonTaskOne"
+            android:id="@+id/continueButtonTaskThree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

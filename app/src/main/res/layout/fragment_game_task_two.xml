@@ -32,19 +32,21 @@
             android:text="@string/taskTwoOrderLyrics"
             android:textSize="18sp" />
 
-        <com.google.android.material.chip.ChipGroup
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:flexWrap="wrap"
+            app:alignItems="flex_start"
+            app:flexDirection="row">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/textBubbleRV"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:fitsSystemWindows="true"
                 android:hapticFeedbackEnabled="true" />
 
-        </com.google.android.material.chip.ChipGroup>
+        </com.google.android.flexbox.FlexboxLayout>
 
         <cdflynn.android.library.checkview.CheckView
             android:id="@+id/checkViewAnimation"
@@ -57,7 +59,7 @@
             app:checkView_strokeWidth="14dp"/>
 
         <Button
-            android:id="@+id/continueButtonTaskOne"
+            android:id="@+id/continueButtonTaskTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

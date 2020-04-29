@@ -10,6 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.lockquote.R
 
+// *** GAME TASK ONE FRAGMENT ADAPTER ***
+
 
 interface RecyclerViewEditTextListener {
     fun onCorrectTextInputCallback()
@@ -73,8 +75,8 @@ class EditTextRecyclerViewAdapter(private val editTextInterface: RecyclerViewEdi
                 s: CharSequence,
                 start: Int,
                 count: Int,
-                after: Int
-            ) { // TODO Auto-generated method stub
+                after: Int) {
+                // TODO Auto-generated method stub
             }
 
             override fun afterTextChanged(s: Editable) {

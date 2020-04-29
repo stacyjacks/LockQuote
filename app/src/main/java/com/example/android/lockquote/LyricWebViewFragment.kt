@@ -1,6 +1,7 @@
 package com.example.android.lockquote
 
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.os.Bundle
@@ -65,6 +66,10 @@ class LyricWebViewFragment : Fragment() {
         }
 
         return webViewLayout
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
     private fun extractSelection(numberOfWords: Int) {

@@ -3,20 +3,25 @@ package com.example.android.lockquote
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import androidx.appcompat.widget.SearchView
 import android.os.Handler
-import android.util.Log
 import android.view.View
-import com.example.android.lockquote.repository.GeniusRepo
-import com.example.android.lockquote.service.GeniusSearchService
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val constraintLayout = findViewById<ConstraintLayout>(R.id.activity_main_layout)
+        val animationDrawable = constraintLayout.background as AnimationDrawable
+        animationDrawable.setEnterFadeDuration(2000)
+        animationDrawable.setExitFadeDuration(4000)
+        animationDrawable.start()
 
         searchViewSetUp()
     }

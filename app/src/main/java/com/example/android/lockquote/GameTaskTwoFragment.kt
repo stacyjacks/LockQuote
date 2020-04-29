@@ -2,17 +2,17 @@ package com.example.android.lockquote
 
 import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import cdflynn.android.library.checkview.CheckView
-import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.example.android.lockquote.adapter.*
+import com.google.android.flexbox.FlexboxLayoutManager
 
 class GameTaskTwoFragment : Fragment(), OnDataPass, OnTextBubbleStartDragListener, RecyclerViewTextBubbleListener {
     lateinit var dataPass: OnDataPass
@@ -33,12 +33,7 @@ class GameTaskTwoFragment : Fragment(), OnDataPass, OnTextBubbleStartDragListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         textBubbleRecyclerView = view.findViewById(R.id.textBubbleRV)
-        val chipsLayoutManager: ChipsLayoutManager = ChipsLayoutManager.newBuilder(this.context)
-                .setChildGravity(Gravity.TOP)
-                .setScrollingEnabled(true)
-                .setGravityResolver { Gravity.CENTER }
-                .build()
-        textBubbleRecyclerView.layoutManager = chipsLayoutManager
+        textBubbleRecyclerView.layoutManager = FlexboxLayoutManager(context)
         adapter = TextBubbleRecyclerViewAdapter(divideLyricIntoWordsArray(), this, this)
         textBubbleRecyclerView.adapter = adapter
 
@@ -86,12 +81,12 @@ class GameTaskTwoFragment : Fragment(), OnDataPass, OnTextBubbleStartDragListene
         val checkAnimation = view?.findViewById<CheckView>(R.id.checkViewAnimation)
         checkAnimation?.visibility = CheckView.VISIBLE
         checkAnimation?.check()
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskOne)
+        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskTwo)
         continueButton?.visibility = View.VISIBLE
     }
 
     private fun onContinueTapped() {
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskOne)
+        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskTwo)
         continueButton?.setOnClickListener {
             val fragmentTaskThree = GameTaskThreeFragment.newInstance()
             val transaction = fragmentManager?.beginTransaction()

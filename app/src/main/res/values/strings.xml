@@ -3,23 +3,25 @@
     <string name="query_hint">Search for songs or input your own lyrics</string>
     <string name="search_results">Search results</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="taskTwo">TASK 2</string>
+    <string name="taskOne">TASK 1 / 5</string>
+    <string name="taskTwo">TASK 2 / 5 </string>
+    <string name="taskThree">TASK 3 / 5</string>
+    <string name="taskFour">TASK 4 / 5</string>
+    <string name="taskFive">TASK 5 / 5</string>
+
     <string name="ok_button">OK</string>
     <string name="use_button">Use selection</string>
     <string name="select_text_hint">Select an excerpt from the lyric, up to 15 words, and hit Copy.</string>
     <string name="try_again_button">Try again with a different lyric</string>
     <string name="try_again_hint">Not what you wanted?</string>
     <string name="next_level_button">Help me to remember it!</string>
-    <string name="taskOne">TASK 1</string>
     <string name="taskOneInputFullPassword">Input full password as it appears here:</string>
     <string name="taskTwoOrderLyrics">Put the lyrics in the correct order by dragging and dropping the word boxes below:</string>
     <string name="clear_pass_button">Clear</string>
     <string name="continue_button_one">CONTINUE</string>
     <string name="generated_pass_activity">Your password</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="taskThreeOrderPassword">Now, similarly, put the characters of your new password in the correct order. Are you up to the challenge?</string>
-    <string name="taskThree">TASK 3</string>
+    <string name="taskFourChoosePassword">Select the right password from the list. Hint: sing the lyric to yourself to remember!</string>
+    <string name="taskFiveInputPass">Now... Do you think you\'re ready to use your new password? Input the correct characters, this time no hints!</string>
 </resources>

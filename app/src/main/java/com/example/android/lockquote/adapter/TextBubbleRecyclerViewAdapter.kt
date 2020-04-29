@@ -16,7 +16,7 @@ interface RecyclerViewTextBubbleListener {
 
 class TextBubbleRecyclerViewAdapter(private var lyricWordsArray: Array<String>,
                                     private val startDragListener: OnTextBubbleStartDragListener,
-                                    private val textBubbleInterface: RecyclerViewTextBubbleListener ): RecyclerView.Adapter<TextBubbleViewHolder>(), ItemMoveTextBubbleCallbackListener.Listener {
+                                    private val textBubbleInterface: RecyclerViewTextBubbleListener): RecyclerView.Adapter<TextBubbleViewHolder>(), ItemMoveTextBubbleCallbackListener.Listener {
 
     private  var shuffledBubbles =  lyricWordsArray.toMutableList().shuffled()
 
