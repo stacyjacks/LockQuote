@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import cdflynn.android.library.checkview.CheckView
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -102,6 +102,7 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
                 })
         }
         onContinueTapped()
+        onStartOverTapped()
     }
 
     override fun onAttach(context: Context) {
@@ -155,11 +156,12 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
                 }
             }
 
-            val clearButton = view?.findViewById<Button>(R.id.clearPassButton)
+            val clearButton = view?.findViewById<Button>(R.id.clearPassFinalButton)
             clearButton?.visibility = View.GONE
-            val checkAnimation = view?.findViewById<CheckView>(R.id.checkViewAnimation)
-            checkAnimation?.visibility = CheckView.VISIBLE
-            checkAnimation?.check()
+            val takeMeBackButton = view?.findViewById<Button>(R.id.takeMeBack)
+            takeMeBackButton?.visibility = View.GONE
+            val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
+            checkAnimation?.visibility = LottieAnimationView.VISIBLE
             val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskFive)
             continueButton?.visibility = View.VISIBLE
         }
@@ -181,6 +183,13 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
                 ?.replace(R.id.frameFragmentGame, fragmentGameResult)
                 ?.addToBackStack(null)
                 ?.commit()
+        }
+    }
+
+    private fun onStartOverTapped() {
+        val startOverButton = view?.findViewById<Button>(R.id.takeMeBack)
+        startOverButton?.setOnClickListener {
+            activity?.finish()
         }
     }
 }

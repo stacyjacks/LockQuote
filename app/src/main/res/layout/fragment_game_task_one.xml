@@ -17,13 +17,15 @@
             android:layout_gravity="center"
             android:text="@string/taskOne"
             android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="36sp" />
 
         <TextView
             android:id="@+id/helpfulTextTaskOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
             android:text="@string/taskOneInputFullPassword"
             android:textSize="18sp" />
 
@@ -44,15 +46,15 @@
 
         </LinearLayout>
 
-        <cdflynn.android.library.checkview.CheckView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/checkViewAnimation"
-            android:layout_width="325dp"
-            android:layout_height="325dp"
-            android:layout_margin="32dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
             android:visibility="gone"
-            app:checkView_strokeColor="@color/lightGreenColor"
-            app:checkView_strokeWidth="14dp"/>
+            app:lottie_rawRes="@raw/checkmarklightgreen"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
 
         <Button
             android:id="@+id/clearPassButton"
@@ -65,14 +67,14 @@
             android:text="@string/clear_pass_button"
             android:textColor="@color/whiteColor"
             android:visibility="visible"
-            android:background="@drawable/bubble_grey"/>
+            android:background="@drawable/bubble_red"/>
 
         <Button
             android:id="@+id/continueButtonTaskOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@color/lightGreenColor"
+            android:background="@drawable/bubble"
             android:text="@string/continue_button_one"
             android:textColor="@color/whiteColor"
             android:textAlignment="center"

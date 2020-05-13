@@ -12,6 +12,7 @@ import android.webkit.WebSettings.MENU_ITEM_WEB_SEARCH
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_lyric_webview.lyricSelectionTextView
 
@@ -24,12 +25,12 @@ class LyricWebViewFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
         val webViewLayout = inflater.inflate(R.layout.fragment_lyric_webview, container, false)
         val lyricWebView: WebView = webViewLayout.findViewById(R.id.lyricWebView)
         val useSelectionButton = webViewLayout.findViewById<Button>(R.id.useSelectionButton)
@@ -44,15 +45,18 @@ class LyricWebViewFragment : Fragment() {
 
         lyricWebView.webViewClient = WebViewClient()
 
-        val clipboard: ClipboardManager = activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        clipboard.addPrimaryClipChangedListener {
-            val regex = Regex("(\\s|\\\\n)")
+        val clipboard = activity?.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
+        clipboard?.addPrimaryClipChangedListener {
+            val regex = Regex("(\\s+|\\\\n)")
             val selectedText = clipboard.primaryClip?.getItemAt(0)
             numberOfWords = selectedText?.text?.split(regex)?.count() ?: 0
-            useSelectionButton.text = String.format(resources.getString(R.string.use_button) + " ($numberOfWords)")
+            useSelectionButton.text = String.format(context?.resources?.getString(R.string.use_button) + " ($numberOfWords)")
 
             if (selectedText != null) {
-                lyricSelectionTextView.text = selectedText.text
+                val lyricSelectionTextView = view?.findViewById<TextView>(R.id.lyricSelectionTextView)
+                lyricSelectionTextView?.text = selectedText.text
+            } else {
+                showError(requireContext(), "Something went wrong.")
             }
         }
 
@@ -66,10 +70,6 @@ class LyricWebViewFragment : Fragment() {
         }
 
         return webViewLayout
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
     }
 
     private fun extractSelection(numberOfWords: Int) {

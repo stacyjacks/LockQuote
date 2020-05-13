@@ -93,8 +93,7 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         val layoutManager = LinearLayoutManager(this)
         searchResultRecyclerView.layoutManager = layoutManager
 
-        val dividerItemDecoration =
-            DividerItemDecoration(searchResultRecyclerView.context, layoutManager.orientation)
+        val dividerItemDecoration = DividerItemDecoration(searchResultRecyclerView.context, layoutManager.orientation)
         searchResultRecyclerView.addItemDecoration(dividerItemDecoration)
 
         songSearchAdapter = GeniusSongSearchAdapter(null, this, this)
@@ -146,14 +145,9 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         lyricWebViewFragment.lyricUrl = lyricUrl
         supportFragmentManager
             .beginTransaction()
-            .replace(
-                R.id.fragment_webview_placeholder,
-                lyricWebViewFragment,
-                TAG_LYRIC_WEBVIEW_FRAGMENT
-            )
+            .replace(R.id.fragment_webview_placeholder, lyricWebViewFragment, TAG_LYRIC_WEBVIEW_FRAGMENT)
             .addToBackStack("LyricWebViewFragment")
             .commit()
-
 
         searchResultRecyclerView.visibility = View.INVISIBLE
     }

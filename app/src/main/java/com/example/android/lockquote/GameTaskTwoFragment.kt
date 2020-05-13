@@ -3,14 +3,14 @@ package com.example.android.lockquote
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import cdflynn.android.library.checkview.CheckView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.android.lockquote.adapter.*
 import com.google.android.flexbox.FlexboxLayoutManager
 
@@ -78,11 +78,15 @@ class GameTaskTwoFragment : Fragment(), OnDataPass, OnTextBubbleStartDragListene
     }
 
     override fun onCorrectOrderCallback() {
-        val checkAnimation = view?.findViewById<CheckView>(R.id.checkViewAnimation)
-        checkAnimation?.visibility = CheckView.VISIBLE
-        checkAnimation?.check()
+        val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
+        checkAnimation?.visibility = LottieAnimationView.VISIBLE
         val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskTwo)
         continueButton?.visibility = View.VISIBLE
+        textBubbleRecyclerView.addOnItemTouchListener(object: RecyclerView.SimpleOnItemTouchListener() {
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                return true
+            }
+    })
     }
 
     private fun onContinueTapped() {

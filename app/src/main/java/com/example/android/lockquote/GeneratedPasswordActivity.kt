@@ -1,14 +1,19 @@
 package com.example.android.lockquote
 
+import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
-import android.text.*
+import android.text.SpannedString
+import android.text.TextUtils
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
+import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.activity_generated_password.*
 
 class GeneratedPasswordActivity : AppCompatActivity() {
@@ -20,6 +25,35 @@ class GeneratedPasswordActivity : AppCompatActivity() {
 
         setTitle(R.string.generated_pass_activity)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val animation = findViewById<LottieAnimationView>(R.id.loadingPass)
+        animation.addAnimatorListener(object: Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                val runningAnimation = findViewById<LottieAnimationView>(R.id.loadingPass)
+                runningAnimation.visibility = View.GONE
+
+                val justASecTV = findViewById<TextView>(R.id.justASec)
+                justASecTV.visibility = View.GONE
+
+                val mainLinearLayout = findViewById<LinearLayout>(R.id.main_content_linear_layout)
+                mainLinearLayout.visibility = View.VISIBLE
+
+                val bottomViewGroup = findViewById<LinearLayout>(R.id.bottom_view_group)
+                bottomViewGroup.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {
+
+            }
+        })
 
         val generatedPassTextView = findViewById<TextView>(R.id.generatedPass)
         val passwordString = firstCharOfEveryWordOf(selectedText()).joinToString("")
@@ -127,11 +161,12 @@ class GeneratedPasswordActivity : AppCompatActivity() {
 }
 
 fun firstCharOfEveryWordOf(selectedTextFromLyric: String): ArrayList<String> {
-    val regex = Regex("(\\s|\\\\n)")
+    val regex = Regex("(\\s+|\\\\n)")
     return ArrayList(
         selectedTextFromLyric
             .split(regex)
             .map { it.first().toString() }
+            .filter { it != "[" }
     )
 }
 

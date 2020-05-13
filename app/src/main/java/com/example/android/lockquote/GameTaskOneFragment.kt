@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cdflynn.android.library.checkview.CheckView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.android.lockquote.adapter.EditTextRecyclerViewAdapter
 import com.example.android.lockquote.adapter.RecyclerViewEditTextListener
 
@@ -71,9 +71,8 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
         })
         val clearButton = view?.findViewById<Button>(R.id.clearPassButton)
         clearButton?.visibility = View.GONE
-        val checkAnimation = view?.findViewById<CheckView>(R.id.checkViewAnimation)
-        checkAnimation?.visibility = CheckView.VISIBLE
-        checkAnimation?.check()
+        val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
+        checkAnimation?.visibility = LottieAnimationView.VISIBLE
         val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskOne)
         continueButton?.visibility = View.VISIBLE
     }

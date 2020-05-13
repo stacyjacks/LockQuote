@@ -1,7 +1,6 @@
 package com.example.android.lockquote
 
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import cdflynn.android.library.checkview.CheckView
+import com.airbnb.lottie.LottieAnimationView
 
 
 class GameTaskFourFragment : Fragment(), OnDataPass {
@@ -101,9 +100,8 @@ class GameTaskFourFragment : Fragment(), OnDataPass {
     }
 
     private fun onCorrectChoice() {
-        val checkAnimation = view?.findViewById<CheckView>(R.id.checkViewAnimation)
-        checkAnimation?.visibility = CheckView.VISIBLE
-        checkAnimation?.check()
+        val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
+        checkAnimation?.visibility = LottieAnimationView.VISIBLE
         val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskFour)
         continueButton?.visibility = View.VISIBLE
     }
