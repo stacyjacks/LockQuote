@@ -2,6 +2,7 @@ package com.example.android.lockquote
 
 import android.content.Context
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,8 +53,8 @@ class GameTaskFourFragment : Fragment(), OnDataPass {
             .replace("[", "")
             .replace(" ", "")
         incorrectAnswerButton1.text = shuffledPasswordString
-        incorrectAnswerButton3.text = passwordString().decapitalize()
-        incorrectAnswerButton4.text = passwordString().reversed()
+        incorrectAnswerButton3.text = passwordString().reversed()
+        incorrectAnswerButton4.text = passwordString().toLowerCase()
 
         onRadioButtonClicked(view)
         onContinueTapped()
@@ -81,13 +82,18 @@ class GameTaskFourFragment : Fragment(), OnDataPass {
             when {
                 correctAnswerButton.isChecked ->
                     correctAnswerButton.background = ContextCompat.getDrawable(correctAnswerButton.context, R.drawable.bubble)
-                incorrectAnswerButton1.isChecked ->
+                incorrectAnswerButton1.isChecked -> {
                     incorrectAnswerButton1.background = ContextCompat.getDrawable(incorrectAnswerButton1.context, R.drawable.bubble_red)
-                incorrectAnswerButton3.isChecked ->
+                    incorrectAnswerButton1.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
+                }
+                incorrectAnswerButton3.isChecked -> {
                     incorrectAnswerButton3.background = ContextCompat.getDrawable(incorrectAnswerButton3.context, R.drawable.bubble_red)
-                incorrectAnswerButton4.isChecked ->
+                    incorrectAnswerButton3.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
+                }
+                incorrectAnswerButton4.isChecked -> {
                     incorrectAnswerButton4.background = ContextCompat.getDrawable(incorrectAnswerButton4.context, R.drawable.bubble_red)
-
+                    incorrectAnswerButton4.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
+                }
             }
             if (correctAnswerButton.isChecked) {
                 onCorrectChoice()

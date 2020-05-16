@@ -1,13 +1,14 @@
 package com.example.android.lockquote
 import android.content.Context
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.plattysoft.leonids.ParticleSystem
+import com.airbnb.lottie.LottieAnimationView
 
 
 class GameResultFragment: Fragment(), OnDataPass {
@@ -39,17 +40,25 @@ class GameResultFragment: Fragment(), OnDataPass {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val fireworks = view.findViewById<ImageView>(R.id.fireworks)
         val password = view.findViewById<TextView>(R.id.passwordFinal)
+        val vinylAnimation = view.findViewById<LottieAnimationView>(R.id.vinyl)
         val anotherGo = view.findViewById<Button>(R.id.anotherGoButton)
+        val createNewPassword = view.findViewById<Button>(R.id.makeNewPasswordButton)
 
         password.text = passwordString()
         password.setTextIsSelectable(true)
-        fireworks.setOnClickListener { fireworkAnimation(view) }
+
+        vinylAnimation.playAnimation()
+
         anotherGo.setOnClickListener {
             activity?.finish()
         }
 
+        createNewPassword.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.flags = FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -67,14 +76,6 @@ class GameResultFragment: Fragment(), OnDataPass {
 
     override fun selectedLyric(): String {
         return dataPass.selectedLyric()
-    }
-
-    private fun fireworkAnimation(view: View) {
-        ParticleSystem(activity, 100, R.drawable.firework_red, 5000)
-            .setSpeedRange(0.1f, 0.25f)
-            .setRotationSpeedRange(90f, 180f)
-            .setInitialRotationRange(0, 360)
-            .emit(view.findViewById(R.id.fireworks), 100)
     }
 
     private fun showInfo() {

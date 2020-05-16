@@ -80,6 +80,7 @@ class LyricWebViewFragment : Fragment() {
             .replace("\n", " ")
             .replace("(", "")
             .replace(")", "")
+            .replace("\"", "")
 
         when {
             numberOfWords > 15 -> {
