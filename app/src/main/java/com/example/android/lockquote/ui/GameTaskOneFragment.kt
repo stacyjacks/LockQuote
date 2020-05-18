@@ -1,4 +1,4 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.app.Activity
 import android.content.Context
@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.example.android.lockquote.R
 import com.example.android.lockquote.adapter.EditTextRecyclerViewAdapter
 import com.example.android.lockquote.adapter.RecyclerViewEditTextListener
 

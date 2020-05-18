@@ -1,4 +1,4 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.app.AlertDialog
 import android.app.SearchManager
@@ -9,10 +9,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.lockquote.R
 import com.example.android.lockquote.adapter.GeniusSongSearchAdapter
 import com.example.android.lockquote.repository.GeniusRepo
 import com.example.android.lockquote.service.GeniusSearchService
@@ -35,6 +36,7 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
 
         setTitle(R.string.search_results)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.elevation = 0f
 
         setupViewModels()
         updateControls()
@@ -69,7 +71,9 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
     }
 
     private fun performSearch(term: String) {
+        showLoadingProgress()
         searchViewModel.searchSongs(term) { results ->
+            hideLoadingProgress()
             songSearchAdapter.setSearchData(results)
         }
     }
@@ -93,9 +97,6 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         val layoutManager = LinearLayoutManager(this)
         searchResultRecyclerView.layoutManager = layoutManager
 
-        val dividerItemDecoration = DividerItemDecoration(searchResultRecyclerView.context, layoutManager.orientation)
-        searchResultRecyclerView.addItemDecoration(dividerItemDecoration)
-
         songSearchAdapter = GeniusSongSearchAdapter(null, this, this)
         searchResultRecyclerView.adapter = songSearchAdapter
     }
@@ -118,6 +119,7 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
+                showLoadingProgress()
                 performSearch(query)
                 return true
             }
@@ -135,7 +137,8 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         ) as LyricWebViewFragment?
 
         if (lyricWebViewFragment == null) {
-            lyricWebViewFragment = LyricWebViewFragment.newInstance()
+            lyricWebViewFragment =
+                LyricWebViewFragment.newInstance()
         }
         return lyricWebViewFragment
     }
@@ -145,11 +148,14 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         lyricWebViewFragment.lyricUrl = lyricUrl
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_webview_placeholder, lyricWebViewFragment, TAG_LYRIC_WEBVIEW_FRAGMENT)
+            .replace(
+                R.id.fragment_webview_placeholder, lyricWebViewFragment,
+                TAG_LYRIC_WEBVIEW_FRAGMENT
+            )
             .addToBackStack("LyricWebViewFragment")
             .commit()
 
-        searchResultRecyclerView.visibility = View.INVISIBLE
+        searchResultRecyclerView.visibility = View.GONE
     }
 
     private fun addBackStackListener() {
@@ -158,6 +164,19 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
                 searchResultRecyclerView.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun showLoadingProgress() {
+        val ghostLoadingViewGroup = findViewById<LinearLayout>(R.id.loadingSearchResults)
+        ghostLoadingViewGroup.visibility = View.VISIBLE
+        searchResultRecyclerView.visibility = View.GONE
+
+    }
+
+    private fun hideLoadingProgress() {
+        val ghostLoadingViewGroup = findViewById<LinearLayout>(R.id.loadingSearchResults)
+        ghostLoadingViewGroup.visibility = View.GONE
+        searchResultRecyclerView.visibility = View.VISIBLE
     }
 }
 

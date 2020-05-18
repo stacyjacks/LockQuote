@@ -1,4 +1,4 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.animation.Animator
 import android.content.Intent
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.airbnb.lottie.LottieAnimationView
+import com.example.android.lockquote.R
 import kotlinx.android.synthetic.main.activity_generated_password.*
 
 class GeneratedPasswordActivity : AppCompatActivity() {
@@ -56,7 +57,9 @@ class GeneratedPasswordActivity : AppCompatActivity() {
         })
 
         val generatedPassTextView = findViewById<TextView>(R.id.generatedPass)
-        val passwordString = firstCharOfEveryWordOf(selectedText()).joinToString("")
+        val passwordString = firstCharOfEveryWordOf(
+            selectedText()
+        ).joinToString("")
         val modPasswordString = charReplacer(passwordString)
         generatedPassTextView.text = modPasswordString
 

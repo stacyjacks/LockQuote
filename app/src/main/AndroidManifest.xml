@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".SearchActivity"
+            android:name=".ui.SearchActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <meta-data
@@ -21,7 +21,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -32,11 +32,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GeneratedPasswordActivity"
+            android:name=".ui.GeneratedPasswordActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".GameActivity"
+            android:name=".ui.GameActivity"
             android:screenOrientation="portrait">
         </activity>
 

@@ -1,4 +1,4 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.app.Activity
 import android.content.Context
@@ -11,10 +11,12 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
+import com.example.android.lockquote.R
 import com.google.android.material.textfield.TextInputEditText
 
 
-class GameTaskFiveFragment: Fragment(), OnDataPass {
+class GameTaskFiveFragment: Fragment(),
+    OnDataPass {
 
     lateinit var dataPass: OnDataPass
     private lateinit var editTextFieldOne: TextInputEditText
@@ -89,7 +91,9 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
                         val arrayPosition = editTextFields.indexOf(editTextField)
                         onTextInput(editTextFields, arrayPosition)
                         if (s.isBlank()) {
-                            editTextField.background = ContextCompat.getDrawable(editTextField.context, R.drawable.edit_text_style)
+                            editTextField.background = ContextCompat.getDrawable(editTextField.context,
+                                R.drawable.edit_text_style
+                            )
                         }
                         onCorrectTextInputCallback(editTextFields, editTextFields.map { it.text }.joinToString(""))
                     }
@@ -134,7 +138,9 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
         val passwordStringCharArray = passwordString().toCharArray()
 
         if (editTextFields[arrayPosition].text.toString() == (passwordStringCharArray[arrayPosition].toString())) {
-            editTextFields[arrayPosition].background = ContextCompat.getDrawable(editTextFields[arrayPosition].context, R.drawable.bubble)
+            editTextFields[arrayPosition].background = ContextCompat.getDrawable(editTextFields[arrayPosition].context,
+                R.drawable.bubble
+            )
             editTextFields[arrayPosition].focusSearch(View.FOCUS_RIGHT)?.requestFocus()
         } else {
             editTextFields[arrayPosition].requestFocus()

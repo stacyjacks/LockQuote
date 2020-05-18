@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SearchActivity">
+    tools:context=".ui.SearchActivity">
 
     <WebView
         android:id="@+id/lyricWebView"
@@ -39,6 +39,7 @@
             android:fitsSystemWindows="true"
             android:layout_gravity="center"
             android:paddingHorizontal="8dp"
+            android:gravity="center_vertical"
             android:text="@string/use_button"
             android:textColor="@color/whiteColor"
             android:background="@drawable/button_round"/>

@@ -1,4 +1,4 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -12,9 +12,11 @@ import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
+import com.example.android.lockquote.R
 
 
-class GameTaskFourFragment : Fragment(), OnDataPass {
+class GameTaskFourFragment : Fragment(),
+    OnDataPass {
 
     lateinit var dataPass: OnDataPass
     private lateinit var radioGroup: RadioGroup
@@ -81,17 +83,25 @@ class GameTaskFourFragment : Fragment(), OnDataPass {
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             when {
                 correctAnswerButton.isChecked ->
-                    correctAnswerButton.background = ContextCompat.getDrawable(correctAnswerButton.context, R.drawable.bubble)
+                    correctAnswerButton.background = ContextCompat.getDrawable(correctAnswerButton.context,
+                        R.drawable.bubble
+                    )
                 incorrectAnswerButton1.isChecked -> {
-                    incorrectAnswerButton1.background = ContextCompat.getDrawable(incorrectAnswerButton1.context, R.drawable.bubble_red)
+                    incorrectAnswerButton1.background = ContextCompat.getDrawable(incorrectAnswerButton1.context,
+                        R.drawable.bubble_red
+                    )
                     incorrectAnswerButton1.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
                 }
                 incorrectAnswerButton3.isChecked -> {
-                    incorrectAnswerButton3.background = ContextCompat.getDrawable(incorrectAnswerButton3.context, R.drawable.bubble_red)
+                    incorrectAnswerButton3.background = ContextCompat.getDrawable(incorrectAnswerButton3.context,
+                        R.drawable.bubble_red
+                    )
                     incorrectAnswerButton3.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
                 }
                 incorrectAnswerButton4.isChecked -> {
-                    incorrectAnswerButton4.background = ContextCompat.getDrawable(incorrectAnswerButton4.context, R.drawable.bubble_red)
+                    incorrectAnswerButton4.background = ContextCompat.getDrawable(incorrectAnswerButton4.context,
+                        R.drawable.bubble_red
+                    )
                     incorrectAnswerButton4.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
                 }
             }

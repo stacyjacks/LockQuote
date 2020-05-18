@@ -1,4 +1,4 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.example.android.lockquote.R
 import com.example.android.lockquote.adapter.*
 import com.google.android.flexbox.FlexboxLayoutManager
 
-class GameTaskThreeFragment : Fragment(), OnDataPass, OnCharBubbleStartDragListener, RecyclerViewCharBubbleListener {
+class GameTaskThreeFragment : Fragment(),
+    OnDataPass, OnCharBubbleStartDragListener, RecyclerViewCharBubbleListener {
     lateinit var dataPass: OnDataPass
     lateinit var charBubbleRecyclerView: RecyclerView
     lateinit var adapter: CharBubbleRecyclerViewAdapter
@@ -87,7 +89,8 @@ class GameTaskThreeFragment : Fragment(), OnDataPass, OnCharBubbleStartDragListe
     private fun onContinueTapped() {
         val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskThree)
         continueButton?.setOnClickListener {
-            val fragmentTaskFour = GameTaskFourFragment.newInstance()
+            val fragmentTaskFour =
+                GameTaskFourFragment.newInstance()
             val transaction = fragmentManager?.beginTransaction()
             transaction
                 ?.replace(R.id.frameFragmentGame, fragmentTaskFour)

@@ -8,13 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android.lockquote.R
-import com.example.android.lockquote.SearchActivity
+import com.example.android.lockquote.ui.SearchActivity
 import com.example.android.lockquote.viewmodel.SearchViewModel.*
 
 class GeniusSongSearchAdapter(
     private var songSummaryViewList: List<SongSummaryViewData>?,
     private val songListAdapterListener: SongSearchAdapterListener,
-    private val parentActivity: SearchActivity): RecyclerView.Adapter<GeniusSongSearchAdapter.ViewHolder>() {
+    private val parentActivity: SearchActivity
+): RecyclerView.Adapter<GeniusSongSearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.song_search_item, parent, false), songListAdapterListener)

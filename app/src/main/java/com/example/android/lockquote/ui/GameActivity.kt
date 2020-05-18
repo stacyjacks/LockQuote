@@ -1,14 +1,15 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android.lockquote.R
 
-class GameActivity : AppCompatActivity(), OnDataPass {
+class GameActivity : AppCompatActivity(),
+    OnDataPass {
 
     companion object {
         const val TAG_GAME_TASK_ONE_FRAGMENT = "GameTaskOneFragment"
@@ -51,7 +52,8 @@ class GameActivity : AppCompatActivity(), OnDataPass {
         ) as GameTaskOneFragment?
 
         if (gameTaskOneFragment == null) {
-            gameTaskOneFragment = GameTaskOneFragment.newInstance()
+            gameTaskOneFragment =
+                GameTaskOneFragment.newInstance()
         }
         return gameTaskOneFragment
     }
@@ -60,7 +62,10 @@ class GameActivity : AppCompatActivity(), OnDataPass {
         val gameTaskOneFragment = createGameTaskOneFragment()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frameFragmentGame, gameTaskOneFragment, TAG_GAME_TASK_ONE_FRAGMENT)
+            .replace(
+                R.id.frameFragmentGame, gameTaskOneFragment,
+                TAG_GAME_TASK_ONE_FRAGMENT
+            )
             .commit()
     }
 

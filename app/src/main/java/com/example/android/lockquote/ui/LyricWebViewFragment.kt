@@ -1,4 +1,4 @@
-package com.example.android.lockquote
+package com.example.android.lockquote.ui
 
 import android.content.ClipboardManager
 import android.content.Context
@@ -14,6 +14,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.android.lockquote.R
 import kotlinx.android.synthetic.main.fragment_lyric_webview.lyricSelectionTextView
 
 class LyricWebViewFragment : Fragment() {
@@ -56,12 +57,20 @@ class LyricWebViewFragment : Fragment() {
                 val lyricSelectionTextView = view?.findViewById<TextView>(R.id.lyricSelectionTextView)
                 lyricSelectionTextView?.text = selectedText.text
             } else {
-                showError(requireContext(), "Something went wrong.")
+                showError(
+                    requireContext(),
+                    "Something went wrong."
+                )
             }
         }
 
         lyricUrl?.let { lyricWebView.loadUrl(it) }
-            ?: context?.let { showError(it, "Can't open lyrics") }
+            ?: context?.let {
+                showError(
+                    it,
+                    "Can't open lyrics"
+                )
+            }
 
         useSelectionButton.text = String.format(resources.getString(R.string.use_button) + " ($numberOfWords)")
 
@@ -85,12 +94,18 @@ class LyricWebViewFragment : Fragment() {
         when {
             numberOfWords > 15 -> {
                 context?.let {
-                    showError(it, "Please select an excerpt of 15 words or less.")
+                    showError(
+                        it,
+                        "Please select an excerpt of 15 words or less."
+                    )
                 }
             }
             lyricSelectionTextView.text.contains(selectTextHint) -> {
                 context?.let {
-                    showError(it, "You haven't selected a lyric excerpt for your password.")
+                    showError(
+                        it,
+                        "You haven't selected a lyric excerpt for your password."
+                    )
                 }
             }
             else -> {

@@ -27,11 +27,11 @@
     <string name="taskFiveInputPass">Now... Do you think you\'re ready to use your new password? Input the correct characters, this time no hints!</string>
     <string name="take_me_back_button">I can\'t do it, let me start over</string>
     <string name="take_a_good_look">Take a good look at the selected lyric and the password we\'ve generated for you:</string>
-    <string name="well_done">WELL DONE!!!</string>
+    <string name="well_done">WELL DONE!</string>
     <string name="congrats_new_password">Congratulations! You\'re ready to use your new password. Take another good look at it, copy it, or do whatever:</string>
-    <string name="another_go">Let me go through the games again</string>
-    <string name="make_new_button">Create another password</string>
+    <string name="another_go">Go through the games again</string>
+    <string name="make_new_button">New password</string>
 
     <string name="about_title">LockQuote %s</string>
-    <string name="about_message">Created by Anastasia Kurmakaeva. \n\nGRAPHICS:\nhttps://www.flaticon.com/authors/eucalyp \nfrom www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files</string>
+    <string name="about_message">Created by Anastasia Kurmakaeva. \n\nGRAPHICS:\nhttps://www.flaticon.com/authors/eucalyp \nfrom www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>
 </resources>
