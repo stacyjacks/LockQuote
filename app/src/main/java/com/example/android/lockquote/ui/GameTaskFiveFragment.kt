@@ -15,8 +15,7 @@ import com.example.android.lockquote.R
 import com.google.android.material.textfield.TextInputEditText
 
 
-class GameTaskFiveFragment: Fragment(),
-    OnDataPass {
+class GameTaskFiveFragment: Fragment(), OnDataPass {
 
     lateinit var dataPass: OnDataPass
     private lateinit var editTextFieldOne: TextInputEditText
@@ -137,10 +136,12 @@ class GameTaskFiveFragment: Fragment(),
     private fun onTextInput(editTextFields: Array<TextInputEditText>, arrayPosition: Int) {
         val passwordStringCharArray = passwordString().toCharArray()
 
+        if (!passwordStringCharArray.indices.contains(arrayPosition)) return
+        if (!editTextFields.indices.contains(arrayPosition)) return
+
         if (editTextFields[arrayPosition].text.toString() == (passwordStringCharArray[arrayPosition].toString())) {
-            editTextFields[arrayPosition].background = ContextCompat.getDrawable(editTextFields[arrayPosition].context,
-                R.drawable.bubble
-            )
+            editTextFields[arrayPosition].background = ContextCompat.getDrawable(editTextFields[arrayPosition].context, R.drawable.bubble)
+
             editTextFields[arrayPosition].focusSearch(View.FOCUS_RIGHT)?.requestFocus()
         } else {
             editTextFields[arrayPosition].requestFocus()

@@ -4,24 +4,31 @@
     android:id="@+id/game_result_layout"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_b">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/well_done"
-        android:padding="8dp"
+        android:padding="12dp"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/whiteColor"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/bubble_white">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/congrats_new_password"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="8dp"
+        android:padding="12dp"
         android:textSize="18sp"
         android:layout_gravity="center"/>
 
@@ -38,6 +45,7 @@
         android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/source_sans_pro_regular"
         android:background="@drawable/bubble_white"
         android:layout_gravity="center"/>
 
@@ -55,13 +63,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingTop="12dp"
         android:gravity="center_horizontal">
 
     <Button
         android:id="@+id/anotherGoButton"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_margin="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="6dp"
         android:background="@drawable/bubble_red"
         android:fitsSystemWindows="true"
         android:paddingHorizontal="8dp"
@@ -72,12 +82,15 @@
         android:id="@+id/makeNewPasswordButton"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_margin="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="6dp"
         android:background="@drawable/bubble_red"
         android:fitsSystemWindows="true"
         android:paddingHorizontal="8dp"
         android:text="@string/make_new_button"
         android:textColor="@color/whiteColor"/>
+
+    </LinearLayout>
 
     </LinearLayout>
 

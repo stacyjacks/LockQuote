@@ -19,12 +19,15 @@ class GameActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         showGameTaskOneFragment()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.elevation = 0f
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home ->
-                this.onBackPressed()
+                super.onBackPressed()
             // Respond to the action bar's Up/Home button
         }
         return super.onOptionsItemSelected(item)

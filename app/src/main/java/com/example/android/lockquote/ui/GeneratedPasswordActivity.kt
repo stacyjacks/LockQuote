@@ -26,6 +26,7 @@ class GeneratedPasswordActivity : AppCompatActivity() {
 
         setTitle(R.string.generated_pass_activity)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.elevation = 0f
 
         val animation = findViewById<LottieAnimationView>(R.id.loadingPass)
         animation.addAnimatorListener(object: Animator.AnimatorListener {
@@ -147,19 +148,29 @@ class GeneratedPasswordActivity : AppCompatActivity() {
 
         return passwordString
             .replace("A", replaceA.random())
+            .replace("Á", replaceA.random())
+            .replace("á", replaceA.random())
             .replace("a", replaceA.random())
             .replace("S", replaceS.random())
             .replace("s", replaceS.random())
             .replace("E", replaceE.random())
+            .replace("É", replaceE.random())
             .replace("e", replaceE.random())
+            .replace("é", replaceE.random())
             .replace("T", replaceT.random())
             .replace("t", replaceT.random())
             .replace("I", replaceI.random())
+            .replace("Í", replaceE.random())
             .replace("i", replaceI.random())
+            .replace("í", replaceE.random())
             .replace("O", replaceO.random())
+            .replace("Ó", replaceE.random())
             .replace("o", replaceO.random())
+            .replace("ó", replaceE.random())
             .replace("G", replaceG.random())
             .replace("g", replaceG.random())
+            .replace("Ú", "U")
+            .replace("ú", "u")
     }
 }
 
@@ -170,6 +181,11 @@ fun firstCharOfEveryWordOf(selectedTextFromLyric: String): ArrayList<String> {
             .split(regex)
             .map { it.first().toString() }
             .filter { it != "[" }
+            .joinToString(",")
+            .filter { it.isLetterOrDigit() }
+            .split(",")
+
     )
+
 }
 

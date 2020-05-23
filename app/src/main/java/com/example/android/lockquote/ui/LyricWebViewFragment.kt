@@ -48,9 +48,11 @@ class LyricWebViewFragment : Fragment() {
 
         val clipboard = activity?.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
         clipboard?.addPrimaryClipChangedListener {
-            val regex = Regex("(\\s+|\\\\n)")
+            val regexWhiteSpace = Regex("(\\s+|\\\\n)")
             val selectedText = clipboard.primaryClip?.getItemAt(0)
-            numberOfWords = selectedText?.text?.split(regex)?.count() ?: 0
+
+            numberOfWords = selectedText?.text?.split(regexWhiteSpace)?.count() ?: 0
+
             useSelectionButton.text = String.format(context?.resources?.getString(R.string.use_button) + " ($numberOfWords)")
 
             if (selectedText != null) {
@@ -116,5 +118,3 @@ class LyricWebViewFragment : Fragment() {
         }
     }
 }
-
-

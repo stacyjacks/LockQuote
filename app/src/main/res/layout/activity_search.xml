@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightGreyColor"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         android:id="@+id/search_bar_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
         android:paddingBottom="8dp"
+        android:background="@color/colorAccent"
         app:layout_constraintTop_toTopOf="@id/root_layout">
 
         <androidx.appcompat.widget.SearchView
@@ -19,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/searchview_round"
             android:iconifiedByDefault="false"
@@ -44,14 +45,57 @@
             android:layout_margin="4dp"
             android:background="@drawable/bubble_white"
             android:orientation="horizontal"
-            android:paddingStart="5dp"
+            android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingEnd="5dp"
             android:paddingBottom="5dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="5dp"
+                android:padding="4dp"
+                android:src="@drawable/bubble_light_grey" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/loadingsearchresults" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/loadingsearchresults" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/bubble_white"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="5dp"
                 android:padding="4dp"
                 android:src="@drawable/bubble_light_grey" />
 
@@ -91,8 +135,9 @@
             android:paddingBottom="5dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="5dp"
                 android:padding="4dp"
                 android:src="@drawable/bubble_light_grey" />
 
@@ -132,8 +177,9 @@
             android:paddingBottom="5dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="5dp"
                 android:padding="4dp"
                 android:src="@drawable/bubble_light_grey" />
 
@@ -173,8 +219,9 @@
             android:paddingBottom="5dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="5dp"
                 android:padding="4dp"
                 android:src="@drawable/bubble_light_grey" />
 
@@ -214,49 +261,9 @@
             android:paddingBottom="5dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:padding="4dp"
-                android:src="@drawable/bubble_light_grey" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/loadingsearchresults" />
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/loadingsearchresults" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/bubble_white"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="5dp">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="5dp"
                 android:padding="4dp"
                 android:src="@drawable/bubble_light_grey" />
 
@@ -290,7 +297,7 @@
         android:id="@+id/searchResultRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="4dp"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:paddingBottom="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

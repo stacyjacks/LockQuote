@@ -56,7 +56,7 @@ class GameTaskFourFragment : Fragment(),
             .replace(" ", "")
         incorrectAnswerButton1.text = shuffledPasswordString
         incorrectAnswerButton3.text = passwordString().reversed()
-        incorrectAnswerButton4.text = passwordString().toLowerCase()
+        incorrectAnswerButton4.text = shuffledPasswordString.reversed().toLowerCase()
 
         onRadioButtonClicked(view)
         onContinueTapped()
@@ -107,10 +107,6 @@ class GameTaskFourFragment : Fragment(),
             }
             if (correctAnswerButton.isChecked) {
                 onCorrectChoice()
-                incorrectAnswerButton1.visibility = View.GONE
-                incorrectAnswerButton3.visibility = View.GONE
-                incorrectAnswerButton4.visibility = View.GONE
-
             }
         }
     }

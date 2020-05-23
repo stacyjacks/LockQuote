@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ItemMoveCharBubbleCallbackListener(val adapter: CharBubbleRecyclerViewAdapter) : ItemTouchHelper.Callback() {
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
-        val dragFlags = ItemTouchHelper.START or ItemTouchHelper.END
+        val dragFlags = ItemTouchHelper.START or ItemTouchHelper.END or ItemTouchHelper.UP or ItemTouchHelper.DOWN
         return makeMovementFlags(dragFlags, 0)
     }
 

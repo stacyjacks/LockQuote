@@ -15,6 +15,7 @@
         android:hapticFeedbackEnabled="true"
         android:padding="8dp"
         android:text="char 1"
+        android:fontFamily="@font/source_sans_pro_regular"
         android:textColor="@color/whiteColor"
         android:textSize="20sp"/>
 

@@ -6,24 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient_b"
     tools:context=".ui.GameActivity">
 
-    <LinearLayout
-        android:id="@+id/editTextLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/taskFive"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="end"
+        android:text="@string/taskFive"
+        android:paddingEnd="18dp"
+        android:textColor="@color/whiteColor"
+        android:textSize="24sp"
+        android:textAllCaps="true"/>
 
-        <TextView
-            android:id="@+id/taskFive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="8dp"
-            android:text="@string/taskFive"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/bubble_white">
 
         <TextView
             android:id="@+id/helpfulTextTaskFive"
@@ -46,197 +49,212 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField1"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField2"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField3"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField4"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField5"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField6"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField7"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField8"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField9"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField10"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField11"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField12"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField13"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField14"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField15"
-                android:layout_width="25dp"
-                android:layout_height="47dp"
+                android:layout_width="20dp"
+                android:layout_height="42dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit_text_style"
                 android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 android:maxLength="1"
-                android:textSize="20sp"
                 android:visibility="gone" />
 
         </LinearLayout>
@@ -288,13 +306,14 @@
 
         <Button
             android:id="@+id/continueButtonTaskFive"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/bubble"
             android:text="@string/continue_button_one"
             android:textAlignment="center"
             android:textColor="@color/whiteColor"
+            android:layout_gravity="center"
             android:visibility="gone" />
 
     </LinearLayout>

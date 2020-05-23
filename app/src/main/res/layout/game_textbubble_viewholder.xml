@@ -16,6 +16,7 @@
         android:padding="8dp"
         android:text="word 1"
         android:textColor="@color/whiteColor"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:fontFamily="@font/source_sans_pro_regular"/>
 
 </LinearLayout>

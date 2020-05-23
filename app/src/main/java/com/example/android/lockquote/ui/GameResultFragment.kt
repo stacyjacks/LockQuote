@@ -37,6 +37,7 @@ class GameResultFragment: Fragment(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.about_item) {
             showInfo() }
+
         return true
     }
 
