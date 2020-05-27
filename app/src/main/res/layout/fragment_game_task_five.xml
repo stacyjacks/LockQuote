@@ -17,7 +17,7 @@
         android:text="@string/taskFive"
         android:paddingEnd="18dp"
         android:textColor="@color/whiteColor"
-        android:textSize="24sp"
+        android:textSize="@dimen/task_number_font_size"
         android:textAllCaps="true"/>
 
     <LinearLayout
@@ -32,29 +32,29 @@
             android:id="@+id/helpfulTextTaskFive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp"
+            android:paddingHorizontal="@dimen/helpful_text_padding_horizontal"
+            android:paddingVertical="@dimen/helpful_text_padding_vertical"
             android:text="@string/taskFiveInputPass"
-            android:textSize="18sp" />
+            android:textSize="@dimen/helpful_text_font_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:fitsSystemWindows="true"
+            android:layout_margin="8dp"
             android:gravity="center"
-            android:padding="8dp"
+            android:paddingTop="8dp"
             android:hapticFeedbackEnabled="true"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField1"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -63,12 +63,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField2"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -77,12 +78,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField3"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -91,12 +93,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField4"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -105,12 +108,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField5"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -119,12 +123,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField6"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -133,12 +138,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField7"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -147,12 +153,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField8"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -161,12 +168,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField9"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -175,12 +183,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField10"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -189,12 +198,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField11"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -203,12 +213,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField12"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -217,12 +228,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField13"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -231,12 +243,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField14"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -245,12 +258,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextField15"
-                android:layout_width="20dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/edit_text_boxes_layout_width"
+                android:layout_height="@dimen/edit_text_boxes_layout_height"
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:background="@drawable/edit_text_style"
                 android:textSize="18sp"
+                android:textColor="@color/whiteColor"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions|textVisiblePassword"
@@ -260,61 +274,80 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/helpButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:visibility="visible">
 
             <Button
                 android:id="@+id/takeMeBack"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="@dimen/red_button_layout_height"
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
                 android:background="@drawable/bubble_red"
                 android:fitsSystemWindows="true"
                 android:paddingHorizontal="8dp"
                 android:text="@string/take_me_back_button"
-                android:textColor="@color/whiteColor"
-                android:visibility="visible" />
+                android:textColor="@color/whiteColor"/>
 
             <Button
                 android:id="@+id/clearPassFinalButton"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="@dimen/red_button_layout_height"
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
                 android:background="@drawable/bubble_red"
                 android:fitsSystemWindows="true"
                 android:paddingHorizontal="8dp"
                 android:text="@string/clear_pass_button"
-                android:textColor="@color/whiteColor"
-                android:visibility="visible" />
+                android:textColor="@color/whiteColor"/>
 
         </LinearLayout>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/checkViewAnimation"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="@dimen/success_animation_width"
+            android:layout_height="@dimen/success_animation_height"
             android:layout_gravity="center"
             android:visibility="gone"
             app:lottie_rawRes="@raw/checkmarklightgreen"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"/>
 
-        <Button
-            android:id="@+id/continueButtonTaskFive"
+        <LinearLayout
+            android:id="@+id/successTaskFive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/bubble"
-            android:text="@string/continue_button_one"
-            android:textAlignment="center"
-            android:textColor="@color/whiteColor"
-            android:layout_gravity="center"
-            android:visibility="gone" />
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text="@string/great_text"
+                android:textStyle="bold"
+                android:textSize="@dimen/great_text_font_size"/>
+
+            <Button
+                android:id="@+id/continueButtonTaskFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/bubble"
+                android:text="@string/continue_button"
+                android:textAlignment="center"
+                android:textColor="@color/whiteColor"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

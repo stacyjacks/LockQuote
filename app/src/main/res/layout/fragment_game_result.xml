@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
+        android:padding="8dp"
         android:orientation="vertical"
         android:background="@drawable/bubble_white">
 
@@ -28,8 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/congrats_new_password"
-        android:padding="12dp"
-        android:textSize="18sp"
+        android:paddingHorizontal="@dimen/helpful_text_padding_horizontal"
+        android:paddingVertical="@dimen/helpful_text_padding_vertical"
+        android:textSize="@dimen/helpful_text_font_size"
         android:layout_gravity="center"/>
 
     <TextView
@@ -42,7 +44,7 @@
         android:paddingBottom="8dp"
         android:layout_margin="4dp"
         android:text="Dummy Text"
-        android:textSize="32sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:fontFamily="@font/source_sans_pro_regular"
@@ -51,8 +53,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/vinyl"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/success_animation_height"
+        android:layout_height="@dimen/success_animation_height"
         android:layout_gravity="center_horizontal"
         android:padding="8dp"
         app:lottie_rawRes="@raw/vinylrecordblack"
@@ -69,7 +71,7 @@
     <Button
         android:id="@+id/anotherGoButton"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
+        android:layout_height="@dimen/red_button_layout_height"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="6dp"
         android:background="@drawable/bubble_red"
@@ -81,7 +83,7 @@
     <Button
         android:id="@+id/makeNewPasswordButton"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
+        android:layout_height="@dimen/red_button_layout_height"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="6dp"
         android:background="@drawable/bubble_red"

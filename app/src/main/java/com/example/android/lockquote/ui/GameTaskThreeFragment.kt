@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -77,8 +78,8 @@ class GameTaskThreeFragment : Fragment(),
     override fun onCorrectOrderCallback() {
         val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
         checkAnimation?.visibility = LottieAnimationView.VISIBLE
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskThree)
-        continueButton?.visibility = View.VISIBLE
+        val successTaskThree = view?.findViewById<LinearLayout>(R.id.successTaskThree)
+        successTaskThree?.visibility = View.VISIBLE
         charBubbleRecyclerView.addOnItemTouchListener(object: RecyclerView.SimpleOnItemTouchListener() {
             override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
                 return true

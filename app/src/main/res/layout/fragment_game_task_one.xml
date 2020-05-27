@@ -1,50 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_game_task_one"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/gradient_b"
+    android:orientation="vertical"
     tools:context=".ui.GameActivity">
 
-        <TextView
-            android:id="@+id/taskOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/taskOne"
-            android:paddingEnd="18dp"
-            android:textColor="@color/whiteColor"
-            android:textSize="24sp"
-            android:textAllCaps="true"/>
+    <TextView
+        android:id="@+id/taskOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingEnd="18dp"
+        android:text="@string/taskOne"
+        android:textAllCaps="true"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/task_number_font_size" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            android:orientation="vertical"
-            android:background="@drawable/bubble_white">
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutTaskOne"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:background="@drawable/bubble_white"
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/helpfulTextTaskOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp"
+            android:paddingHorizontal="@dimen/helpful_text_padding_horizontal"
+            android:paddingVertical="@dimen/helpful_text_padding_vertical"
             android:text="@string/taskOneInputFullPassword"
-            android:textSize="18sp" />
+            android:textSize="@dimen/helpful_text_font_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayoutRVTaskOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="8dp"
             android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:paddingTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helpfulTextTaskOne">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/editTextRV"
@@ -52,45 +57,76 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fitsSystemWindows="true"
-                android:hapticFeedbackEnabled="true"/>
+                android:hapticFeedbackEnabled="true" />
 
         </LinearLayout>
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/checkViewAnimation"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            app:lottie_rawRes="@raw/checkmarklightgreen"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
 
         <Button
             android:id="@+id/clearPassButton"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:fitsSystemWindows="true"
-            android:layout_gravity="center"
-            android:layout_margin="12dp"
+            android:layout_height="@dimen/red_button_layout_height"
+            android:background="@drawable/bubble_red"
             android:paddingHorizontal="8dp"
             android:text="@string/clear_pass_button"
             android:textColor="@color/whiteColor"
             android:visibility="visible"
-            android:background="@drawable/bubble_red"/>
+            app:layout_constraintBottom_toTopOf="@+id/successTaskOne"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutRVTaskOne" />
 
-        <Button
-            android:id="@+id/continueButtonTaskOne"
+        <LinearLayout
+            android:id="@+id/successTaskOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/bubble"
-            android:text="@string/continue_button_one"
-            android:textColor="@color/whiteColor"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clearPassButton">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/checkViewAnimation"
+                android:layout_width="@dimen/success_animation_width"
+                android:layout_height="@dimen/success_animation_height"
+                android:visibility="visible"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/checkmarklightgreen" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="8dp"
+                android:text="@string/great_text"
+                android:textSize="@dimen/great_text_font_size"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/continueButtonTaskOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:background="@drawable/bubble"
+                android:paddingHorizontal="8dp"
+                android:text="@string/continue_button"
+                android:textAlignment="center"
+                android:textColor="@color/whiteColor" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

@@ -37,7 +37,8 @@
 
         <activity
             android:name=".ui.GameActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" >
         </activity>
 
     </application>

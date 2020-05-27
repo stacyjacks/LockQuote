@@ -6,14 +6,16 @@ import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.example.android.lockquote.R
-
 
 class GameTaskFourFragment : Fragment(),
     OnDataPass {
@@ -77,15 +79,22 @@ class GameTaskFourFragment : Fragment(),
 
     override fun selectedLyric(): String {
         return dataPass.selectedLyric()
+
     }
 
     private fun onRadioButtonClicked(view: View) {
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             when {
-                correctAnswerButton.isChecked ->
-                    correctAnswerButton.background = ContextCompat.getDrawable(correctAnswerButton.context,
-                        R.drawable.bubble
-                    )
+                correctAnswerButton.isChecked -> {
+                    correctAnswerButton.background = ContextCompat.getDrawable(correctAnswerButton.context, R.drawable.bubble)
+
+                    val blinkingAnimation: Animation = AlphaAnimation(0.0f, 1.0f)
+                    blinkingAnimation.duration = 100
+                    blinkingAnimation.startOffset = 20
+                    blinkingAnimation.repeatMode = Animation.REVERSE
+                    blinkingAnimation.repeatCount = 5
+                    correctAnswerButton.startAnimation(blinkingAnimation)
+                }
                 incorrectAnswerButton1.isChecked -> {
                     incorrectAnswerButton1.background = ContextCompat.getDrawable(incorrectAnswerButton1.context,
                         R.drawable.bubble_red
@@ -114,8 +123,8 @@ class GameTaskFourFragment : Fragment(),
     private fun onCorrectChoice() {
         val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
         checkAnimation?.visibility = LottieAnimationView.VISIBLE
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskFour)
-        continueButton?.visibility = View.VISIBLE
+        val successTaskFour = view?.findViewById<LinearLayout>(R.id.successTaskFour)
+        successTaskFour?.visibility = View.VISIBLE
     }
 
     private fun onContinueTapped() {

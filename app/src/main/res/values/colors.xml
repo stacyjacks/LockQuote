@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorAccentDark">#A00037</color>
     <color name="whiteColor">#FFFFFF</color>
-    <color name="lightGreenColor">#b2ff59</color>
+    <color name="lightGreenColor">#64dd17</color>
+    <color name="limeColor">#b2ff59</color>
     <color name="lightGreyColor">#F0F0F0</color>
 </resources>

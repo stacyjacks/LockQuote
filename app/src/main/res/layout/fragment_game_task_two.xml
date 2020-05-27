@@ -17,7 +17,7 @@
         android:text="@string/taskTwo"
         android:paddingEnd="18dp"
         android:textColor="@color/whiteColor"
-        android:textSize="24sp"
+        android:textSize="@dimen/task_number_font_size"
         android:textAllCaps="true"/>
 
     <LinearLayout
@@ -32,14 +32,15 @@
             android:id="@+id/helpfulTextTaskTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp"
+            android:paddingHorizontal="@dimen/helpful_text_padding_horizontal"
+            android:paddingVertical="@dimen/helpful_text_padding_vertical"
             android:text="@string/taskTwoOrderLyrics"
-            android:textSize="18sp" />
+            android:textSize="@dimen/helpful_text_font_size" />
 
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="4dp"
             app:flexWrap="wrap"
             app:alignItems="flex_start"
             app:alignContent="flex_start"
@@ -56,25 +57,44 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/checkViewAnimation"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="@dimen/success_animation_width"
+            android:layout_height="@dimen/success_animation_height"
             android:layout_gravity="center"
             android:visibility="gone"
             app:lottie_rawRes="@raw/checkmarklightgreen"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"/>
 
-        <Button
-            android:id="@+id/continueButtonTaskTwo"
+        <LinearLayout
+            android:id="@+id/successTaskTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/bubble"
-            android:text="@string/continue_button_one"
-            android:textColor="@color/whiteColor"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text="@string/great_text"
+                android:textStyle="bold"
+                android:textSize="@dimen/great_text_font_size"/>
+
+            <Button
+                android:id="@+id/continueButtonTaskTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/bubble"
+                android:text="@string/continue_button"
+                android:textAlignment="center"
+                android:textColor="@color/whiteColor"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

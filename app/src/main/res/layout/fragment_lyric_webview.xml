@@ -35,7 +35,7 @@
         <Button
             android:id="@+id/useSelectionButton"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/red_button_layout_height"
             android:fitsSystemWindows="true"
             android:layout_gravity="center"
             android:paddingHorizontal="8dp"

@@ -19,7 +19,7 @@
     <string name="taskOneInputFullPassword">Input the full password exactly as it appears below:</string>
     <string name="taskTwoOrderLyrics">Put the lyrics in the correct order by dragging and dropping the word boxes below:</string>
     <string name="clear_pass_button">Clear</string>
-    <string name="continue_button_one">CONTINUE</string>
+    <string name="continue_button">CONTINUE</string>
     <string name="generated_pass_activity">Your password</string>
 
     <string name="taskThreeOrderPassword">Now, similarly, put the characters of your new password in the correct order. Are you up to the challenge?</string>
@@ -29,8 +29,9 @@
     <string name="take_a_good_look">Take a good look at the selected lyric and the password we\'ve generated for you:</string>
     <string name="well_done">Well done!</string>
     <string name="congrats_new_password">Congratulations! You\'re ready to use your new password. Take another good look at it, copy it, or do whatever:</string>
-    <string name="another_go">Go through the games again</string>
+    <string name="another_go">Repeat the games</string>
     <string name="make_new_button">New password</string>
+    <string name="great_text">Great!</string>
 
     <string name="about_title">LockQuote %s</string>
     <string name="about_message">Created by Anastasia Kurmakaeva. \n\nGRAPHICS:\nhttps://www.flaticon.com/authors/eucalyp \nfrom www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>

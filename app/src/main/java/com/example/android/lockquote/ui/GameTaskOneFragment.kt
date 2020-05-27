@@ -7,6 +7,7 @@ import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -71,11 +72,9 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
             }
         })
         val clearButton = view?.findViewById<Button>(R.id.clearPassButton)
-        clearButton?.visibility = View.GONE
-        val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
-        checkAnimation?.visibility = LottieAnimationView.VISIBLE
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskOne)
-        continueButton?.visibility = View.VISIBLE
+        clearButton?.visibility = View.INVISIBLE
+        val successMessage = view?.findViewById<LinearLayout>(R.id.successTaskOne)
+        successMessage?.visibility = View.VISIBLE
     }
 
     private fun onContinueTapped() {

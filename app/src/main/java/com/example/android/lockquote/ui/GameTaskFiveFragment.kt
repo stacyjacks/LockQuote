@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
@@ -163,14 +164,13 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
                 }
             }
 
-            val clearButton = view?.findViewById<Button>(R.id.clearPassFinalButton)
-            clearButton?.visibility = View.GONE
-            val takeMeBackButton = view?.findViewById<Button>(R.id.takeMeBack)
-            takeMeBackButton?.visibility = View.GONE
+            val helpButtons = view?.findViewById<LinearLayout>(R.id.helpButtons)
+            helpButtons?.visibility = View.GONE
+
             val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
             checkAnimation?.visibility = LottieAnimationView.VISIBLE
-            val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskFive)
-            continueButton?.visibility = View.VISIBLE
+            val successTaskFive = view?.findViewById<LinearLayout>(R.id.successTaskFive)
+            successTaskFive?.visibility = View.VISIBLE
         }
     }
 
