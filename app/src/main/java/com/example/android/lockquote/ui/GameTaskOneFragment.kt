@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.example.android.lockquote.R
 import com.example.android.lockquote.adapter.EditTextRecyclerViewAdapter
 import com.example.android.lockquote.adapter.RecyclerViewEditTextListener
@@ -40,6 +39,12 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        val displayMetrics = DisplayMetrics()
+//        context?.resources?.displayMetrics
+//
+//        val screenWidth = displayMetrics.widthPixels
+//        val height = displayMetrics.heightPixels
+
         val taskOneTextView = view.findViewById<TextView>(R.id.helpfulTextTaskOne)
         val taskOneHelpfulText = getString(R.string.taskOneInputFullPassword)
 
@@ -48,7 +53,6 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
         editTextRecyclerView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         adapter = EditTextRecyclerViewAdapter(this, dataPass.passwordString())
         editTextRecyclerView.adapter = adapter
-        editTextRecyclerView.setHasFixedSize(true)
 
         val clearButton = view.findViewById<Button>(R.id.clearPassButton)
         clearButton.setOnClickListener {

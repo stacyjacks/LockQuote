@@ -7,10 +7,12 @@ import android.text.SpannedString
 import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.airbnb.lottie.LottieAnimationView
@@ -22,6 +24,11 @@ class GeneratedPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generated_password)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = (ContextCompat.getColor(this, R.color.colorAccentDark))
+
         handleIntent(intent)
 
         setTitle(R.string.generated_pass_activity)
@@ -58,14 +65,11 @@ class GeneratedPasswordActivity : AppCompatActivity() {
         })
 
         val generatedPassTextView = findViewById<TextView>(R.id.generatedPass)
-        val passwordString = firstCharOfEveryWordOf(
-            selectedText()
-        ).joinToString("")
-        val modPasswordString = charReplacer(passwordString)
+        val modPasswordString = charReplacer(passwordString())
         generatedPassTextView.text = modPasswordString
 
         val numberOfCharsTextView = findViewById<TextView>(R.id.numberOfCharacters)
-        numberOfCharsTextView.text = numberOfCharCalculator(passwordString)
+        numberOfCharsTextView.text = numberOfCharCalculator(passwordString())
 
         val helpMeRemember = findViewById<Button>(R.id.helpMeRemember)
         helpMeRemember.setOnClickListener {
@@ -113,12 +117,6 @@ class GeneratedPasswordActivity : AppCompatActivity() {
             if (word.isBlank()) {
                 continue
             }
-            if (word.first().toString() == "[") {
-                continue
-            }
-            if (word.last().toString() == "]") {
-                continue
-            }
 
             val firstLetterBold = word.first()
             val normalText = word.drop(1)
@@ -135,6 +133,10 @@ class GeneratedPasswordActivity : AppCompatActivity() {
 
     private fun selectedText(): String {
         return intent.getStringExtra("selectedText")
+    }
+
+    private fun passwordString(): String {
+        return intent.getStringExtra("passwordString")
     }
 
     private fun charReplacer(passwordString: String): String {
@@ -172,20 +174,5 @@ class GeneratedPasswordActivity : AppCompatActivity() {
             .replace("Ú", "U")
             .replace("ú", "u")
     }
-}
-
-fun firstCharOfEveryWordOf(selectedTextFromLyric: String): ArrayList<String> {
-    val regex = Regex("(\\s+|\\\\n)")
-    return ArrayList(
-        selectedTextFromLyric
-            .split(regex)
-            .map { it.first().toString() }
-            .filter { it != "[" }
-            .joinToString(",")
-            .filter { it.isLetterOrDigit() }
-            .split(",")
-
-    )
-
 }
 

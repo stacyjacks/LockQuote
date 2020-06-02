@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.android.lockquote.R
-import kotlinx.android.synthetic.main.fragment_lyric_webview.lyricSelectionTextView
+import kotlinx.android.synthetic.main.fragment_lyric_webview.*
+import java.nio.charset.Charset
 
 class LyricWebViewFragment : Fragment() {
     var lyricUrl: String? = null
@@ -49,21 +51,25 @@ class LyricWebViewFragment : Fragment() {
         val clipboard = activity?.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
         clipboard?.addPrimaryClipChangedListener {
             val regexWhiteSpace = Regex("(\\s+|\\\\n)")
-            val selectedText = clipboard.primaryClip?.getItemAt(0)
-
-            numberOfWords = selectedText?.text?.split(regexWhiteSpace)?.count() ?: 0
-
-            useSelectionButton.text = String.format(context?.resources?.getString(R.string.use_button) + " ($numberOfWords)")
+            var selectedText = clipboard.primaryClip?.getItemAt(0)?.text
 
             if (selectedText != null) {
                 val lyricSelectionTextView = view?.findViewById<TextView>(R.id.lyricSelectionTextView)
-                lyricSelectionTextView?.text = selectedText.text
+                selectedText = stripOfBracketContent(selectedText.toString())
+                selectedText = removeWeirdChars(selectedText.toString())
+                lyricSelectionTextView?.text = selectedText
+                lyricSelectionTextView?.movementMethod = ScrollingMovementMethod()
             } else {
                 showError(
                     requireContext(),
                     "Something went wrong."
                 )
             }
+
+            numberOfWords = selectedText?.split(regexWhiteSpace)?.count() ?: 0
+
+            useSelectionButton.text = String.format(context?.resources?.getString(R.string.use_button) + " ($numberOfWords)")
+
         }
 
         lyricUrl?.let { lyricWebView.loadUrl(it) }
@@ -88,10 +94,8 @@ class LyricWebViewFragment : Fragment() {
         val selectedText = lyricSelectionTextView
             .text
             .toString()
-            .replace("\n", " ")
-            .replace("(", "")
-            .replace(")", "")
-            .replace("\"", "")
+
+        removeWeirdChars(selectedText)
 
         when {
             numberOfWords > 15 -> {
@@ -111,10 +115,54 @@ class LyricWebViewFragment : Fragment() {
                 }
             }
             else -> {
+                val passwordString = firstCharOfEveryWordOf(selectedText).joinToString("")
                 val intent = Intent(context, GeneratedPasswordActivity::class.java)
-                intent.putExtra("selectedText", selectedText)
+                intent
+                    .putExtra("selectedText", selectedText)
+                    .putExtra("passwordString", passwordString)
                 startActivity(intent)
             }
         }
+    }
+
+    private fun stripOfBracketContent(value: String?): String? {
+        val string = value ?: return value
+
+        val startingBracket = string.indexOf("[")
+        val closingBracket = string.indexOf("]")
+
+        if (startingBracket == -1 || closingBracket == -1) { return value }
+
+        return value.removeRange(startingBracket, closingBracket+1)
+    }
+
+    private fun removeWeirdChars(selectedText: String): String {
+        var modified = selectedText
+        if (selectedText.elementAt(0).toString() == "\n") {
+            modified = selectedText.drop(1)
+        }
+
+        return modified
+            .replace("\n", " ")
+            .replace("(", "")
+            .replace(")", "")
+            .replace("\"", "")
+            .replace("'", "")
+    }
+
+    private fun firstCharOfEveryWordOf(selectedTextFromLyric: String): ArrayList<String> {
+        val regex = Regex("(\\s+|\\\\n)")
+        return ArrayList(
+            selectedTextFromLyric
+                .split(regex)
+                .map {
+                    if (it.isEmpty()) { return@map "" }
+                    it.first().toString()
+                }
+                .filter { !it.isBlank() }
+                .joinToString(",")
+                .filter { it.isLetterOrDigit() }
+                .split(",")
+        )
     }
 }

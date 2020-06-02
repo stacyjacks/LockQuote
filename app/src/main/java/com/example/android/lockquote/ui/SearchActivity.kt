@@ -9,8 +9,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.lockquote.R
@@ -33,6 +35,10 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = (ContextCompat.getColor(this, R.color.colorAccentDark))
 
         setTitle(R.string.search_results)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

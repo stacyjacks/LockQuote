@@ -25,11 +25,11 @@
     <string name="taskThreeOrderPassword">Now, similarly, put the characters of your new password in the correct order. Are you up to the challenge?</string>
     <string name="taskFourChoosePassword">Select the right password from the list. Hint: sing the lyric to yourself to remember!</string>
     <string name="taskFiveInputPass">Now... Do you think you\'re ready to use your new password? Input the correct characters, this time no hints!</string>
-    <string name="take_me_back_button">I can\'t do it, let me start over</string>
+    <string name="take_me_back_button">I can\'t do it</string>
     <string name="take_a_good_look">Take a good look at the selected lyric and the password we\'ve generated for you:</string>
     <string name="well_done">Well done!</string>
     <string name="congrats_new_password">Congratulations! You\'re ready to use your new password. Take another good look at it, copy it, or do whatever:</string>
-    <string name="another_go">Repeat the games</string>
+    <string name="another_go">Revisit the games</string>
     <string name="make_new_button">New password</string>
     <string name="great_text">Great!</string>
 

@@ -11,12 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="@drawable/bubble_grey"
-        android:gravity="center"
         android:hapticFeedbackEnabled="true"
-        android:padding="8dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
         android:text="word 1"
         android:textColor="@color/whiteColor"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:fontFamily="@font/source_sans_pro_regular"/>
 
 </LinearLayout>
