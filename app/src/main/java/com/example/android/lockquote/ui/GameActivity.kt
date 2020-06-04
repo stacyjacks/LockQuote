@@ -30,6 +30,7 @@ class GameActivity : AppCompatActivity(),
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.elevation = 0f
+        setTitle(R.string.memorisation_game_activity)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

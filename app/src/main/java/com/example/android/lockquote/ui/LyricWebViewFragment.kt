@@ -17,7 +17,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.android.lockquote.R
 import kotlinx.android.synthetic.main.fragment_lyric_webview.*
-import java.nio.charset.Charset
 
 class LyricWebViewFragment : Fragment() {
     var lyricUrl: String? = null
@@ -46,7 +45,11 @@ class LyricWebViewFragment : Fragment() {
         webSettings.allowContentAccess = true
         webSettings.disabledActionModeMenuItems = MENU_ITEM_WEB_SEARCH
 
-        lyricWebView.webViewClient = WebViewClient()
+        lyricWebView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                return true
+            }
+        }
 
         val clipboard = activity?.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
         clipboard?.addPrimaryClipChangedListener {
@@ -85,6 +88,7 @@ class LyricWebViewFragment : Fragment() {
         useSelectionButton.setOnClickListener {
             extractSelection(numberOfWords)
         }
+
 
         return webViewLayout
     }

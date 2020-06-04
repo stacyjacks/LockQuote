@@ -35,4 +35,6 @@
 
     <string name="about_title">LockQuote %s</string>
     <string name="about_message">Created by Anastasia Kurmakaeva. \n\nGRAPHICS:\nhttps://www.flaticon.com/authors/eucalyp \nfrom www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>
+    <string name="characters">characters</string>
+    <string name="memorisation_game_activity">Memorisation in progress…</string>
 </resources>

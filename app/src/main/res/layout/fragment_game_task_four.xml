@@ -42,7 +42,8 @@
         <RadioGroup
             android:id="@+id/multipleChoiceTaskFour"
             android:hapticFeedbackEnabled="true"
-            android:padding="8dp"
+            android:paddingHorizontal="8dp"
+            android:paddingTop="4dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

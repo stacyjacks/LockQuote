@@ -26,6 +26,7 @@ class GameResultFragment: Fragment(),
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
+        activity?.setTitle(R.string.app_name)
         return inflater.inflate(R.layout.fragment_game_result, container, false)
     }
 
