@@ -13,9 +13,9 @@
     <string name="use_button">Use selection</string>
     <string name="select_text_hint">Select an excerpt from the lyric, up to 15 words, and hit Copy.</string>
     <string name="try_again_button">Try again with a different lyric</string>
-    <string name="just_a_sec">"Just a sec...</string>
+    <string name="just_a_sec">"Just a sec…</string>
     <string name="try_again_hint">Not what you wanted?</string>
-    <string name="next_level_button">Help me to remember it!</string>
+    <string name="next_level_button">Help me to memorise it!</string>
     <string name="taskOneInputFullPassword">Input the full password exactly as it appears below:</string>
     <string name="taskTwoOrderLyrics">Put the lyrics in the correct order by dragging and dropping the word boxes below:</string>
     <string name="clear_pass_button">Clear</string>
@@ -24,7 +24,7 @@
 
     <string name="taskThreeOrderPassword">Now, similarly, put the characters of your new password in the correct order. Are you up to the challenge?</string>
     <string name="taskFourChoosePassword">Select the right password from the list. Hint: sing the lyric to yourself to remember!</string>
-    <string name="taskFiveInputPass">Now... Do you think you\'re ready to use your new password? Input the correct characters, this time no hints!</string>
+    <string name="taskFiveInputPass">Now… Do you think you\'re ready to use your new password? Input the correct characters, this time no hints!</string>
     <string name="take_me_back_button">I can\'t do it</string>
     <string name="take_a_good_look">Take a good look at the selected lyric and the password we\'ve generated for you:</string>
     <string name="well_done">Well done!</string>

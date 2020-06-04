@@ -12,9 +12,9 @@
     <string name="use_button">Usar selección</string>
     <string name="select_text_hint">Selecciona un fragmento de la letra hasta 15 palabras y haz clic en \"Copiar\".</string>
     <string name="try_again_button">Intentarlo de nuevo con otra letra</string>
-    <string name="just_a_sec">Un segundo...</string>
+    <string name="just_a_sec">Un segundo…</string>
     <string name="try_again_hint">¿No es lo que querías?</string>
-    <string name="next_level_button">¡Ayúdame a recordarla!</string>
+    <string name="next_level_button">¡Ayúdame a memorizarla!</string>
     <string name="taskOneInputFullPassword">Introduce la contraseña completa exactamente como aparece a continuación:</string>
     <string name="taskTwoOrderLyrics">Pon las palabras de la letra en el orden correcto, arrastrando los recuadros hacia la posición correcta.</string>
     <string name="clear_pass_button">Limpiar</string>
