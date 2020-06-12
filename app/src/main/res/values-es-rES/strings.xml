@@ -31,7 +31,7 @@
     <string name="make_new_button">Nueva contraseña</string>
     <string name="great_text">¡Genial!</string>
     <string name="about_title">LockQuote %s</string>
-    <string name="about_message">Creado por Anastasia Kurmakaeva. \n\nGRÁFICOS:\nhttps://www.flaticon.com/authors/eucalyp \nde www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>
+    <string name="about_message">Creado por Anastasia Kurmakaeva. \n\nGRÁFICOS:\nLogotipo diseñado por Masha Kurmakaeva. \nhttps://www.flaticon.com/authors/eucalyp \nde www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>
     <string name="characters">caracteres</string>
     <string name="memorisation_game_activity">Memorización en progreso…</string>
 </resources>
