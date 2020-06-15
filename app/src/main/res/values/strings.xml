@@ -12,6 +12,10 @@
     <string name="ok_button">OK</string>
     <string name="use_button">Use selection</string>
     <string name="select_text_hint">Select an excerpt from the lyric, up to 15 words, and hit Copy.</string>
+    <string name="error_too_many_words">Please select an excerpt of 15 words or less.</string>
+    <string name="error_copy_not_tapped">You haven\'t selected a lyric excerpt for your password. Please, select a fragment and hit Copy.</string>
+    <string name="error_something_wrong">Something went wrong.</string>
+    <string name="error_cant_open">Can\'t open lyrics</string>
     <string name="try_again_button">Try again with a different lyric</string>
     <string name="just_a_sec">"Just a sec…</string>
     <string name="try_again_hint">Not what you wanted?</string>

@@ -65,7 +65,7 @@ class LyricWebViewFragment : Fragment() {
             } else {
                 showError(
                     requireContext(),
-                    "Something went wrong."
+                    getString(R.string.error_something_wrong)
                 )
             }
 
@@ -79,7 +79,7 @@ class LyricWebViewFragment : Fragment() {
             ?: context?.let {
                 showError(
                     it,
-                    "Can't open lyrics"
+                    getString(R.string.error_cant_open)
                 )
             }
 
@@ -105,7 +105,7 @@ class LyricWebViewFragment : Fragment() {
                 context?.let {
                     showError(
                         it,
-                        "Please select an excerpt of 15 words or less."
+                        getString(R.string.error_too_many_words)
                     )
                 }
             }
@@ -113,7 +113,7 @@ class LyricWebViewFragment : Fragment() {
                 context?.let {
                     showError(
                         it,
-                        "You haven't selected a lyric excerpt for your password."
+                        getString(R.string.error_copy_not_tapped)
                     )
                 }
             }
