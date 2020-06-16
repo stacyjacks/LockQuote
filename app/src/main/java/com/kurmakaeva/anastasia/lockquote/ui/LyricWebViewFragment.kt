@@ -140,14 +140,7 @@ class LyricWebViewFragment : Fragment() {
     }
 
     private fun removeWeirdChars(selectedText: String): String {
-        var modified = selectedText
-        if (selectedText.elementAt(0).toString() == "\n") {
-            modified = selectedText.drop(1)
-        } else if (selectedText.last().toString() == "\n") {
-            modified = selectedText.dropLast(1)
-        } else if (selectedText.last().toString() == " ") {
-            modified = selectedText.dropLast(1)
-        }
+        val modified = selectedText.trim()
 
         return modified
             .replace("\n", " ")

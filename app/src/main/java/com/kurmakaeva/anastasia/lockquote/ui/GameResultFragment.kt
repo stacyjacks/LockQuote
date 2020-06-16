@@ -1,11 +1,16 @@
 package com.kurmakaeva.anastasia.lockquote.ui
+
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
@@ -49,11 +54,20 @@ class GameResultFragment: Fragment(),
         val vinylAnimation = view.findViewById<LottieAnimationView>(R.id.vinyl)
         val anotherGo = view.findViewById<Button>(R.id.anotherGoButton)
         val createNewPassword = view.findViewById<Button>(R.id.makeNewPasswordButton)
+        val copyPassword = view.findViewById<Button>(R.id.copyButton)
 
         password.text = passwordString()
         password.setTextIsSelectable(true)
 
         vinylAnimation.speed = 1.25f
+
+        copyPassword.setOnClickListener {
+            val clipboard: ClipboardManager? =
+                activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
+            val clip = ClipData.newPlainText("passwordReady", password.text)
+            clipboard?.setPrimaryClip(clip)
+            Toast.makeText(requireActivity(), getString(R.string.copied_to_clipboard), Toast.LENGTH_SHORT).show()
+        }
 
         anotherGo.setOnClickListener {
             activity?.finish()

@@ -38,4 +38,6 @@
     <string name="error_copy_not_tapped">No has seleccionado un fragmento de letra. Por favor, selecciónalo y pulsa \"Copiar\".</string>
     <string name="error_something_wrong">Algo no ha ido bien.</string>
     <string name="error_cant_open">No se puede abrir la letra.</string>
+    <string name="copy_button">Copiar a portapapeles</string>
+    <string name="copied_to_clipboard">Contraseña copiada al portapapeles</string>
 </resources>

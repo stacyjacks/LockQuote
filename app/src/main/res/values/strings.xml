@@ -35,10 +35,12 @@
     <string name="congrats_new_password">Congratulations! You\'re ready to use your new password. Take another good look at it, copy it, or do whatever:</string>
     <string name="another_go">Revisit the games</string>
     <string name="make_new_button">New password</string>
+    <string name="copy_button">Copy to clipboard</string>
     <string name="great_text">Great!</string>
 
     <string name="about_title">LockQuote %s</string>
     <string name="about_message">Created by Anastasia Kurmakaeva. \n\nGRAPHICS:\nLogo design by: Masha Kurmakaeva. \nhttps://www.flaticon.com/authors/eucalyp \nfrom www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>
     <string name="characters">characters</string>
     <string name="memorisation_game_activity">Memorisation in progress…</string>
+    <string name="copied_to_clipboard">Password copied to clipboard</string>
 </resources>
