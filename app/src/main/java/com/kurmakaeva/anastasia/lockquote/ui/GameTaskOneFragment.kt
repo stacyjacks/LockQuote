@@ -39,12 +39,6 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val displayMetrics = DisplayMetrics()
-//        context?.resources?.displayMetrics
-//
-//        val screenWidth = displayMetrics.widthPixels
-//        val height = displayMetrics.heightPixels
-
         val taskOneTextView = view.findViewById<TextView>(R.id.helpfulTextTaskOne)
         val taskOneHelpfulText = getString(R.string.taskOneInputFullPassword)
 

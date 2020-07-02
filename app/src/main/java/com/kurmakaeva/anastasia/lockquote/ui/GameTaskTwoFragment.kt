@@ -81,8 +81,6 @@ class GameTaskTwoFragment : Fragment(),
     }
 
     override fun onCorrectOrderCallback() {
-        val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
-        checkAnimation?.visibility = LottieAnimationView.VISIBLE
         val successTaskTwo = view?.findViewById<LinearLayout>(R.id.successTaskTwo)
         successTaskTwo?.visibility = View.VISIBLE
         textBubbleRecyclerView.addOnItemTouchListener(object: RecyclerView.SimpleOnItemTouchListener() {
