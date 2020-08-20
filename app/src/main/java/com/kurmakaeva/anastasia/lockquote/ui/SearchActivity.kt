@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
-import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.LinearLayout
@@ -17,7 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.kurmakaeva.anastasia.lockquote.network.Manager
 import com.kurmakaeva.anastasia.lockquote.network.NetworkResult
 import com.kurmakaeva.anastasia.lockquote.R
@@ -66,11 +64,6 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
                             setText(result.messageResId)
                             setTextColor(ContextCompat.getColor(this@SearchActivity, result.colorResId)
                             )
-                            searchResultRecyclerView.addOnItemTouchListener(object: RecyclerView.SimpleOnItemTouchListener() {
-                                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                                    return true
-                                }
-                        })
                         }
                     }
                     NetworkResult.CONNECTED -> {
