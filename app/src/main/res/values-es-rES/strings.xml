@@ -40,4 +40,5 @@
     <string name="error_cant_open">No se puede abrir la letra.</string>
     <string name="copy_button">Copiar a portapapeles</string>
     <string name="copied_to_clipboard">Contraseña copiada al portapapeles</string>
+    <string name="messageDisconnected">Sin conexión a Internet.\nLa página se recargará \nen cuanto vuelvas a estar online!.</string>
 </resources>

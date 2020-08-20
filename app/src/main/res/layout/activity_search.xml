@@ -309,4 +309,35 @@
         android:layout_height="match_parent">
     </FrameLayout>
 
+    <LinearLayout
+        android:id="@+id/internetStatusLL"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorAccent"
+        android:padding="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/search_bar_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/internetStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:textSize="@dimen/helpful_text_font_size"
+            android:background="@drawable/bubble_red" />
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/broken_heart"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

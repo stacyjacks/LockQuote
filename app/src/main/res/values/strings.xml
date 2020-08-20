@@ -43,4 +43,5 @@
     <string name="characters">characters</string>
     <string name="memorisation_game_activity">Memorisation in progress…</string>
     <string name="copied_to_clipboard">Password copied to clipboard</string>
+    <string name="messageDisconnected">No Internet connection.\nThis page will refresh \nas soon as you\'re back online!</string>
 </resources>

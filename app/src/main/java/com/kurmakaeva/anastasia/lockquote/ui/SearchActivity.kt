@@ -8,13 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.kurmakaeva.anastasia.lockquote.network.Manager
+import com.kurmakaeva.anastasia.lockquote.network.NetworkResult
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.GeniusSongSearchAdapter
 import com.kurmakaeva.anastasia.lockquote.repository.GeniusRepo
@@ -27,6 +32,8 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
 
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var songSearchAdapter: GeniusSongSearchAdapter
+
+    private val networkManager by lazy { Manager(this) }
 
     companion object {
         const val TAG_LYRIC_WEBVIEW_FRAGMENT = "LyricWebViewFragment"
@@ -49,7 +56,30 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
 
         searchViewSetUp()
 
-        handleIntent(intent)
+        networkManager.result.observe(this,
+            Observer<NetworkResult> { result ->
+                when(result) {
+                    NetworkResult.DISCONNECTED -> {
+                        with(internetStatus) {
+                            internetStatus.visibility = View.VISIBLE
+                            internetStatusLL.visibility = View.VISIBLE
+                            setText(result.messageResId)
+                            setTextColor(ContextCompat.getColor(this@SearchActivity, result.colorResId)
+                            )
+                            searchResultRecyclerView.addOnItemTouchListener(object: RecyclerView.SimpleOnItemTouchListener() {
+                                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                                    return true
+                                }
+                        })
+                        }
+                    }
+                    NetworkResult.CONNECTED -> {
+                        internetStatus.visibility = View.GONE
+                        internetStatusLL.visibility = View.GONE
+                        handleIntent(intent)
+                    }
+                }
+            })
 
         addBackStackListener()
     }
@@ -67,6 +97,16 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
         super.onNewIntent(intent)
         setIntent(intent)
         handleIntent(intent)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        networkManager.registerCallback()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        networkManager.unregisterCallback()
     }
 
     override fun onShowDetails(songSummaryViewData: SongSummaryViewData) {
