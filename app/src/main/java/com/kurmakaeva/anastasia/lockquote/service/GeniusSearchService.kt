@@ -1,5 +1,7 @@
 package com.kurmakaeva.anastasia.lockquote.service
 
+import com.kurmakaeva.anastasia.lockquote.App
+import com.kurmakaeva.anastasia.lockquote.R
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -23,7 +25,7 @@ interface GeniusSearchService {
     companion object {
         val instance: GeniusSearchService by lazy {
 
-            val token = "fUXHqO4oK-lEh7wssQdKAskOe6m5SBv_K2wGvFg25FWowsEfEPgxSgsxl1RbXH2y"
+            val token = App.context?.resources?.getString(R.string.GENIUS_API_TOKEN)
 
             val client = OkHttpClient.Builder().addInterceptor { chain ->
                 val newRequest = chain.request().newBuilder()
@@ -38,7 +40,7 @@ interface GeniusSearchService {
                 .client(client)
                 .build()
 
-            retrofit.create<GeniusSearchService>(GeniusSearchService::class.java)
+            retrofit.create(GeniusSearchService::class.java)
         }
     }
 }

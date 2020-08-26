@@ -71,6 +71,8 @@ class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAd
                         internetStatusLL.visibility = View.GONE
                         handleIntent(intent)
                     }
+
+                    else -> return@Observer
                 }
             })
 

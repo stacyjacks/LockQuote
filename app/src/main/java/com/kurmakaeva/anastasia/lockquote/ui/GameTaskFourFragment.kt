@@ -60,7 +60,7 @@ class GameTaskFourFragment : Fragment(),
         incorrectAnswerButton3.text = passwordString().reversed()
         incorrectAnswerButton4.text = shuffledPasswordString.reversed().toLowerCase()
 
-        onRadioButtonClicked(view)
+        onRadioButtonClicked()
         onContinueTapped()
     }
 
@@ -82,7 +82,7 @@ class GameTaskFourFragment : Fragment(),
 
     }
 
-    private fun onRadioButtonClicked(view: View) {
+    private fun onRadioButtonClicked() {
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             when {
                 correctAnswerButton.isChecked -> {
