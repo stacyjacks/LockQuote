@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentStartBinding
 
@@ -51,7 +52,8 @@ class StartFragment: Fragment() {
             searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
                     searchView.clearFocus()
-
+                    val action = StartFragmentDirections.actionGoToSearchResultsFragment(query)
+                    this@StartFragment.findNavController().navigate(action)
                     return true
                 }
 
