@@ -8,4 +8,5 @@
     <dimen name="task_number_font_size">24sp</dimen>
     <dimen name="helpful_text_font_size">18sp</dimen>
     <dimen name="great_text_font_size">24sp</dimen>
+    <dimen name="padding_rv">4dp</dimen>
 </resources>

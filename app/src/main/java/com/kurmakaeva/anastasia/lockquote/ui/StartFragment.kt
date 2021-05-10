@@ -2,7 +2,6 @@ package com.kurmakaeva.anastasia.lockquote.ui
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -15,12 +14,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentStartBinding
+import com.kurmakaeva.anastasia.lockquote.hideKeyboard
 
-class StartFragment: Fragment() {
+class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_start, container, false)
         return binding.root
     }
 
@@ -33,33 +38,35 @@ class StartFragment: Fragment() {
         animationDrawable.start()
 
         searchViewSetUp()
+
+        hideKeyboard(requireActivity())
     }
 
-        private fun searchViewSetUp() {
-            val searchView: SearchView = binding.searchViewStart
-            searchView.queryHint = getString(R.string.query_hint)
-            searchView.fitsSystemWindows = true
-            searchView.onActionViewExpanded()
+    private fun searchViewSetUp() {
+        val searchView: SearchView = binding.searchViewStart
+        searchView.queryHint = getString(R.string.query_hint)
+        searchView.fitsSystemWindows = true
+        searchView.onActionViewExpanded()
 
-            val backgroundView = searchView.findViewById<View>(androidx.appcompat.R.id.search_plate)
-            backgroundView.background = null
+        val backgroundView = searchView.findViewById<View>(androidx.appcompat.R.id.search_plate)
+        backgroundView.background = null
 
-            Handler().postDelayed({ searchView.clearFocus() }, 0)
+        Handler().postDelayed({ searchView.clearFocus() }, 0)
 
-            val searchManager = this.activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+        val searchManager = this.activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
 
-            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    searchView.clearFocus()
-                    val action = StartFragmentDirections.actionGoToSearchResultsFragment(query)
-                    this@StartFragment.findNavController().navigate(action)
-                    return true
-                }
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchView.clearFocus()
+                val action = StartFragmentDirections.actionGoToSearchResultsFragment(query)
+                this@StartFragment.findNavController().navigate(action)
+                return true
+            }
 
-                override fun onQueryTextChange(newText: String): Boolean {
-                    return false
-                }
-            })
-        }
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+    }
 }

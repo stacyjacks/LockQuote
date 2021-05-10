@@ -14,7 +14,7 @@
     <string name="select_text_hint">Select an excerpt from the lyric, up to 15 words, and hit Copy.</string>
     <string name="error_too_many_words">Please select an excerpt of 15 words or less.</string>
     <string name="error_copy_not_tapped">You haven\'t selected a lyric excerpt for your password. Please, select a fragment and hit Copy.</string>
-    <string name="error_something_wrong">Something went wrong.</string>
+    <string name="error_something_wrong">Something went wrong. Please try again or check your Internet connection.</string>
     <string name="error_cant_open">Can\'t open lyrics</string>
     <string name="try_again_button">Try again with a different lyric</string>
     <string name="just_a_sec">"Just a sec…</string>
@@ -43,5 +43,4 @@
     <string name="characters">characters</string>
     <string name="memorisation_game_activity">Memorisation in progress…</string>
     <string name="copied_to_clipboard">Password copied to clipboard</string>
-    <string name="messageDisconnected">No Internet connection.\nThis page will refresh \nas soon as you\'re back online!</string>
 </resources>

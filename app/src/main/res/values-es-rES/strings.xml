@@ -36,9 +36,8 @@
     <string name="memorisation_game_activity">Memorización en progreso…</string>
     <string name="error_too_many_words">Por favor, selecciona un fragmento de 15 palabras o menos.</string>
     <string name="error_copy_not_tapped">No has seleccionado un fragmento de letra. Por favor, selecciónalo y pulsa \"Copiar\".</string>
-    <string name="error_something_wrong">Algo no ha ido bien.</string>
+    <string name="error_something_wrong">Algo no ha ido bien. Inténtalo de nuevo o comprueba tu conexión a Internet.</string>
     <string name="error_cant_open">No se puede abrir la letra.</string>
     <string name="copy_button">Copiar a portapapeles</string>
     <string name="copied_to_clipboard">Contraseña copiada al portapapeles</string>
-    <string name="messageDisconnected">Sin conexión a Internet.\nLa página se recargará \nen cuanto vuelvas a estar online!.</string>
 </resources>

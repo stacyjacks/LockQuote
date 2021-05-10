@@ -1,5 +1,5 @@
 package com.kurmakaeva.anastasia.lockquote.ui
-//
+
 //import android.app.AlertDialog
 //import android.app.SearchManager
 //import android.content.Context
@@ -19,17 +19,16 @@ package com.kurmakaeva.anastasia.lockquote.ui
 //import com.kurmakaeva.anastasia.lockquote.network.Manager
 //import com.kurmakaeva.anastasia.lockquote.network.NetworkResult
 //import com.kurmakaeva.anastasia.lockquote.R
-//import com.kurmakaeva.anastasia.lockquote.adapter.GeniusSongSearchAdapter
+//import com.kurmakaeva.anastasia.lockquote.adapter.SongSearchAdapter
 //import com.kurmakaeva.anastasia.lockquote.repository.GeniusRepo
 //import com.kurmakaeva.anastasia.lockquote.service.GeniusSearchService
 //import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
 //import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel.*
-//import kotlinx.android.synthetic.main.activity_search.*
 //
-//class SearchActivity : AppCompatActivity(), GeniusSongSearchAdapter.SongSearchAdapterListener {
+//class SearchActivity : AppCompatActivity(), SongSearchAdapter.SongSearchAdapterListener {
 //
 //    private lateinit var searchViewModel: SearchViewModel
-//    private lateinit var songSearchAdapter: GeniusSongSearchAdapter
+//    private lateinit var songSearchAdapter: SongSearchAdapter
 //
 //    private val networkManager by lazy { Manager(this) }
 //
@@ -39,7 +38,7 @@ package com.kurmakaeva.anastasia.lockquote.ui
 //
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.fragment_search)
+//        setContentView(R.layout.fragment_search_results)
 //
 //        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 //        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -48,11 +47,6 @@ package com.kurmakaeva.anastasia.lockquote.ui
 //        setTitle(R.string.search_results)
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //        supportActionBar?.elevation = 0f
-//
-//        setupViewModels()
-//        updateControls()
-//
-//        searchViewSetUp()
 //
 //        networkManager.result.observe(this,
 //            Observer<NetworkResult> { result ->
@@ -111,65 +105,11 @@ package com.kurmakaeva.anastasia.lockquote.ui
 //
 //    }
 //
-//    private fun performSearch(term: String) {
-//        showLoadingProgress()
-//        searchViewModel.searchSongs(term) { results ->
-//            hideLoadingProgress()
-//            songSearchAdapter.setSearchData(results)
-//        }
-//    }
-//
 //    private fun handleIntent(intent: Intent) {
 //        if (Intent.ACTION_SEARCH == intent.action) {
 //            val query = intent.getStringExtra("query")
 //            performSearch(query)
 //        }
-//    }
-//
-//    private fun setupViewModels() {
-//        val searchService = GeniusSearchService.instance
-//        searchViewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
-//        searchViewModel.geniusRepo = GeniusRepo(searchService)
-//    }
-//
-//    private fun updateControls() {
-//        searchResultRecyclerView.setHasFixedSize(true)
-//
-//        val layoutManager = LinearLayoutManager(this)
-//        searchResultRecyclerView.layoutManager = layoutManager
-//
-//        songSearchAdapter = GeniusSongSearchAdapter(null, this, this)
-//        searchResultRecyclerView.adapter = songSearchAdapter
-//    }
-//
-//    private fun searchViewSetUp() {
-//        val searchView: SearchView = findViewById(R.id.search_view_search_results)
-//        searchView.queryHint = intent.getStringExtra("query")
-//        searchView.onActionViewExpanded()
-//
-//        val backgroundView = searchView.findViewById<View>(androidx.appcompat.R.id.search_plate)
-//        backgroundView.background = null
-//
-//        Handler().postDelayed({ searchView.clearFocus() }, 0)
-//
-//        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-//        searchView.setSearchableInfo(
-//            searchManager.getSearchableInfo(componentName)
-//        )
-//
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String): Boolean {
-//                searchView.clearFocus()
-//                showLoadingProgress()
-//                performSearch(query)
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String): Boolean {
-//                searchView.queryHint = getString(R.string.query_hint)
-//                return false
-//            }
-//        })
 //    }
 //
 //    private fun createLyricWebViewFragment(): LyricWebViewFragment {
@@ -206,25 +146,4 @@ package com.kurmakaeva.anastasia.lockquote.ui
 //            }
 //        }
 //    }
-//
-//    private fun showLoadingProgress() {
-//        val ghostLoadingViewGroup = findViewById<LinearLayout>(R.id.loadingSearchResults)
-//        ghostLoadingViewGroup.visibility = View.VISIBLE
-//        searchResultRecyclerView.visibility = View.GONE
-//
-//    }
-//
-//    private fun hideLoadingProgress() {
-//        val ghostLoadingViewGroup = findViewById<LinearLayout>(R.id.loadingSearchResults)
-//        ghostLoadingViewGroup.visibility = View.GONE
-//        searchResultRecyclerView.visibility = View.VISIBLE
-//    }
-//}
-//
-//fun showError(context: Context, message: String) {
-//    AlertDialog.Builder(context)
-//        .setMessage(message)
-//        .setPositiveButton(context.getString(R.string.ok_button), null)
-//        .create()
-//        .show()
 //}

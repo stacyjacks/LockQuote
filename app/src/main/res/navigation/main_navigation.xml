@@ -16,9 +16,20 @@
     <fragment
         android:id="@+id/searchResultsFragment"
         android:name="com.kurmakaeva.anastasia.lockquote.ui.SearchResultsFragment"
-        android:label="SearchResultsFragment" >
+        android:label="@string/search_results">
         <argument
             android:name="query"
             app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_lyricWebViewFragment"
+            app:destination="@id/lyricWebViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lyricWebViewFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.LyricWebViewFragment"
+        android:label="LyricWebViewFragment" >
+        <argument
+            android:name="position"
+            app:argType="integer" />
     </fragment>
 </navigation>
