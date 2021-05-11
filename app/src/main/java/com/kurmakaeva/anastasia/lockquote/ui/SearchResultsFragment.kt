@@ -68,7 +68,6 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
     }
 
     override fun onShowDetails(position: Int) {
-        viewModel.getSong(position)
         val action = SearchResultsFragmentDirections.actionSearchResultsFragmentToLyricWebViewFragment(position)
         this.findNavController().navigate(action)
     }

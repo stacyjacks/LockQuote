@@ -1,18 +1,19 @@
 package com.kurmakaeva.anastasia.lockquote.repository
 
+import com.kurmakaeva.anastasia.lockquote.model.GeniusHit
+import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
 import com.kurmakaeva.anastasia.lockquote.service.*
-import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
 
 class GeniusRepo(private val geniusSearchService: GeniusSearchService) : InterfaceGeniusRepo {
     private var cachedSongs: MutableList<GeniusHit> = mutableListOf()
 
-    override suspend fun searchByTerm(term: String): List<SearchViewModel.SongSummaryViewData> {
+    override suspend fun searchByTerm(term: String): List<SongSummaryViewData> {
         val songSearchCall = geniusSearchService.searchSongByTerm(term)
         val listOfSongResults = songSearchCall.response
         cachedSongs.plusAssign(listOfSongResults.hits)
 
         return listOfSongResults.hits.map {
-            SearchViewModel.SongSummaryViewData(
+            SongSummaryViewData(
                 id = it.result.id,
                 name = it.result.primary_artist.name,
                 api_path = it.result.api_path,
@@ -23,9 +24,9 @@ class GeniusRepo(private val geniusSearchService: GeniusSearchService) : Interfa
         }
     }
 
-    override suspend fun getSong(index: Int): SearchViewModel.SongSummaryViewData {
+    override suspend fun getSong(index: Int): SongSummaryViewData {
         return cachedSongs.get(index).result.let {
-            SearchViewModel.SongSummaryViewData(
+            SongSummaryViewData(
                 it.id,
                 it.api_path,
                 it.path,

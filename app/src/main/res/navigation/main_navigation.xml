@@ -31,5 +31,19 @@
         <argument
             android:name="position"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_lyricWebViewFragment_to_generatedPasswordFragment"
+            app:destination="@id/generatedPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/generatedPasswordFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GeneratedPasswordFragment"
+        android:label="GeneratedPasswordFragment" >
+        <argument
+            android:name="selectedText"
+            app:argType="string" />
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
     </fragment>
 </navigation>

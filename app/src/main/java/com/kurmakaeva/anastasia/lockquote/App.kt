@@ -6,6 +6,7 @@ import com.kurmakaeva.anastasia.lockquote.repository.GeniusRepo
 import com.kurmakaeva.anastasia.lockquote.repository.InterfaceGeniusRepo
 import com.kurmakaeva.anastasia.lockquote.service.GeniusSearchService
 import com.kurmakaeva.anastasia.lockquote.service.retrofit
+import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -25,6 +26,7 @@ class App: Application() {
 
         val repositoryModule = module {
             viewModel { SearchViewModel(get() as InterfaceGeniusRepo) }
+            viewModel { LyricPasswordViewModel(get() as InterfaceGeniusRepo) }
             single { GeniusRepo(get()) as InterfaceGeniusRepo }
         }
 

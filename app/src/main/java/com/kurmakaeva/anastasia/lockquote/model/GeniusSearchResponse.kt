@@ -1,4 +1,4 @@
-package com.kurmakaeva.anastasia.lockquote.service
+package com.kurmakaeva.anastasia.lockquote.model
 
 data class GeniusSearchResponse(
     val response: GeniusResponse

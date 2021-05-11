@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kurmakaeva.anastasia.lockquote.R
-import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel.*
+import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
 
 interface SongSearchAdapterListener {
     fun onShowDetails(position: Int)
