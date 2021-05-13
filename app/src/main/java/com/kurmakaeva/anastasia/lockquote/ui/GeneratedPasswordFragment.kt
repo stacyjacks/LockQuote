@@ -1,6 +1,7 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
 import android.animation.Animator
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannedString
 import android.text.TextUtils
@@ -11,26 +12,31 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGeneratedPasswordBinding
+import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class GeneratedPasswordFragment() : Fragment() {
 
     private lateinit var binding: FragmentGeneratedPasswordBinding
 
-    private val args by navArgs<GeneratedPasswordFragmentArgs>()
+    private val sharedViewModel by sharedViewModel<LyricPasswordViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_generated_password, container, false)
 
         binding.lifecycleOwner = this
 
-        binding.loadingPass.addAnimatorListener(object: Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator?) {
-
-            }
+        binding.loadingPass.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) {}
 
             override fun onAnimationEnd(animation: Animator?) {
                 binding.apply {
@@ -42,8 +48,8 @@ class GeneratedPasswordFragment() : Fragment() {
                 }
             }
 
-            override fun onAnimationCancel(animation: Animator?) { }
-            override fun onAnimationRepeat(animation: Animator?) { }
+            override fun onAnimationCancel(animation: Animator?) {}
+            override fun onAnimationRepeat(animation: Animator?) {}
         })
 
         return binding.root
@@ -52,18 +58,24 @@ class GeneratedPasswordFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val modPasswordString = charReplacer(args.passwordString)
+        val args by navArgs<GeneratedPasswordFragmentArgs>()
 
-        binding.generatedPass.text = modPasswordString
-        binding.numberOfCharacters.text = numberOfCharCalculator(args.passwordString)
+        sharedViewModel.getPasswordStringFromSelectedText(args.passwordString)
+        sharedViewModel.passwordString.observe(viewLifecycleOwner, Observer {
+            val modPasswordString = charReplacer(it)
+            binding.generatedPass.text = modPasswordString
 
-        binding.helpMeRemember.setOnClickListener {
-//            val intent = Intent(this, GameActivity::class.java)
-//            intent
-//                .putExtra("modPasswordString", modPasswordString)
-//                .putExtra("selectedLyric", selectedText())
-//            startActivity(intent)
-        }
+            binding.numberOfCharacters.text = numberOfCharCalculator(it)
+
+            binding.helpMeRemember.setOnClickListener {
+                val intent = Intent(requireContext(), GameActivity::class.java)
+                intent
+                    .putExtra("modPasswordString", modPasswordString)
+                    .putExtra("selectedLyric", args.selectedText)
+
+                startActivity(intent)
+            }
+        })
 
         binding.tryAgainButton.setOnClickListener {
 //            this.finish()

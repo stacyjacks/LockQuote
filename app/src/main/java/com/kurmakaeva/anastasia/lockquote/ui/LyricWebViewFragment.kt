@@ -22,6 +22,7 @@ import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.properties.Delegates
 
 class LyricWebViewFragment : Fragment() {
 
@@ -30,6 +31,10 @@ class LyricWebViewFragment : Fragment() {
     private val viewModel by viewModel<LyricPasswordViewModel>()
 
     private val args by navArgs<LyricWebViewFragmentArgs>()
+
+    private val regexWhiteSpace = Regex("(\\s+|\\\\n)")
+
+    private var numberOfWords = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,10 +45,6 @@ class LyricWebViewFragment : Fragment() {
             .inflate(inflater, R.layout.fragment_lyric_webview, container, false)
 
         binding.lifecycleOwner = this
-
-        setHasOptionsMenu(true)
-
-        var numberOfWords = 0
 
         // Enable Javascript
         val webSettings = binding.lyricWebView.settings
@@ -60,7 +61,6 @@ class LyricWebViewFragment : Fragment() {
 
         val clipboard = activity?.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
         clipboard?.addPrimaryClipChangedListener {
-            val regexWhiteSpace = Regex("(\\s+|\\\\n)")
             var selectedText = clipboard.primaryClip?.getItemAt(0)?.text
 
             if (selectedText != null) {
@@ -95,6 +95,14 @@ class LyricWebViewFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.selectedText.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            binding.lyricSelectionTextView.text = it
+            numberOfWords = it?.split(regexWhiteSpace)?.count() ?: 0
+        })
     }
 
     private fun extractSelection(numberOfWords: Int) {
