@@ -12,8 +12,8 @@ class SearchViewModel(private val repo: InterfaceGeniusRepo): ViewModel() {
     val searchResults: LiveData<List<SongSummaryViewData>>
         get() = _searchResults
 
-    private val _showSnackbar = MutableLiveData<Boolean>()
-    val showSnackbar: LiveData<Boolean>
+    private val _showSnackbar = MutableLiveData<String?>()
+    val showSnackbar: LiveData<String?>
         get() = _showSnackbar
 
     fun getSearchResults(query: String) {
@@ -22,12 +22,16 @@ class SearchViewModel(private val repo: InterfaceGeniusRepo): ViewModel() {
                 _searchResults.value = repo.searchByTerm(query)
 
             } catch (e: Exception) {
-                showSnackbarEvent()
+                showSnackbarEvent(e.localizedMessage)
             }
         }
     }
 
-    private fun showSnackbarEvent() {
-        _showSnackbar.value = true
+    fun clearSnackbarErrors() {
+        _showSnackbar.value = null
+    }
+
+    private fun showSnackbarEvent(errorMessage: String?) {
+        _showSnackbar.value = errorMessage
     }
 }

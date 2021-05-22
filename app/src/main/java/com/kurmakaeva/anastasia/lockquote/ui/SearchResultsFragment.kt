@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -44,6 +45,8 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
 
         binding.lifecycleOwner = this
 
+        viewModel.clearSnackbarErrors()
+
         if (currentSearch == null) { currentSearch = args.query }
         currentSearch?.let { performSearch(it) }
 
@@ -51,17 +54,12 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
 
         searchViewSetUp()
 
-//        viewModel.showSnackbar.observe(viewLifecycleOwner, Observer {
-//            if (it == true) {
-//                Snackbar
-//                    .make(requireActivity()
-//                    .findViewById(android.R.id.content), getString(R.string.error_something_wrong), Snackbar.LENGTH_LONG)
-//                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.whiteColor)
-//                    )
-//                    .show()
-//             //   binding.internetStatusLL.visibility = View.VISIBLE
-//            }
-//        })
+        viewModel.showSnackbar.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                val errorText = it
+                showSnackbarWithError(it.replace(errorText, getString(R.string.error_something_wrong)))
+            }
+        })
 
         return binding.root
     }
@@ -81,7 +79,7 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
         searchView.queryHint = args.query
         searchView.onActionViewExpanded()
 
-        val backgroundView = searchView.findViewById<View>(androidx.appcompat.R.id.search_plate)
+        val backgroundView = searchView.findViewById<View>(R.id.search_plate)
         backgroundView.background = null
 
         Handler().postDelayed({ searchView.clearFocus() }, 0)
@@ -127,5 +125,15 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
     private fun hideLoadingProgress() {
         binding.loadingSearchResults.visibility = View.GONE
         binding.searchResultRecyclerView.visibility = View.VISIBLE
+    }
+
+    private fun showSnackbarWithError(errorMessage: String) {
+        Snackbar
+            .make(requireActivity()
+                .findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_LONG)
+            .setTextColor(
+                ContextCompat.getColor(requireContext(), R.color.whiteColor)
+            )
+            .show()
     }
 }
