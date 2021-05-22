@@ -10,7 +10,7 @@ class GeniusRepo(private val geniusSearchService: GeniusSearchService) : Interfa
     override suspend fun searchByTerm(term: String): List<SongSummaryViewData> {
         val songSearchCall = geniusSearchService.searchSongByTerm(term)
         val listOfSongResults = songSearchCall.response
-        cachedSongs.plusAssign(listOfSongResults.hits)
+        cachedSongs = listOfSongResults.hits.toMutableList()
 
         return listOfSongResults.hits.map {
             SongSummaryViewData(
@@ -25,7 +25,7 @@ class GeniusRepo(private val geniusSearchService: GeniusSearchService) : Interfa
     }
 
     override suspend fun getSong(index: Int): SongSummaryViewData {
-        return cachedSongs.get(index).result.let {
+        return cachedSongs[index].result.let {
             SongSummaryViewData(
                 it.id,
                 it.api_path,

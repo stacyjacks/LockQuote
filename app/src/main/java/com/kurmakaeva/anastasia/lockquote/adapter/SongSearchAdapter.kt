@@ -19,7 +19,8 @@ interface SongSearchAdapterListener {
 
 class SongSearchAdapter(
     private val songListAdapterListener: SongSearchAdapterListener,
-    private val context: Context): ListAdapter<SongSummaryViewData, SongSearchAdapter.ViewHolder>(DiffCallback()) {
+    private val context: Context)
+    : ListAdapter<SongSummaryViewData, SongSearchAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -53,10 +54,10 @@ class SongSearchAdapter(
 
 class DiffCallback: DiffUtil.ItemCallback<SongSummaryViewData>() {
     override fun areItemsTheSame(oldItem: SongSummaryViewData, newItem: SongSummaryViewData): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: SongSummaryViewData, newItem: SongSummaryViewData): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem == newItem
     }
 }

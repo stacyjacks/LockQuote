@@ -1,6 +1,5 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
-import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -29,7 +27,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
 
     private lateinit var binding: FragmentSearchResultsBinding
-
+    private var currentSearch: String? = null
     private lateinit var adapter: SongSearchAdapter
 
     private val viewModel by viewModel<SearchViewModel>()
@@ -46,23 +44,24 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
 
         binding.lifecycleOwner = this
 
-        performSearch(args.query)
+        if (currentSearch == null) { currentSearch = args.query }
+        currentSearch?.let { performSearch(it) }
 
         adapterSetup()
 
         searchViewSetUp()
 
-        viewModel.showSnackbar.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                Snackbar
-                    .make(requireActivity()
-                    .findViewById(android.R.id.content), getString(R.string.error_something_wrong), Snackbar.LENGTH_LONG)
-                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.whiteColor)
-                    )
-                    .show()
-             //   binding.internetStatusLL.visibility = View.VISIBLE
-            }
-        })
+//        viewModel.showSnackbar.observe(viewLifecycleOwner, Observer {
+//            if (it == true) {
+//                Snackbar
+//                    .make(requireActivity()
+//                    .findViewById(android.R.id.content), getString(R.string.error_something_wrong), Snackbar.LENGTH_LONG)
+//                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.whiteColor)
+//                    )
+//                    .show()
+//             //   binding.internetStatusLL.visibility = View.VISIBLE
+//            }
+//        })
 
         return binding.root
     }
@@ -93,13 +92,13 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
+                currentSearch = query
                 performSearch(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 searchView.queryHint = getString(R.string.query_hint)
-                showLoadingProgress()
                 return false
             }
         })
@@ -129,12 +128,4 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
         binding.loadingSearchResults.visibility = View.GONE
         binding.searchResultRecyclerView.visibility = View.VISIBLE
     }
-}
-
-fun showError(context: Context, message: String) {
-    AlertDialog.Builder(context)
-        .setMessage(message)
-        .setPositiveButton(context.getString(R.string.ok_button), null)
-        .create()
-        .show()
 }

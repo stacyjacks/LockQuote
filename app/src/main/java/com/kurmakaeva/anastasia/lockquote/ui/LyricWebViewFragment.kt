@@ -1,5 +1,6 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
+import android.app.AlertDialog
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
@@ -36,10 +37,6 @@ class LyricWebViewFragment : Fragment() {
 
     private var numberOfWords = 0
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_lyric_webview, container, false)
@@ -49,7 +46,6 @@ class LyricWebViewFragment : Fragment() {
         // Enable Javascript
         val webSettings = binding.lyricWebView.settings
 
-        // webSettings.javaScriptEnabled = true
         webSettings.allowContentAccess = true
         webSettings.disabledActionModeMenuItems = MENU_ITEM_WEB_SEARCH
 
@@ -178,5 +174,13 @@ class LyricWebViewFragment : Fragment() {
                 .filter { it.isLetterOrDigit() }
                 .split(",")
         )
+    }
+
+    private fun showError(context: Context, message: String) {
+        AlertDialog.Builder(context)
+            .setMessage(message)
+            .setPositiveButton(context.getString(R.string.ok_button), null)
+            .create()
+            .show()
     }
 }
