@@ -34,7 +34,7 @@
     <string name="about_message">Creado por Anastasia Kurmakaeva. \n\nGRÁFICOS:\nLogotipo diseñado por Masha Kurmakaeva. \nhttps://www.flaticon.com/authors/eucalyp \nde www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>
     <string name="characters">caracteres</string>
     <string name="memorisation_game_activity">Memorización en progreso…</string>
-    <string name="error_too_many_words">Por favor, selecciona un fragmento de 15 palabras o menos.</string>
+    <string name="error_too_many_too_little_words">Por favor, selecciona un fragmento de 3 a 15 palabras.</string>
     <string name="error_copy_not_tapped">No has seleccionado un fragmento de letra. Por favor, selecciónalo y pulsa \"Copiar\".</string>
     <string name="error_something_wrong">Algo no ha ido bien. Inténtalo de nuevo o comprueba tu conexión a Internet.</string>
     <string name="error_cant_open">No se puede abrir la letra.</string>

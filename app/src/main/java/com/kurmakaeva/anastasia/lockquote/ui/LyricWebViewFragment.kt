@@ -23,7 +23,6 @@ import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.properties.Delegates
 
 class LyricWebViewFragment : Fragment() {
 
@@ -110,11 +109,11 @@ class LyricWebViewFragment : Fragment() {
             .trim()
 
         when {
-            numberOfWords > 15 -> {
+            numberOfWords > 15 || numberOfWords < 3 -> {
                 context?.let {
                     showError(
                         it,
-                        getString(R.string.error_too_many_words)
+                        getString(R.string.error_too_many_too_little_words)
                     )
                 }
             }
