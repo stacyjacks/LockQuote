@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/lyricWebViewFragment"
         android:name="com.kurmakaeva.anastasia.lockquote.ui.LyricWebViewFragment"
-        android:label="LyricWebViewFragment" >
+        android:label="@string/lyric_selection">
         <argument
             android:name="position"
             app:argType="integer" />
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/generatedPasswordFragment"
         android:name="com.kurmakaeva.anastasia.lockquote.ui.GeneratedPasswordFragment"
-        android:label="GeneratedPasswordFragment" >
+        android:label="@string/generated_pass_fragment">
         <argument
             android:name="selectedText"
             app:argType="string" />

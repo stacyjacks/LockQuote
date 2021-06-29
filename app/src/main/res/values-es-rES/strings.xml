@@ -19,7 +19,7 @@
     <string name="taskTwoOrderLyrics">Pon las palabras de la letra en el orden correcto, arrastrando los recuadros hacia la posición correcta.</string>
     <string name="clear_pass_button">Limpiar</string>
     <string name="continue_button">CONTINUAR</string>
-    <string name="generated_pass_activity">Tu contraseña</string>
+    <string name="generated_pass_fragment">Tu contraseña</string>
     <string name="taskThreeOrderPassword">Ahora, ordena los caracteres de tu contraseña nueva del mismo modo. ¿Crees que lo tienes ya?</string>
     <string name="taskFourChoosePassword">Elige la contraseña correcta entre las opciones. Truco: canta la canción para recordarla.</string>
     <string name="taskFiveInputPass">Y ahora… ¿Crees que te sabes ya tu contraseña nueva? Introduce los caracteres correctos, ¡esta vez sin pistas!</string>
@@ -40,4 +40,5 @@
     <string name="error_cant_open">No se puede abrir la letra.</string>
     <string name="copy_button">Copiar a portapapeles</string>
     <string name="copied_to_clipboard">Contraseña copiada al portapapeles</string>
+    <string name="lyric_selection">Selecciona un fragmento</string>
 </resources>

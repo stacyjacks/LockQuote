@@ -2,6 +2,7 @@
     <string name="app_name">LockQuote</string>
     <string name="query_hint">Search for songs or input a lyric excerpt</string>
     <string name="search_results">Search results</string>
+    <string name="lyric_selection">Select an excerpt</string>
 
     <string name="taskOne">Task 1 / 5</string>
     <string name="taskTwo">Task 2 / 5 </string>
@@ -24,7 +25,7 @@
     <string name="taskTwoOrderLyrics">Put the lyrics in the correct order by dragging and dropping the word boxes below:</string>
     <string name="clear_pass_button">Clear</string>
     <string name="continue_button">CONTINUE</string>
-    <string name="generated_pass_activity">Your password</string>
+    <string name="generated_pass_fragment">Your password</string>
 
     <string name="taskThreeOrderPassword">Now, similarly, put the characters of your new password in the correct order. Are you up to the challenge?</string>
     <string name="taskFourChoosePassword">Select the right password from the list. Hint: sing the lyric to yourself to remember!</string>
