@@ -29,6 +29,9 @@ class GameActivity : AppCompatActivity(), OnDataPass {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = (ContextCompat.getColor(this, R.color.colorAccentDark))
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -48,6 +51,11 @@ class GameActivity : AppCompatActivity(), OnDataPass {
 
     override fun selectedLyric(): String {
         return intent.getStringExtra("selectedLyric")!!
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.nav_game_host_fragment)
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
     fun showError(context: Context, message: String) {
