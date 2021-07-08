@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.EditTextRecyclerViewAdapter
 import com.kurmakaeva.anastasia.lockquote.adapter.RecyclerViewEditTextListener
+import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskOneBinding
 
 interface OnDataPass {
     fun onDataPass(data: String)
@@ -22,38 +24,39 @@ interface OnDataPass {
 }
 
 class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
-    lateinit var editTextRecyclerView: RecyclerView
+
+    private lateinit var binding: FragmentGameTaskOneBinding
     lateinit var adapter: EditTextRecyclerViewAdapter
     lateinit var dataPass: OnDataPass
 
-    companion object {
-        fun newInstance(): GameTaskOneFragment {
-            return GameTaskOneFragment()
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_game_task_one, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_game_task_one,
+            container,
+            false
+        )
+
+        binding.lifecycleOwner = this
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val taskOneTextView = view.findViewById<TextView>(R.id.helpfulTextTaskOne)
-        val taskOneHelpfulText = getString(R.string.taskOneInputFullPassword)
+        binding.helpfulTextTaskOne.text = getString(R.string.taskOneInputFullPassword)
 
-        taskOneTextView.text = taskOneHelpfulText
-        editTextRecyclerView = view.findViewById(R.id.editTextRV)
-        editTextRecyclerView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         adapter = EditTextRecyclerViewAdapter(this, dataPass.passwordString())
-        editTextRecyclerView.adapter = adapter
+        binding.editTextRV.adapter = adapter
+        binding.editTextRV.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
 
-        val clearButton = view.findViewById<Button>(R.id.clearPassButton)
-        clearButton.setOnClickListener {
-            editTextRecyclerView.adapter = null
-            editTextRecyclerView.adapter = adapter
+        binding.clearPassButton.setOnClickListener {
+            binding.editTextRV.adapter = null
+            binding.editTextRV.adapter = adapter
             adapter.notifyDataSetChanged()
         }
+
         onContinueTapped()
     }
 
@@ -64,26 +67,20 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
 
     override fun onCorrectTextInputCallback() {
         hideSoftKeyboard(this.requireActivity())
-        editTextRecyclerView.addOnItemTouchListener(object: RecyclerView.SimpleOnItemTouchListener() {
-            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                return true
-            }
-        })
-        val clearButton = view?.findViewById<Button>(R.id.clearPassButton)
-        clearButton?.visibility = View.INVISIBLE
-        val successMessage = view?.findViewById<LinearLayout>(R.id.successTaskOne)
-        successMessage?.visibility = View.VISIBLE
+        binding.apply {
+            editTextRV.addOnItemTouchListener(object : RecyclerView.SimpleOnItemTouchListener() {
+                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                    return true
+                }
+            })
+            clearPassButton.visibility = View.INVISIBLE
+            successTaskOne.visibility = View.VISIBLE
+        }
     }
 
     private fun onContinueTapped() {
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskOne)
-        continueButton?.setOnClickListener {
-            val fragmentTaskTwo = GameTaskTwoFragment.newInstance()
-            val transaction = fragmentManager?.beginTransaction()
-            transaction
-                ?.replace(R.id.frameFragmentGame, fragmentTaskTwo)
-                ?.addToBackStack(null)
-                ?.commit()
+        binding.continueButtonTaskOne.setOnClickListener {
+
         }
     }
 

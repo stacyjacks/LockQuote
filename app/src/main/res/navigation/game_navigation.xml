@@ -2,10 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/game_navigation"
-    app:startDestination="@layout/fragment_game_task_one">
+    app:startDestination="@+id/gameTaskOneFragment">
 
     <fragment
         android:id="@+id/gameTaskOneFragment"
         android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskOneFragment"
-        android:label="GameTaskOneFragment" />
+        android:label="@string/memorisation_game_fragment" />
 </navigation>

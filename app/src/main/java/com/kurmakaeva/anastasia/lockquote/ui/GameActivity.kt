@@ -8,28 +8,27 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.kurmakaeva.anastasia.lockquote.R
 
 class GameActivity : AppCompatActivity(), OnDataPass {
-
-    companion object {
-        const val TAG_GAME_TASK_ONE_FRAGMENT = "GameTaskOneFragment"
-    }
+    private lateinit var appBarConfiguration : AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_game)
+
+        val navController = this.findNavController(R.id.nav_game_host_fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        supportActionBar?.elevation = 0f
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = (ContextCompat.getColor(this, R.color.colorAccentDark))
-
-        showGameTaskOneFragment()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.elevation = 0f
-        setTitle(R.string.memorisation_game_activity)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -38,11 +37,6 @@ class GameActivity : AppCompatActivity(), OnDataPass {
                 super.onBackPressed()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        setIntent(intent)
     }
 
     override fun onDataPass(data: String) {
@@ -54,29 +48,6 @@ class GameActivity : AppCompatActivity(), OnDataPass {
 
     override fun selectedLyric(): String {
         return intent.getStringExtra("selectedLyric")!!
-    }
-
-    private fun createGameTaskOneFragment(): GameTaskOneFragment {
-        var gameTaskOneFragment = supportFragmentManager.findFragmentByTag(
-            TAG_GAME_TASK_ONE_FRAGMENT
-        ) as GameTaskOneFragment?
-
-        if (gameTaskOneFragment == null) {
-            gameTaskOneFragment =
-                GameTaskOneFragment.newInstance()
-        }
-        return gameTaskOneFragment
-    }
-
-    private fun showGameTaskOneFragment() {
-        val gameTaskOneFragment = createGameTaskOneFragment()
-        supportFragmentManager
-            .beginTransaction()
-            .replace(
-                R.id.frameFragmentGame, gameTaskOneFragment,
-                TAG_GAME_TASK_ONE_FRAGMENT
-            )
-            .commit()
     }
 
     fun showError(context: Context, message: String) {
