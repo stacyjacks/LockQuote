@@ -11,13 +11,10 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.kurmakaeva.anastasia.lockquote.R
 
 class GameActivity : AppCompatActivity() {
-    private val appBarConfiguration =
-        AppBarConfiguration(setOf(R.id.main_navigation, R.id.game_navigation))
+    private lateinit var appBarConfiguration : AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +23,9 @@ class GameActivity : AppCompatActivity() {
 
         val navController = this.findNavController(R.id.nav_game_host_fragment)
         navController.setGraph(R.navigation.game_navigation, intent.extras)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
+        appBarConfiguration = AppBarConfiguration(navController.graph)
         supportActionBar?.elevation = 0f
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -38,9 +36,18 @@ class GameActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            android.R.id.home ->
+//                this.onBackPressed()
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+
+
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_game_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        val navController = this.findNavController(R.id.nav_game_host_fragment)
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
     fun showError(context: Context, message: String) {
