@@ -7,5 +7,26 @@
     <fragment
         android:id="@+id/gameTaskOneFragment"
         android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskOneFragment"
-        android:label="@string/memorisation_game_fragment" />
+        android:label="@string/memorisation_game_fragment" >
+        <argument
+            android:name="modPasswordString"
+            app:argType="string" />
+        <argument
+            android:name="selectedLyric"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gameTaskOneFragment_to_gameTaskTwoFragment"
+            app:destination="@id/gameTaskTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameTaskTwoFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskTwoFragment"
+        android:label="@string/memorisation_game_fragment" >
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
+        <argument
+            android:name="selectedLyric"
+            app:argType="string" />
+    </fragment>
 </navigation>

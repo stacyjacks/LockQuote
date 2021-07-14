@@ -11,10 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.kurmakaeva.anastasia.lockquote.R
 
-class GameActivity : AppCompatActivity(), OnDataPass {
-    private lateinit var appBarConfiguration : AppBarConfiguration
+class GameActivity : AppCompatActivity() {
+    private val appBarConfiguration =
+        AppBarConfiguration(setOf(R.id.main_navigation, R.id.game_navigation))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +25,9 @@ class GameActivity : AppCompatActivity(), OnDataPass {
         setContentView(R.layout.activity_game)
 
         val navController = this.findNavController(R.id.nav_game_host_fragment)
-        NavigationUI.setupActionBarWithNavController(this, navController)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        navController.setGraph(R.navigation.game_navigation, intent.extras)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
         supportActionBar?.elevation = 0f
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -34,28 +38,9 @@ class GameActivity : AppCompatActivity(), OnDataPass {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home ->
-                super.onBackPressed()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDataPass(data: String) {
-    }
-
-    override fun passwordString(): String {
-        return intent.getStringExtra("modPasswordString")!!
-    }
-
-    override fun selectedLyric(): String {
-        return intent.getStringExtra("selectedLyric")!!
-    }
-
     override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.nav_game_host_fragment)
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
+        val navController = findNavController(R.id.nav_game_host_fragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     fun showError(context: Context, message: String) {

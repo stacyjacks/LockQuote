@@ -47,5 +47,20 @@
         <argument
             android:name="passwordString"
             app:argType="string" />
+        <action
+            android:id="@+id/action_generatedPasswordFragment_to_activity_game"
+            app:destination="@id/activityGame" />
     </fragment>
+
+    <activity
+        android:id="@+id/activityGame"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameActivity"
+        android:label="@string/memorisation_game_fragment">
+        <argument
+            android:name="modPasswordString"
+            app:argType="string" />
+        <argument
+            android:name="selectedLyric"
+            app:argType="string" />
+    </activity>
 </navigation>

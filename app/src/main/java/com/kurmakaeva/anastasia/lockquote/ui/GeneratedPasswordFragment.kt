@@ -13,6 +13,7 @@ import androidx.core.text.buildSpannedString
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGeneratedPasswordBinding
@@ -68,12 +69,9 @@ class GeneratedPasswordFragment() : Fragment() {
             binding.numberOfCharacters.text = numberOfCharCalculator(it)
 
             binding.helpMeRemember.setOnClickListener {
-                val intent = Intent(requireContext(), GameActivity::class.java)
-                intent
-                    .putExtra("modPasswordString", modPasswordString)
-                    .putExtra("selectedLyric", args.selectedText)
-
-                startActivity(intent)
+                val action = GeneratedPasswordFragmentDirections
+                    .actionGeneratedPasswordFragmentToActivityGame(modPasswordString, args.selectedText)
+                this.findNavController().navigate(action)
             }
         })
 
