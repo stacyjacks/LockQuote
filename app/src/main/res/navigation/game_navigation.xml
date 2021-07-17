@@ -28,5 +28,18 @@
         <argument
             android:name="selectedLyric"
             app:argType="string" />
+        <action
+            android:id="@+id/action_gameTaskTwoFragment_to_gameTaskThreeFragment"
+            app:destination="@id/gameTaskThreeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameTaskThreeFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskThreeFragment"
+        android:label="@string/memorisation_game_fragment" >
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
+        <argument android:name="selectedLyric"
+            app:argType="string" />
     </fragment>
 </navigation>

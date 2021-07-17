@@ -1,19 +1,16 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.*
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -82,7 +79,10 @@ class GameTaskTwoFragment : Fragment(), OnTextBubbleStartDragListener,
 
     private fun onContinueTapped() {
         binding.continueButtonTaskTwo.setOnClickListener {
+            val action = GameTaskTwoFragmentDirections.actionGameTaskTwoFragmentToGameTaskThreeFragment(
+                args.passwordString, args.selectedLyric)
 
+            this.findNavController().navigate(action)
         }
     }
 }
