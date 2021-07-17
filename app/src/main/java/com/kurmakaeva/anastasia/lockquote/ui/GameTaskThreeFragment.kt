@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -65,7 +66,9 @@ class GameTaskThreeFragment : Fragment(), OnCharBubbleStartDragListener, Recycle
 
     private fun onContinueTapped() {
         binding.continueButtonTaskThree.setOnClickListener {
-            // val action =
+            val action = GameTaskThreeFragmentDirections.actionGameTaskThreeFragmentToGameTaskFourFragment(
+                args.passwordString, args.selectedLyric)
+            this.findNavController().navigate(action)
         }
     }
 }
