@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.kurmakaeva.anastasia.lockquote.R
@@ -100,7 +100,9 @@ class GameTaskFourFragment : Fragment() {
 
     private fun onContinueTapped() {
         binding.continueButtonTaskFour.setOnClickListener {
-            // val action =
+            val action = GameTaskFourFragmentDirections
+                .actionGameTaskFourFragmentToGameTaskFiveFragment(args.passwordString, args.selectedLyric)
+            this.findNavController().navigate(action)
         }
     }
 }

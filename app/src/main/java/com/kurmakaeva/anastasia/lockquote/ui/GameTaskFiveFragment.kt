@@ -1,88 +1,58 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.kurmakaeva.anastasia.lockquote.R
 import com.google.android.material.textfield.TextInputEditText
+import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskFiveBinding
 
+class GameTaskFiveFragment: Fragment() {
 
-class GameTaskFiveFragment: Fragment(), OnDataPass {
+    private lateinit var binding: FragmentGameTaskFiveBinding
+    private val args by navArgs<GameTaskFiveFragmentArgs>()
 
-    lateinit var dataPass: OnDataPass
-    private lateinit var editTextFieldOne: TextInputEditText
-    private lateinit var editTextFieldTwo: TextInputEditText
-    private lateinit var editTextFieldThree: TextInputEditText
-    private lateinit var editTextFieldFour: TextInputEditText
-    private lateinit var editTextFieldFive: TextInputEditText
-    private lateinit var editTextFieldSix: TextInputEditText
-    private lateinit var editTextFieldSeven: TextInputEditText
-    private lateinit var editTextFieldEight: TextInputEditText
-    private lateinit var editTextFieldNine: TextInputEditText
-    private lateinit var editTextFieldTen: TextInputEditText
-    private lateinit var editTextFieldEleven: TextInputEditText
-    private lateinit var editTextFieldTwelve: TextInputEditText
-    private lateinit var editTextFieldThirteen: TextInputEditText
-    private lateinit var editTextFieldFourteen: TextInputEditText
-    private lateinit var editTextFieldFifteen: TextInputEditText
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_game_task_five,
+            container,
+            false)
 
-    companion object {
-        fun newInstance(): GameTaskFiveFragment {
-            return GameTaskFiveFragment()
-        }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_game_task_five, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editTextFieldOne = view.findViewById(R.id.editTextField1)
-        editTextFieldTwo = view.findViewById(R.id.editTextField2)
-        editTextFieldThree = view.findViewById(R.id.editTextField3)
-        editTextFieldFour = view.findViewById(R.id.editTextField4)
-        editTextFieldFive = view.findViewById(R.id.editTextField5)
-        editTextFieldSix = view.findViewById(R.id.editTextField6)
-        editTextFieldSeven = view.findViewById(R.id.editTextField7)
-        editTextFieldEight = view.findViewById(R.id.editTextField8)
-        editTextFieldNine = view.findViewById(R.id.editTextField9)
-        editTextFieldTen = view.findViewById(R.id.editTextField10)
-        editTextFieldEleven = view.findViewById(R.id.editTextField11)
-        editTextFieldTwelve = view.findViewById(R.id.editTextField12)
-        editTextFieldThirteen = view.findViewById(R.id.editTextField13)
-        editTextFieldFourteen = view.findViewById(R.id.editTextField14)
-        editTextFieldFifteen = view.findViewById(R.id.editTextField15)
-
         val editTextFields: Array<TextInputEditText> = arrayOf(
-            editTextFieldOne,
-            editTextFieldTwo,
-            editTextFieldThree,
-            editTextFieldFour,
-            editTextFieldFive,
-            editTextFieldSix,
-            editTextFieldSeven,
-            editTextFieldEight,
-            editTextFieldNine,
-            editTextFieldTen,
-            editTextFieldEleven,
-            editTextFieldTwelve,
-            editTextFieldThirteen,
-            editTextFieldFourteen,
-            editTextFieldFifteen
+            binding.editTextField1,
+            binding.editTextField2,
+            binding.editTextField3,
+            binding.editTextField4,
+            binding.editTextField5,
+            binding.editTextField6,
+            binding.editTextField7,
+            binding.editTextField8,
+            binding.editTextField9,
+            binding.editTextField10,
+            binding.editTextField11,
+            binding.editTextField12,
+            binding.editTextField13,
+            binding.editTextField14,
+            binding.editTextField15
         )
 
-        val passwordCharCount = passwordString().count()
+        val passwordCharCount = args.passwordString.count()
         editTextDisplayFirst(editTextFields, passwordCharCount)
 
         for (editTextField in editTextFields) {
@@ -95,35 +65,18 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
                                 R.drawable.edit_text_style
                             )
                         }
-                        onCorrectTextInputCallback(editTextFields, editTextFields.map { it.text }.joinToString(""))
+                        onCorrectTextInputCallback(editTextFields, editTextFields.map {
+                            it.text
+                        }.joinToString(""))
                     }
 
-                    override fun afterTextChanged(s: Editable) {
-                    }
+                    override fun afterTextChanged(s: Editable) { }
 
-                    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                    }
+                    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) { }
                 })
         }
         onContinueTapped()
         onStartOverTapped()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        dataPass = context as OnDataPass
-    }
-
-    override fun onDataPass(data: String) {
-        dataPass.onDataPass(data)
-    }
-
-    override fun passwordString(): String {
-        return dataPass.passwordString()
-    }
-
-    override fun selectedLyric(): String {
-        return dataPass.selectedLyric()
     }
 
     private fun editTextDisplayFirst(editTextFields: Array<TextInputEditText>, number: Int)  {
@@ -135,7 +88,7 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
     }
 
     private fun onTextInput(editTextFields: Array<TextInputEditText>, arrayPosition: Int) {
-        val passwordStringCharArray = passwordString().toCharArray()
+        val passwordStringCharArray = args.passwordString.toCharArray()
 
         if (!passwordStringCharArray.indices.contains(arrayPosition)) return
         if (!editTextFields.indices.contains(arrayPosition)) return
@@ -152,7 +105,7 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
     }
 
     private fun onCorrectTextInputCallback(editTextFields: Array<TextInputEditText>, computedPassword: String) {
-        if (passwordString() == computedPassword) {
+        if (args.passwordString == computedPassword) {
             hideSoftKeyboard(this.requireActivity())
             for (editTextField in editTextFields) {
                 editTextField.clearFocus()
@@ -164,13 +117,11 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
                 }
             }
 
-            val helpButtons = view?.findViewById<LinearLayout>(R.id.helpButtons)
-            helpButtons?.visibility = View.GONE
-
-            val checkAnimation = view?.findViewById<LottieAnimationView>(R.id.checkViewAnimation)
-            checkAnimation?.visibility = LottieAnimationView.VISIBLE
-            val successTaskFive = view?.findViewById<LinearLayout>(R.id.successTaskFive)
-            successTaskFive?.visibility = View.VISIBLE
+            binding.apply {
+                helpButtons.visibility = View.GONE
+                checkViewAnimation.visibility = LottieAnimationView.VISIBLE
+                successTaskFive.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -182,15 +133,7 @@ class GameTaskFiveFragment: Fragment(), OnDataPass {
     }
 
     private fun onContinueTapped() {
-        val continueButton = view?.findViewById<Button>(R.id.continueButtonTaskFive)
-        continueButton?.setOnClickListener {
-            val fragmentGameResult = GameResultFragment.newInstance()
-            val transaction = fragmentManager?.beginTransaction()
-            transaction
-                ?.replace(R.id.frameFragmentGame, fragmentGameResult)
-                ?.addToBackStack(null)
-                ?.commit()
-        }
+        // val action:
     }
 
     private fun onStartOverTapped() {
