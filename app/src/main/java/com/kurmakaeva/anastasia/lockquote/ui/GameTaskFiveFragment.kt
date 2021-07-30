@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.kurmakaeva.anastasia.lockquote.R
@@ -133,7 +134,9 @@ class GameTaskFiveFragment: Fragment() {
     }
 
     private fun onContinueTapped() {
-        // val action:
+        val action = GameTaskFiveFragmentDirections
+            .actionGameTaskFiveFragmentToGameResultFragment(args.passwordString, args.selectedLyric)
+        this.findNavController().navigate(action)
     }
 
     private fun onStartOverTapped() {
