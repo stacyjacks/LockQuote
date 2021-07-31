@@ -76,7 +76,7 @@ class GeneratedPasswordFragment() : Fragment() {
         })
 
         binding.tryAgainButton.setOnClickListener {
-//            this.finish()
+            this.findNavController().navigateUp()
         }
 
         binding.selectedTextFromLyric.text = makeFirstLetterBold(args.selectedText)
