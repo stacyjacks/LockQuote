@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LockQuote</string>
+    <string name="query_hint">Поиск названия песни или фрагмента из слов</string>
+    <string name="search_results">Результаты поиска</string>
+    <string name="lyric_selection">Выбрать интересующий фрагмент</string>
+    <string name="taskOne">Упражнение 1 / 5</string>
+    <string name="taskTwo">Упражнение 2 / 5</string>
+    <string name="taskThree">Упражнение 3 / 5</string>
+    <string name="taskFour">Упражнение 4 / 5</string>
+    <string name="taskFive">Упражнение 5 / 5</string>
+    <string name="ok_button">Ок</string>
+    <string name="use_button">Выбрать</string>
+    <string name="select_text_hint">Выбери фрагмент из песни, до 15 слов, и нажми Копировать</string>
+    <string name="error_too_many_too_little_words">Пожалуйста, выбери фрагмент от 3 до 15 слов.</string>
+    <string name="error_copy_not_tapped">Фрагмент из песни не выбран. Пожалуйста, выбери интересующий тебя фрагмент для создания пароля и нажми Копировать.</string>
+    <string name="error_something_wrong">Что-то не так. Пожалуйста, попробуй ещё раз или проверь наличие подключения к интернету.</string>
+    <string name="error_cant_open">Открыть слова песни не получилось.</string>
+    <string name="try_again_button">Попробовать ещё раз</string>
+    <string name="just_a_sec">Секундочку…</string>
+    <string name="try_again_hint">Не то получилось?</string>
+    <string name="next_level_button">Помоги запомнить!</string>
+    <string name="taskOneInputFullPassword">Введи пароль именно так, как указано ниже:</string>
+    <string name="taskTwoOrderLyrics">Расставь слова в правильном порядке перетаскивая и отпуская нижестоящие блоки:</string>
+    <string name="clear_pass_button">Очистить</string>
+    <string name="continue_button">Продолжить</string>
+    <string name="generated_pass_fragment">Твой пароль</string>
+    <string name="taskThreeOrderPassword">А теперь, расставь буквы своего нового пароля в правильном порядке. Сможешь пройти испытание?</string>
+    <string name="taskFourChoosePassword">Выбери правильный пароль из списка. Подсказка: попробуй спеть песню про себя, это поможет тебе вспомнить!</string>
+    <string name="taskFiveInputPass">Ну а теперь… Приготовься к использованию своего нового пароля. Введи правильные знаки, в этот раз без подсказок!</string>
+    <string name="take_me_back_button">Не могу</string>
+    <string name="take_a_good_look">Хорошенько посмотри на выбранные слова песни и на пароль, который мы составили для тебя:</string>
+    <string name="well_done">Молодец!</string>
+    <string name="congrats_new_password">Наши поздравления! Испытания пройдены и ты можешь пользоваться своим новым паролем. Но прежде всего, посмотри на него ещё раз, скопируй, или запиши куда нужно:</string>
+    <string name="another_go">Повторить игру</string>
+    <string name="make_new_button">Новый пароль</string>
+    <string name="copy_button">Скопировать в буфер обмена</string>
+    <string name="great_text">Отлично!</string>
+    <string name="about_title">LockQuote %s</string>
+    <string name="about_message">Разработка: Анастасия Курмакаева. \n\nГРАФИЧЕСКИЕ МАТЕРИАЛЫ:\nДизайн логотипа: Маша Курмакаева. \nhttps://www.flaticon.com/authors/eucalyp \nиз www.flaticon.com \nHicy Wonder / Lottie Files \nJared Stanley / Lottie Files \nChris Gannon / Lottie Files \nDan Macmahon / Lottie Files</string>
+    <string name="characters">знаков</string>
+    <string name="copied_to_clipboard">Пароль скопирован в буфер обмена</string>
+    <string name="memorisation_game_fragment">Запоминание в курсе…</string>
+</resources>

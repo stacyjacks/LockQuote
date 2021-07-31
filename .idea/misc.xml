@@ -8,6 +8,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/triangle_shape.xml" value="0.14351851851851852" />
         <entry key="app/src/main/res/layout/fragment_game_result.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_game_task_five.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_game_task_four.xml" value="0.1" />
