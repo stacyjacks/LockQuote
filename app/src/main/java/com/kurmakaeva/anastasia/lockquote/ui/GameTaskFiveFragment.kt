@@ -134,14 +134,15 @@ class GameTaskFiveFragment: Fragment() {
     }
 
     private fun onContinueTapped() {
-        val action = GameTaskFiveFragmentDirections
-            .actionGameTaskFiveFragmentToGameResultFragment(args.passwordString, args.selectedLyric)
-        this.findNavController().navigate(action)
+        binding.continueButtonTaskFive.setOnClickListener {
+            val action = GameTaskFiveFragmentDirections
+                .actionGameTaskFiveFragmentToGameResultFragment(args.passwordString, args.selectedLyric)
+            this.findNavController().navigate(action)
+        }
     }
 
     private fun onStartOverTapped() {
-        val startOverButton = view?.findViewById<Button>(R.id.takeMeBack)
-        startOverButton?.setOnClickListener {
+        binding.takeMeBack.setOnClickListener {
             activity?.finish()
         }
     }
