@@ -16,17 +16,26 @@ Clone the repo and open the project in Android Studio.
 
 ## Technologies
 
-Created with ```Kotlin```, single-activity architecture and ```navigation component``, and updated to ```Kotlin 1.5+``` and ```API 30```.
+To build this app I used:
+
+* Kotlin.
+* Android Jetpack navigation component.
+* MVVM (Model-View-ViewModel) design pattern.
+* LiveData.
+* View binding.
+
+Updated to ```Kotlin 1.5+``` and ```API 30```.
 
 Works with ```Android SDK 24+```
 
 __Third-party libraries:__
 
-* Retrofit2
-* Glide
-* Lottie
-* Moshi
-* Koin
+* [Retrofit2](https://github.com/square/retrofit)
+* [Moshi](https://github.com/square/moshi)
+* [Glide](https://github.com/bumptech/glide)
+* [Lottie](https://github.com/airbnb/lottie-android)
+* [Material components](https://github.com/material-components/material-components-android)
+* [Koin](https://insert-koin.io/)
 
 Song database from Genius API.
 
