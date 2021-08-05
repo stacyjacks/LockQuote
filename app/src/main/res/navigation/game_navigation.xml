@@ -16,7 +16,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_gameTaskOneFragment_to_gameTaskTwoFragment"
-            app:destination="@id/gameTaskTwoFragment" />
+            app:destination="@id/gameTaskTwoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left"/>
     </fragment>
     <fragment
         android:id="@+id/gameTaskTwoFragment"
@@ -30,7 +34,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_gameTaskTwoFragment_to_gameTaskThreeFragment"
-            app:destination="@id/gameTaskThreeFragment" />
+            app:destination="@id/gameTaskThreeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/gameTaskThreeFragment"
@@ -43,7 +51,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_gameTaskThreeFragment_to_gameTaskFourFragment"
-            app:destination="@id/gameTaskFourFragment" />
+            app:destination="@id/gameTaskFourFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/gameTaskFourFragment"
@@ -57,7 +69,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_gameTaskFourFragment_to_gameTaskFiveFragment"
-            app:destination="@id/gameTaskFiveFragment" />
+            app:destination="@id/gameTaskFiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/gameTaskFiveFragment"
@@ -71,7 +87,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_gameTaskFiveFragment_to_gameResultFragment"
-            app:destination="@id/gameResultFragment" />
+            app:destination="@id/gameResultFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/gameResultFragment"

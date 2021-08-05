@@ -11,7 +11,11 @@
         android:label="LockQuote" >
         <action
             android:id="@+id/actionGoToSearchResultsFragment"
-            app:destination="@id/searchResultsFragment" />
+            app:destination="@id/searchResultsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/searchResultsFragment"
@@ -23,6 +27,10 @@
         <action
             android:id="@+id/action_searchResultsFragment_to_lyricWebViewFragment"
             app:destination="@id/lyricWebViewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left"
             app:popUpTo="@id/searchResultsFragment" />
     </fragment>
     <fragment
@@ -35,6 +43,10 @@
         <action
             android:id="@+id/action_lyricWebViewFragment_to_generatedPasswordFragment"
             app:destination="@id/generatedPasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left"
             app:popUpTo="@id/lyricWebViewFragment" />
     </fragment>
     <fragment
@@ -49,7 +61,8 @@
             app:argType="string" />
         <action
             android:id="@+id/action_generatedPasswordFragment_to_activity_game"
-            app:destination="@id/activityGame" />
+            app:destination="@id/activityGame"
+            />
     </fragment>
 
     <activity
