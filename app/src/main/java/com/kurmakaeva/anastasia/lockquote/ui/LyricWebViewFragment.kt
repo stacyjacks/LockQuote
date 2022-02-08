@@ -47,6 +47,7 @@ class LyricWebViewFragment : Fragment() {
 
         webSettings.allowContentAccess = true
         webSettings.disabledActionModeMenuItems = MENU_ITEM_WEB_SEARCH
+        webSettings.javaScriptEnabled = true
 
         binding.lyricWebView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
@@ -79,7 +80,7 @@ class LyricWebViewFragment : Fragment() {
 
         viewModel.getSong(args.position)
         viewModel.selectedSong.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            val lyricUrl = "https://www.google.com/amp/s/genius.com/amp" + it.path
+            val lyricUrl = "https://genius.com" + it.path
             binding.lyricWebView.loadUrl(lyricUrl)
         })
 
