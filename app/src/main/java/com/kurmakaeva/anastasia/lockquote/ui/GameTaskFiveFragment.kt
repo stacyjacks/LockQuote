@@ -16,7 +16,9 @@ import com.airbnb.lottie.LottieAnimationView
 import com.kurmakaeva.anastasia.lockquote.R
 import com.google.android.material.textfield.TextInputEditText
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskFiveBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GameTaskFiveFragment: Fragment() {
 
     private lateinit var binding: FragmentGameTaskFiveBinding

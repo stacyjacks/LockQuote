@@ -15,7 +15,9 @@ import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskFourBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GameTaskFourFragment : Fragment() {
 
     private lateinit var binding: FragmentGameTaskFourBinding

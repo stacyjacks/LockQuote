@@ -15,7 +15,9 @@ import androidx.navigation.fragment.findNavController
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentStartBinding
 import com.kurmakaeva.anastasia.lockquote.hideKeyboard
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
 

@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
 import com.kurmakaeva.anastasia.lockquote.repository.InterfaceGeniusRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LyricPasswordViewModel(private val repo: InterfaceGeniusRepo): ViewModel() {
+@HiltViewModel
+class LyricPasswordViewModel @Inject constructor(private val repo: InterfaceGeniusRepo): ViewModel() {
 
     private val _selectedSong = MutableLiveData<SongSummaryViewData>()
     val selectedSong: LiveData<SongSummaryViewData>

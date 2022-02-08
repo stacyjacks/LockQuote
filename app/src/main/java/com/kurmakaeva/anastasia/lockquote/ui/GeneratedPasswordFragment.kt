@@ -12,19 +12,21 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGeneratedPasswordBinding
 import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GeneratedPasswordFragment() : Fragment() {
 
     private lateinit var binding: FragmentGeneratedPasswordBinding
 
-    private val sharedViewModel by sharedViewModel<LyricPasswordViewModel>()
+    private val sharedViewModel: LyricPasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

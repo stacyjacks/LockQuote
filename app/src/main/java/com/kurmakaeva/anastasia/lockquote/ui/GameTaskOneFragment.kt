@@ -14,7 +14,9 @@ import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.EditTextRecyclerViewAdapter
 import com.kurmakaeva.anastasia.lockquote.adapter.RecyclerViewEditTextListener
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskOneBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
 
     private lateinit var binding: FragmentGameTaskOneBinding

@@ -3,10 +3,12 @@ package com.kurmakaeva.anastasia.lockquote.viewmodel
 import androidx.lifecycle.*
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
 import com.kurmakaeva.anastasia.lockquote.repository.InterfaceGeniusRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class SearchViewModel(private val repo: InterfaceGeniusRepo): ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val repo: InterfaceGeniusRepo): ViewModel() {
 
     private val _searchResults = MutableLiveData<List<SongSummaryViewData>>()
     val searchResults: LiveData<List<SongSummaryViewData>>

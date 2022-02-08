@@ -15,7 +15,9 @@ import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.*
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskTwoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GameTaskTwoFragment : Fragment(), OnTextBubbleStartDragListener,
     RecyclerViewTextBubbleListener {
 

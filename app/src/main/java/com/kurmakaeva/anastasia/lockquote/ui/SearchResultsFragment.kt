@@ -11,6 +11,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,17 +22,17 @@ import com.kurmakaeva.anastasia.lockquote.adapter.SongSearchAdapter
 import com.kurmakaeva.anastasia.lockquote.adapter.SongSearchAdapterListener
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentSearchResultsBinding
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
+@AndroidEntryPoint
 class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
 
     private lateinit var binding: FragmentSearchResultsBinding
     private var currentSearch: String? = null
     private lateinit var adapter: SongSearchAdapter
 
-    private val viewModel by viewModel<SearchViewModel>()
+    private val viewModel: SearchViewModel by viewModels()
 
     private val args by navArgs<SearchResultsFragmentArgs>()
 

@@ -15,20 +15,22 @@ import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentLyricWebviewBinding
 import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
 
+@AndroidEntryPoint
 class LyricWebViewFragment : Fragment() {
 
     private lateinit var binding: FragmentLyricWebviewBinding
 
-    private val viewModel by viewModel<LyricPasswordViewModel>()
+    private val viewModel: LyricPasswordViewModel by viewModels()
 
     private val args by navArgs<LyricWebViewFragmentArgs>()
 

@@ -13,9 +13,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.App
+import com.kurmakaeva.anastasia.lockquote.BuildConfig
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameResultBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GameResultFragment: Fragment() {
 
     private lateinit var binding: FragmentGameResultBinding
@@ -75,10 +78,7 @@ class GameResultFragment: Fragment() {
     }
 
     private fun showInfo() {
-        val versionName =
-            App.context?.packageName?.let {
-                App.context?.packageManager?.getPackageInfo(it, 0)?.versionName
-            }
+        val versionName = BuildConfig.VERSION_NAME
         val dialogTitle = getString(
             R.string.about_title,
             versionName

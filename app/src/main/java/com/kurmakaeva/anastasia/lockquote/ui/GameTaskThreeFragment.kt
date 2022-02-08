@@ -12,7 +12,9 @@ import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.*
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskThreeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GameTaskThreeFragment : Fragment(), OnCharBubbleStartDragListener, RecyclerViewCharBubbleListener {
 
     private lateinit var binding: FragmentGameTaskThreeBinding
