@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
     app:startDestination="@id/startFragment">
+
+    <!-- PASSWORD NAVIGATION -->
 
     <fragment
         android:id="@+id/startFragment"
@@ -61,19 +62,113 @@
             app:argType="string" />
         <action
             android:id="@+id/action_generatedPasswordFragment_to_activity_game"
-            app:destination="@id/activityGame"
-            />
+            app:destination="@id/gameTaskOneFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left"/>
     </fragment>
 
-    <activity
-        android:id="@+id/activityGame"
-        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameActivity"
-        android:label="@string/memorisation_game_fragment">
+    <!--GAME NAVIGATION -->
+
+    <fragment
+        android:id="@+id/gameTaskOneFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskOneFragment"
+        android:label="@string/memorisation_game_fragment" >
         <argument
             android:name="modPasswordString"
             app:argType="string" />
         <argument
             android:name="selectedLyric"
             app:argType="string" />
-    </activity>
+        <action
+            android:id="@+id/action_gameTaskOneFragment_to_gameTaskTwoFragment"
+            app:destination="@id/gameTaskTwoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left"/>
+    </fragment>
+    <fragment
+        android:id="@+id/gameTaskTwoFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskTwoFragment"
+        android:label="@string/memorisation_game_fragment" >
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
+        <argument
+            android:name="selectedLyric"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gameTaskTwoFragment_to_gameTaskThreeFragment"
+            app:destination="@id/gameTaskThreeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameTaskThreeFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskThreeFragment"
+        android:label="@string/memorisation_game_fragment" >
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
+        <argument android:name="selectedLyric"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gameTaskThreeFragment_to_gameTaskFourFragment"
+            app:destination="@id/gameTaskFourFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameTaskFourFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskFourFragment"
+        android:label="@string/memorisation_game_fragment" >
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
+        <argument
+            android:name="selectedLyric"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gameTaskFourFragment_to_gameTaskFiveFragment"
+            app:destination="@id/gameTaskFiveFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameTaskFiveFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameTaskFiveFragment"
+        android:label="@string/memorisation_game_fragment">
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
+        <argument
+            android:name="selectedLyric"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gameTaskFiveFragment_to_gameResultFragment"
+            app:destination="@id/gameResultFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameResultFragment"
+        android:name="com.kurmakaeva.anastasia.lockquote.ui.GameResultFragment"
+        android:label="@string/app_name" >
+        <argument
+            android:name="passwordString"
+            app:argType="string" />
+        <argument
+            android:name="selectedLyric"
+            app:argType="string" />
+    </fragment>
 </navigation>

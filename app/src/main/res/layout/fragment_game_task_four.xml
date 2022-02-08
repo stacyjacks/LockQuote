@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/gradient_b"
         android:orientation="vertical"
-        tools:context=".ui.GameActivity"
+        tools:context=".ui.MainActivity"
         tools:ignore="UselessParent">
 
         <TextView

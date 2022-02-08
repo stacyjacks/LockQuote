@@ -16,6 +16,7 @@
 
         <activity
             android:name="com.kurmakaeva.anastasia.lockquote.ui.MainActivity"
+            android:exported="true"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,11 +25,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.kurmakaeva.anastasia.lockquote.ui.GameActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing" >
         </activity>
 
     </application>
