@@ -12,8 +12,10 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +24,7 @@ import com.kurmakaeva.anastasia.lockquote.adapter.SongSearchAdapter
 import com.kurmakaeva.anastasia.lockquote.adapter.SongSearchAdapterListener
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentSearchResultsBinding
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
+import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -72,7 +75,7 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
 
     private fun performSearch(term: String) {
         showLoadingProgress()
-        viewModel.getSearchResults(term)
+        viewModel.refresh(term)
     }
 
     private fun searchViewSetUp() {
@@ -109,11 +112,23 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
         binding.searchResultRecyclerView.setHasFixedSize(true)
 
         viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.searchResults.collect {
+                    when (it) {
+                        SearchViewState.Error -> {
+                            // handle error
+                        }
+                        SearchViewState.Loading -> {
+                           showLoadingProgress()
+                        }
+                        is SearchViewState.Success -> {
+                            adapter.submitList(it.listOfSongs)
+                            hideLoadingProgress()
+                        }
+                    }
+                }
+            }
             showLoadingProgress()
-            viewModel.searchResults.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(it)
-                hideLoadingProgress()
-            })
         }
     }
 
