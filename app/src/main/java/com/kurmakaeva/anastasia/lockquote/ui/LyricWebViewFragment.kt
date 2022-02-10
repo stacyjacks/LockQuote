@@ -16,12 +16,17 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentLyricWebviewBinding
 import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
+import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -41,8 +46,6 @@ class LyricWebViewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_lyric_webview, container, false)
-
-        binding.lifecycleOwner = this
 
         // Enable Javascript
         val webSettings = binding.lyricWebView.settings
@@ -80,11 +83,25 @@ class LyricWebViewFragment : Fragment() {
 
         }
 
-        viewModel.getSong(args.position)
-        viewModel.selectedSong.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            val lyricUrl = "https://genius.com" + it.path
-            binding.lyricWebView.loadUrl(lyricUrl)
-        })
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getSong(args.position)
+                viewModel.selectedSong.collect {
+                    when (it) {
+                        LyricPasswordViewState.Error -> {
+                            // handle error
+                        }
+                        LyricPasswordViewState.Loading -> {
+                            // handle loading
+                        }
+                        is LyricPasswordViewState.Success -> {
+                            val lyricUrl = "https://genius.com" + it.song.path
+                            binding.lyricWebView.loadUrl(lyricUrl)
+                        }
+                    }
+                }
+            }
+        }
 
         binding.useSelectionButton.text = String.format(resources.getString(R.string.use_button) + " ($numberOfWords)")
 

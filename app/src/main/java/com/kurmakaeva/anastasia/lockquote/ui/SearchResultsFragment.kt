@@ -47,8 +47,6 @@ class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
             false
         )
 
-        binding.lifecycleOwner = this
-
         viewModel.clearSnackbarErrors()
 
         if (currentSearch == null) { currentSearch = args.query }
