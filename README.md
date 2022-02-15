@@ -21,10 +21,8 @@ To build this app I used:
 * Kotlin.
 * Android Jetpack navigation component.
 * MVVM (Model-View-ViewModel) design pattern.
-* LiveData.
+* LiveData and Kotlin Flow.
 * View binding.
-
-Updated to ```Kotlin 1.5+``` and ```API 30```.
 
 Works with ```Android SDK 24+```
 
@@ -35,7 +33,7 @@ __Third-party libraries:__
 * [Glide](https://github.com/bumptech/glide)
 * [Lottie](https://github.com/airbnb/lottie-android)
 * [Material components](https://github.com/material-components/material-components-android)
-* [Koin](https://insert-koin.io/)
+* [Hilt](https://dagger.dev/hilt/)
 
 Song database from Genius API.
 
