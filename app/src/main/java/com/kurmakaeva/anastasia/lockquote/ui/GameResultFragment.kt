@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.App
 import com.kurmakaeva.anastasia.lockquote.BuildConfig
@@ -67,7 +68,7 @@ class GameResultFragment: Fragment() {
         }
 
         binding.anotherGoButton.setOnClickListener {
-            activity?.finish()
+            findNavController().popBackStack(R.id.gameTaskOneFragment, false)
         }
 
         binding.makeNewPasswordButton.setOnClickListener {
