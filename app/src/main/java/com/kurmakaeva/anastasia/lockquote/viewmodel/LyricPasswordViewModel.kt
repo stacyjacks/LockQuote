@@ -22,10 +22,6 @@ class LyricPasswordViewModel @Inject constructor(private val repo: InterfaceGeni
     val selectedText: LiveData<String>
         get() = _selectedText
 
-    private val _passwordString = MutableLiveData<String>()
-    val passwordString: LiveData<String>
-        get() = _passwordString
-
     fun getSong(position: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
@@ -40,10 +36,6 @@ class LyricPasswordViewModel @Inject constructor(private val repo: InterfaceGeni
 
     fun getSelectedText(selectedTextFromLyric: String) {
         _selectedText.value = selectedTextFromLyric
-    }
-
-    fun getPasswordStringFromSelectedText(passwordStringFromLyric: String) {
-        _passwordString.value = passwordStringFromLyric
     }
 }
 

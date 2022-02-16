@@ -1,7 +1,6 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
 import android.animation.Animator
-import android.content.Intent
 import android.os.Bundle
 import android.text.SpannedString
 import android.text.TextUtils
@@ -18,7 +17,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGeneratedPasswordBinding
-import com.kurmakaeva.anastasia.lockquote.viewmodel.LyricPasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +24,7 @@ class GeneratedPasswordFragment() : Fragment() {
 
     private lateinit var binding: FragmentGeneratedPasswordBinding
 
-    private val sharedViewModel: LyricPasswordViewModel by viewModels()
+    private val viewModel: GeneratedPasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,8 +61,8 @@ class GeneratedPasswordFragment() : Fragment() {
 
         val args by navArgs<GeneratedPasswordFragmentArgs>()
 
-        sharedViewModel.getPasswordStringFromSelectedText(args.passwordString)
-        sharedViewModel.passwordString.observe(viewLifecycleOwner, Observer {
+        viewModel.getPasswordStringFromSelectedText(args.passwordString)
+        viewModel.passwordString.observe(viewLifecycleOwner, Observer {
             val modPasswordString = charReplacer(it)
             binding.generatedPass.text = modPasswordString
 
