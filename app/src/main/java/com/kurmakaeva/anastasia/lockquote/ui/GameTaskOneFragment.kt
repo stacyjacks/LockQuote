@@ -32,8 +32,6 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
             false
         )
 
-        binding.lifecycleOwner = this
-
         return binding.root
     }
 
