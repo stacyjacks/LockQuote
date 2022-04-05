@@ -41,8 +41,8 @@ class StartFragment : Fragment() {
 
     @Composable
     fun StartScreen() {
-        val query = viewModel.query.value
-        val action = StartFragmentDirections.actionGoToSearchResultsFragment(query)
+        val query = viewModel.query.collectAsState()
+        val action = StartFragmentDirections.actionGoToSearchResultsFragment(query.value)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -50,7 +50,7 @@ class StartFragment : Fragment() {
             verticalArrangement = Arrangement.Center
         ) {
             SearchView(
-                query = query,
+                query = query.value,
                 onQueryChanged = { viewModel.onQueryChanged(it) },
                 onSearchClick = { findNavController().navigate(action) },
                 onClearClick = { viewModel.onClearClick() },

@@ -1,10 +1,10 @@
 package com.kurmakaeva.anastasia.lockquote.viewmodel
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class SearchBoxViewModel: ViewModel() {
-    val query = mutableStateOf("")
+    val query = MutableStateFlow("")
 
     fun onQueryChanged(newQuery: String) {
         query.value = newQuery

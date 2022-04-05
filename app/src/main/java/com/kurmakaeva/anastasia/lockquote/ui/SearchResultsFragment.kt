@@ -1,153 +1,141 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
-import android.app.SearchManager
-import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.snackbar.Snackbar
 import com.kurmakaeva.anastasia.lockquote.R
-import com.kurmakaeva.anastasia.lockquote.adapter.SongSearchAdapter
-import com.kurmakaeva.anastasia.lockquote.adapter.SongSearchAdapterListener
-import com.kurmakaeva.anastasia.lockquote.databinding.FragmentSearchResultsBinding
+import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
+import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchBoxViewModel
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewState
+import com.skydoves.landscapist.glide.GlideImage
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchResultsFragment : Fragment(), SongSearchAdapterListener {
-
-    private lateinit var binding: FragmentSearchResultsBinding
-    private var currentSearch: String? = null
-    private lateinit var adapter: SongSearchAdapter
+@ExperimentalComposeUiApi
+class SearchResultsFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels()
+    private val searchBoxViewModel: SearchBoxViewModel by viewModels()
 
     private val args by navArgs<SearchResultsFragmentArgs>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_search_results,
-            container,
-            false
-        )
-
-        viewModel.clearSnackbarErrors()
-
-        if (currentSearch == null) { currentSearch = args.query }
-        currentSearch?.let { performSearch(it) }
-
-        adapterSetup()
-
-        searchViewSetUp()
-
-        viewModel.showSnackbar.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                val errorText = it
-                showSnackbarWithError(it.replace(errorText, getString(R.string.error_something_wrong)))
-            }
-        })
-
-        return binding.root
-    }
-
-    override fun onShowDetails(position: Int) {
-        val action = SearchResultsFragmentDirections.actionSearchResultsFragmentToLyricWebViewFragment(position)
-        this.findNavController().navigate(action)
-    }
-
-    private fun performSearch(term: String) {
-        showLoadingProgress()
-        viewModel.refresh(term)
-    }
-
-    private fun searchViewSetUp() {
-        val searchView: SearchView = binding.searchViewSearchResults
-        searchView.queryHint = args.query
-        searchView.onActionViewExpanded()
-
-        val backgroundView = searchView.findViewById<View>(R.id.search_plate)
-        backgroundView.background = null
-
-        Handler().postDelayed({ searchView.clearFocus() }, 0)
-
-        val searchManager = this.activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                searchView.clearFocus()
-                currentSearch = query
-                performSearch(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                searchView.queryHint = getString(R.string.query_hint)
-                return false
-            }
-        })
-    }
-
-    private fun adapterSetup() {
-        adapter = SongSearchAdapter(this, requireContext())
-        binding.searchResultRecyclerView.adapter = adapter
-        binding.searchResultRecyclerView.setHasFixedSize(true)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.searchResults.collect {
-                    when (it) {
-                        SearchViewState.Error -> {
-                            // handle error
-                        }
-                        SearchViewState.Loading -> {
-                           showLoadingProgress()
-                        }
-                        is SearchViewState.Success -> {
-                            adapter.submitList(it.listOfSongs)
-                            hideLoadingProgress()
+        return ComposeView(requireContext()).apply {
+            setContent {
+                Column {
+                    val query by searchBoxViewModel.query.collectAsState()
+                    SearchView(
+                        query = query,
+                        onQueryChanged = { searchBoxViewModel.onQueryChanged(it) },
+                        onClearClick = { searchBoxViewModel.onClearClick() },
+                        onSearchClick = { viewModel.refresh(it) }
+                    )
+                    Surface(modifier = Modifier
+                        .background(color = colorResource(id = R.color.lightGreyColor))
+                    ) {
+                        viewModel.refresh(args.query)
+                        val state by viewModel.searchResults.collectAsState()
+                        LazyColumn {
+                            when (state) {
+                                SearchViewState.Loading -> {
+                                    // handle loading
+                                }
+                                SearchViewState.Error -> {
+                                    // handle error
+                                }
+                                is SearchViewState.Success -> {
+                                    items((state as SearchViewState.Success).listOfSongs.count()) { index ->
+                                        SongCard(
+                                            songData = (state as SearchViewState.Success)
+                                                .listOfSongs[index]) {
+                                            navigateToSearchResult(index)
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
-            showLoadingProgress()
         }
     }
 
-    private fun showLoadingProgress() {
-        binding.loadingSearchResults.visibility = View.VISIBLE
-        binding.searchResultRecyclerView.visibility = View.GONE
-
+    private fun navigateToSearchResult(position: Int) {
+        val action = SearchResultsFragmentDirections
+            .actionSearchResultsFragmentToLyricWebViewFragment(position)
+        this.findNavController().navigate(action)
     }
 
-    private fun hideLoadingProgress() {
-        binding.loadingSearchResults.visibility = View.GONE
-        binding.searchResultRecyclerView.visibility = View.VISIBLE
-    }
+    @Composable
+    fun SongCard(songData: SongSummaryViewData, onClick: () -> Unit) {
+        Column(
+            modifier = Modifier.background(color = colorResource(id = R.color.lightGreyColor))
+        ) {
+            Row(
+                modifier = Modifier
+                    .padding(4.dp)
+                    .height(IntrinsicSize.Min)
+                    .background(
+                        color = colorResource(id = R.color.whiteColor),
+                        shape = RoundedCornerShape(24.dp)
+                    )
+                    .clickable { onClick() },
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                GlideImage(
+                    modifier = Modifier
+                        .width(75.dp)
+                        .height(75.dp)
+                        .padding(4.dp),
+                    imageModel = songData.header_image_thumbnail_url,
+                    contentScale = ContentScale.FillHeight,
+                    alignment = Alignment.CenterStart,
+                    placeHolder = painterResource(id = R.drawable.lockquote_bw)
+                )
 
-    private fun showSnackbarWithError(errorMessage: String) {
-        Snackbar
-            .make(requireActivity()
-                .findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_LONG)
-            .setTextColor(
-                ContextCompat.getColor(requireContext(), R.color.whiteColor)
-            )
-            .show()
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = songData.title,
+                        modifier = Modifier.padding(8.dp),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Start
+                    )
+                    Text(
+                        text = songData.name,
+                        modifier = Modifier.padding(8.dp),
+                        fontSize = 13.sp,
+                        textAlign = TextAlign.Start
+                    )
+                }
+            }
+        }
     }
 }
