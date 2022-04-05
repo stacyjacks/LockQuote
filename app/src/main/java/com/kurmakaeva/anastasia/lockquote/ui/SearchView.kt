@@ -3,6 +3,7 @@ package com.kurmakaeva.anastasia.lockquote.ui
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -43,6 +44,7 @@ fun SearchView(
     val focusRequester = remember { FocusRequester() }
 
     Row(modifier = Modifier
+        .background(color = colorResource(id = R.color.colorAccent))
         .fillMaxWidth()
         .onFocusChanged { focusState -> showClearButton = (focusState.isFocused) }
         .focusRequester(focusRequester)
