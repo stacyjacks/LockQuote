@@ -34,8 +34,8 @@ import com.kurmakaeva.anastasia.lockquote.R
 fun SearchView(
     query: String,
     onQueryChanged: (String) -> Unit,
-    onClearClick: () -> Unit = {},
-    onSearchClick: (String) -> Unit = {}
+    onClearClick: () -> Unit,
+    onSearchClick: (String) -> Unit
 ) {
 
     var showClearButton by remember { mutableStateOf(false) }
@@ -75,7 +75,7 @@ fun SearchView(
             ),
             keyboardActions = KeyboardActions(
                 onSearch = {
-                    onSearchClick
+                    onSearchClick(query)
                     keyboardController?.hide()
                 }),
             colors = TextFieldDefaults.textFieldColors(

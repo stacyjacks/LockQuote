@@ -16,6 +16,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchBoxViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +42,7 @@ class StartFragment : Fragment() {
     @Composable
     fun StartScreen() {
         val query = viewModel.query.value
+        val action = StartFragmentDirections.actionGoToSearchResultsFragment(query)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -50,7 +52,7 @@ class StartFragment : Fragment() {
             SearchView(
                 query = query,
                 onQueryChanged = { viewModel.onQueryChanged(it) },
-                onSearchClick = { },
+                onSearchClick = { findNavController().navigate(action) },
                 onClearClick = { viewModel.onClearClick() },
             )
         }
