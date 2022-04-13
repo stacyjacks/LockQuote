@@ -59,7 +59,7 @@ fun SearchView(
             label = {
                 Text(
                     text = stringResource(R.string.query_hint),
-                    color = colorResource(id = R.color.colorPrimaryDark)
+                    color = colorResource(id = R.color.darkGreyColor)
                 )
             },
             shape = RoundedCornerShape(18.dp),
