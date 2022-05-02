@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,12 +43,20 @@ class StartFragment : Fragment() {
 
     @Composable
     fun StartScreen() {
+        val pinkGradient = Brush.linearGradient(
+            colors = listOf(
+                colorResource(id = R.color.colorAccent),
+                colorResource(id = R.color.colorAccentDark)
+            ),
+            start = Offset.Zero,
+            end = Offset(0f, Float.POSITIVE_INFINITY)
+        )
         val query = viewModel.query.collectAsState()
         val action = StartFragmentDirections.actionGoToSearchResultsFragment(query.value)
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = colorResource(id = R.color.colorAccent)),
+                .background(pinkGradient),
             verticalArrangement = Arrangement.Center
         ) {
             SearchView(

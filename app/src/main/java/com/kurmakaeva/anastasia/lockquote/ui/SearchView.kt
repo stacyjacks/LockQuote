@@ -44,7 +44,7 @@ fun SearchView(
     val focusRequester = remember { FocusRequester() }
 
     Row(modifier = Modifier
-        .background(color = colorResource(id = R.color.colorAccent))
+        .background(color = Color.Transparent)
         .fillMaxWidth()
         .onFocusChanged { focusState -> showClearButton = (focusState.isFocused) }
         .focusRequester(focusRequester)
