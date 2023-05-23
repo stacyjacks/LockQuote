@@ -15,12 +15,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
@@ -47,7 +49,9 @@ class SearchResultsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                Column {
+                Column(modifier = Modifier
+                    .background(color = colorResource(id = R.color.colorAccent))
+                ) {
                     val query by searchBoxViewModel.query.collectAsState()
                     SearchView(
                         query = query,
@@ -63,10 +67,10 @@ class SearchResultsFragment : Fragment() {
                         LazyColumn {
                             when (state) {
                                 SearchViewState.Loading -> {
-                                    // handle loading
+                                    // handle loading with skeleton views
                                 }
                                 SearchViewState.Error -> {
-                                    // handle error
+                                    // handle error with snackbar or w/e
                                 }
                                 is SearchViewState.Success -> {
                                     items((state as SearchViewState.Success).listOfSongs.count()) { index ->
@@ -137,5 +141,73 @@ class SearchResultsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    @Composable
+    fun SkeletonResults() {
+        Column(
+            modifier = Modifier.background(color = colorResource(id = R.color.lightGreyColor))
+        ) {
+            Row(
+                modifier = Modifier
+                    .padding(4.dp)
+                    .height(IntrinsicSize.Min)
+                    .background(
+                        color = colorResource(id = R.color.whiteColor),
+                        shape = RoundedCornerShape(24.dp)
+                    ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    Row(modifier = Modifier
+                        .background(
+                            color = colorResource(id = R.color.lightGreyColor),
+                            shape = RectangleShape
+                        )) {
+                    }
+                    Row(modifier = Modifier
+                        .background(
+                            color = colorResource(id = R.color.lightGreyColor),
+                            shape = RectangleShape
+                        )
+                        .padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically) {
+                    }
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .padding(4.dp)
+                    .height(IntrinsicSize.Min)
+                    .background(
+                        color = colorResource(id = R.color.whiteColor),
+                        shape = RoundedCornerShape(24.dp)
+                    ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    Row(modifier = Modifier
+                        .background(
+                            color = colorResource(id = R.color.lightGreyColor),
+                            shape = RectangleShape
+                        )) {
+                    }
+                    Row(modifier = Modifier
+                        .background(
+                            color = colorResource(id = R.color.lightGreyColor),
+                            shape = RectangleShape
+                        )
+                        .padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically) {
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    @Preview
+    fun Preview() {
+        SkeletonResults()
     }
 }
