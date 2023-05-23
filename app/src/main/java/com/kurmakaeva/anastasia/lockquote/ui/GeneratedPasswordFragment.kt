@@ -35,9 +35,11 @@ class GeneratedPasswordFragment() : Fragment() {
             .inflate(inflater, R.layout.fragment_generated_password, container, false)
         
         binding.loadingPass.addAnimatorListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator) {
+                TODO("Not yet implemented")
+            }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 binding.apply {
                     loadingPass.visibility = View.GONE
                     justASec.visibility = View.GONE
@@ -47,8 +49,13 @@ class GeneratedPasswordFragment() : Fragment() {
                 }
             }
 
-            override fun onAnimationCancel(animation: Animator?) {}
-            override fun onAnimationRepeat(animation: Animator?) {}
+            override fun onAnimationCancel(p0: Animator) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onAnimationRepeat(p0: Animator) {
+                TODO("Not yet implemented")
+            }
         })
 
         return binding.root
