@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +30,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
+import com.kurmakaeva.anastasia.lockquote.ui.theme.accent
+import com.kurmakaeva.anastasia.lockquote.ui.theme.lightGrey
+import com.kurmakaeva.anastasia.lockquote.ui.theme.white
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchBoxViewModel
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewState
@@ -50,7 +52,7 @@ class SearchResultsFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 Column(modifier = Modifier
-                    .background(color = colorResource(id = R.color.colorAccent))
+                    .background(color = accent)
                 ) {
                     val query by searchBoxViewModel.query.collectAsState()
                     SearchView(
@@ -60,7 +62,7 @@ class SearchResultsFragment : Fragment() {
                         onSearchClick = { viewModel.refresh(it) }
                     )
                     Surface(modifier = Modifier
-                        .background(color = colorResource(id = R.color.lightGreyColor))
+                        .background(color = lightGrey)
                     ) {
                         viewModel.refresh(args.query)
                         val state by viewModel.searchResults.collectAsState()
@@ -98,14 +100,14 @@ class SearchResultsFragment : Fragment() {
     @Composable
     fun SongCard(songData: SongSummaryViewData, onClick: () -> Unit) {
         Column(
-            modifier = Modifier.background(color = colorResource(id = R.color.lightGreyColor))
+            modifier = Modifier.background(color = lightGrey)
         ) {
             Row(
                 modifier = Modifier
                     .padding(4.dp)
                     .height(IntrinsicSize.Min)
                     .background(
-                        color = colorResource(id = R.color.whiteColor),
+                        color = white,
                         shape = RoundedCornerShape(24.dp)
                     )
                     .clickable { onClick() },
@@ -146,14 +148,14 @@ class SearchResultsFragment : Fragment() {
     @Composable
     fun SkeletonResults() {
         Column(
-            modifier = Modifier.background(color = colorResource(id = R.color.lightGreyColor))
+            modifier = Modifier.background(color = lightGrey)
         ) {
             Row(
                 modifier = Modifier
                     .padding(4.dp)
                     .height(IntrinsicSize.Min)
                     .background(
-                        color = colorResource(id = R.color.whiteColor),
+                        color = white,
                         shape = RoundedCornerShape(24.dp)
                     ),
                 verticalAlignment = Alignment.CenterVertically
@@ -161,13 +163,13 @@ class SearchResultsFragment : Fragment() {
                 Column {
                     Row(modifier = Modifier
                         .background(
-                            color = colorResource(id = R.color.lightGreyColor),
+                            color = lightGrey,
                             shape = RectangleShape
                         )) {
                     }
                     Row(modifier = Modifier
                         .background(
-                            color = colorResource(id = R.color.lightGreyColor),
+                            color = lightGrey,
                             shape = RectangleShape
                         )
                         .padding(12.dp),
@@ -180,7 +182,7 @@ class SearchResultsFragment : Fragment() {
                     .padding(4.dp)
                     .height(IntrinsicSize.Min)
                     .background(
-                        color = colorResource(id = R.color.whiteColor),
+                        color = white,
                         shape = RoundedCornerShape(24.dp)
                     ),
                 verticalAlignment = Alignment.CenterVertically
@@ -188,13 +190,13 @@ class SearchResultsFragment : Fragment() {
                 Column {
                     Row(modifier = Modifier
                         .background(
-                            color = colorResource(id = R.color.lightGreyColor),
+                            color = lightGrey,
                             shape = RectangleShape
                         )) {
                     }
                     Row(modifier = Modifier
                         .background(
-                            color = colorResource(id = R.color.lightGreyColor),
+                            color = lightGrey,
                             shape = RectangleShape
                         )
                         .padding(12.dp),

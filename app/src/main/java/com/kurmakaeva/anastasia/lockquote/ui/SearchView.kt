@@ -22,13 +22,15 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.kurmakaeva.anastasia.lockquote.R
+import com.kurmakaeva.anastasia.lockquote.ui.theme.darkGrey
+import com.kurmakaeva.anastasia.lockquote.ui.theme.lightGrey
+import com.kurmakaeva.anastasia.lockquote.ui.theme.primaryDark
 
 @ExperimentalComposeUiApi
 @Composable
@@ -53,13 +55,13 @@ fun SearchView(
             value = query,
             onValueChange = { onQueryChanged(it) },
             modifier = Modifier
-                .padding(6.dp)
+                .padding(8.dp)
                 .fillMaxWidth(),
-            textStyle = TextStyle(color = colorResource(id = R.color.colorPrimaryDark)),
+            textStyle = TextStyle(color = primaryDark),
             label = {
                 Text(
                     text = stringResource(R.string.query_hint),
-                    color = colorResource(id = R.color.darkGreyColor)
+                    color = darkGrey
                 )
             },
             shape = RoundedCornerShape(18.dp),
@@ -81,7 +83,7 @@ fun SearchView(
                     keyboardController?.hide()
                 }),
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = colorResource(id = R.color.lightGreyColor),
+                backgroundColor = lightGrey,
                 focusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent

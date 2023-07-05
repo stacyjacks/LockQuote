@@ -7,12 +7,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kurmakaeva.anastasia.lockquote.R
+import com.kurmakaeva.anastasia.lockquote.ui.theme.white
 
 @Composable
 fun RoundedCornerWindow(content: @Composable() () -> Unit) {
@@ -21,7 +21,7 @@ fun RoundedCornerWindow(content: @Composable() () -> Unit) {
             .padding(8.dp)
             .fillMaxSize()
             .background(
-                color = colorResource(id = R.color.whiteColor),
+                color = white,
                 shape = RoundedCornerShape(24.dp)
             ),
         verticalAlignment = Alignment.Top
