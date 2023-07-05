@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.kurmakaeva.anastasia.lockquote.ui.common.SearchView
 import com.kurmakaeva.anastasia.lockquote.ui.theme.accent
 import com.kurmakaeva.anastasia.lockquote.ui.theme.accentDark
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchBoxViewModel

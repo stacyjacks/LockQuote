@@ -15,13 +15,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
@@ -30,6 +28,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
+import com.kurmakaeva.anastasia.lockquote.ui.common.ErrorScreen
+import com.kurmakaeva.anastasia.lockquote.ui.common.SearchView
+import com.kurmakaeva.anastasia.lockquote.ui.common.SkeletonListItem
 import com.kurmakaeva.anastasia.lockquote.ui.theme.accent
 import com.kurmakaeva.anastasia.lockquote.ui.theme.lightGrey
 import com.kurmakaeva.anastasia.lockquote.ui.theme.white
@@ -55,24 +56,30 @@ class SearchResultsFragment : Fragment() {
                     .background(color = accent)
                 ) {
                     val query by searchBoxViewModel.query.collectAsState()
+
                     SearchView(
                         query = query,
                         onQueryChanged = { searchBoxViewModel.onQueryChanged(it) },
                         onClearClick = { searchBoxViewModel.onClearClick() },
                         onSearchClick = { viewModel.refresh(it) }
                     )
-                    Surface(modifier = Modifier
-                        .background(color = lightGrey)
-                    ) {
+
+                    Surface(modifier = Modifier.background(color = lightGrey)) {
                         viewModel.refresh(args.query)
+
                         val state by viewModel.searchResults.collectAsState()
-                        LazyColumn {
+
+                        LazyColumn(modifier = Modifier.background(color = lightGrey)) {
                             when (state) {
                                 SearchViewState.Loading -> {
-                                    // handle loading with skeleton views
+                                    items(count = 8) {
+                                        SkeletonListItem()
+                                    }
                                 }
                                 SearchViewState.Error -> {
-                                    // handle error with snackbar or w/e
+                                    item {
+                                        ErrorScreen()
+                                    }
                                 }
                                 is SearchViewState.Success -> {
                                     items((state as SearchViewState.Success).listOfSongs.count()) { index ->
@@ -143,73 +150,5 @@ class SearchResultsFragment : Fragment() {
                 }
             }
         }
-    }
-
-    @Composable
-    fun SkeletonResults() {
-        Column(
-            modifier = Modifier.background(color = lightGrey)
-        ) {
-            Row(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .height(IntrinsicSize.Min)
-                    .background(
-                        color = white,
-                        shape = RoundedCornerShape(24.dp)
-                    ),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Row(modifier = Modifier
-                        .background(
-                            color = lightGrey,
-                            shape = RectangleShape
-                        )) {
-                    }
-                    Row(modifier = Modifier
-                        .background(
-                            color = lightGrey,
-                            shape = RectangleShape
-                        )
-                        .padding(12.dp),
-                        verticalAlignment = Alignment.CenterVertically) {
-                    }
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .height(IntrinsicSize.Min)
-                    .background(
-                        color = white,
-                        shape = RoundedCornerShape(24.dp)
-                    ),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Row(modifier = Modifier
-                        .background(
-                            color = lightGrey,
-                            shape = RectangleShape
-                        )) {
-                    }
-                    Row(modifier = Modifier
-                        .background(
-                            color = lightGrey,
-                            shape = RectangleShape
-                        )
-                        .padding(12.dp),
-                        verticalAlignment = Alignment.CenterVertically) {
-                    }
-                }
-            }
-        }
-    }
-
-    @Composable
-    @Preview
-    fun Preview() {
-        SkeletonResults()
     }
 }

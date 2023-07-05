@@ -1,4 +1,4 @@
-package com.kurmakaeva.anastasia.lockquote.ui
+package com.kurmakaeva.anastasia.lockquote.ui.common
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
