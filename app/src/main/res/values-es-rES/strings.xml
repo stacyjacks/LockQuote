@@ -11,7 +11,7 @@
     <string name="ok_button">OK</string>
     <string name="use_button">Usar selección</string>
     <string name="select_text_hint">Selecciona un fragmento de la letra hasta 15 palabras y haz clic en \"Copiar\".</string>
-    <string name="try_again_button">Intentarlo de nuevo con otra letra</string>
+    <string name="try_again_button">Intentarlo de nuevo</string>
     <string name="just_a_sec">Un segundo…</string>
     <string name="try_again_hint">¿No es lo que querías?</string>
     <string name="next_level_button">¡Ayúdame a memorizarla!</string>

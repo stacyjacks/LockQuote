@@ -16,7 +16,7 @@
     <string name="error_copy_not_tapped">Фрагмент из песни не выбран. Пожалуйста, выбери интересующий тебя фрагмент для создания пароля и нажми Копировать.</string>
     <string name="error_something_wrong">Что-то не так. Пожалуйста, попробуй ещё раз или проверь наличие подключения к интернету.</string>
     <string name="error_cant_open">Открыть слова песни не получилось.</string>
-    <string name="try_again_button">Попробовать ещё раз</string>
+    <string name="try_again_button">Попробовать снова</string>
     <string name="just_a_sec">Секундочку…</string>
     <string name="try_again_hint">Получилось не то?</string>
     <string name="next_level_button">Помоги запомнить!</string>

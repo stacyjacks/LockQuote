@@ -17,7 +17,7 @@
     <string name="error_copy_not_tapped">You haven\'t selected a lyric excerpt for your password. Please, select a fragment and hit Copy.</string>
     <string name="error_something_wrong">Something went wrong. Please try again or check your Internet connection.</string>
     <string name="error_cant_open">Can\'t open lyrics</string>
-    <string name="try_again_button">Try again with a different lyric</string>
+    <string name="try_again_button">Try again</string>
     <string name="just_a_sec">"Just a sec…</string>
     <string name="try_again_hint">Not what you wanted?</string>
     <string name="next_level_button">Help me to memorise it!</string>

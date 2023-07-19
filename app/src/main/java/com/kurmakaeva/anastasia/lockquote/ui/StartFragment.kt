@@ -23,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import com.kurmakaeva.anastasia.lockquote.ui.common.SearchView
 import com.kurmakaeva.anastasia.lockquote.ui.theme.accent
 import com.kurmakaeva.anastasia.lockquote.ui.theme.accentDark
+import com.kurmakaeva.anastasia.lockquote.ui.theme.pinkGradient
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchBoxViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,11 +47,6 @@ class StartFragment : Fragment() {
 
     @Composable
     fun StartScreen() {
-        val pinkGradient = Brush.linearGradient(
-            colors = listOf(accent, accentDark),
-            start = Offset.Zero,
-            end = Offset(0f, Float.POSITIVE_INFINITY)
-        )
         val query = viewModel.query.collectAsState()
         val action = StartFragmentDirections.actionGoToSearchResultsFragment(query.value)
         Column(
