@@ -17,6 +17,5 @@ val mediumText = TextStyle(
 
 val smallTextItalics = TextStyle(
     fontSize = 14.sp,
-    fontWeight = FontWeight.Normal,
     fontStyle = FontStyle.Italic
 )

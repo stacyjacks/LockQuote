@@ -1,11 +1,13 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
 import android.os.Bundle
-import android.text.SpannedString
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,10 +21,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,20 +34,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.text.bold
-import androidx.core.text.buildSpannedString
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.kurmakaeva.anastasia.lockquote.R
-import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGeneratedPasswordBinding
 import com.kurmakaeva.anastasia.lockquote.ui.common.RegularButton
-import com.kurmakaeva.anastasia.lockquote.ui.theme.accent
+import com.kurmakaeva.anastasia.lockquote.ui.common.makeFirstLetterBold
 import com.kurmakaeva.anastasia.lockquote.ui.theme.largeText
 import com.kurmakaeva.anastasia.lockquote.ui.theme.lightGrey
 import com.kurmakaeva.anastasia.lockquote.ui.theme.mediumText
@@ -54,38 +52,68 @@ import com.kurmakaeva.anastasia.lockquote.ui.theme.smallTextItalics
 import com.kurmakaeva.anastasia.lockquote.ui.theme.white
 import com.kurmakaeva.anastasia.lockquote.viewmodel.GeneratedPasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class GeneratedPasswordFragment : Fragment() {
 
     private val viewModel: GeneratedPasswordViewModel by viewModels()
 
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val args by navArgs<GeneratedPasswordFragmentArgs>()
+        viewModel.getModPasswordFromSelectedText(args.passwordString)
+
         return ComposeView(requireContext()).apply {
             setContent {
+                val modPassword = viewModel.passwordString.collectAsState()
+                val showLoading = viewModel.showLoading.collectAsState()
+
+                LaunchedEffect(key1 = Unit) {
+                    delay(2000L)
+                    viewModel.hideLoading()
+                }
                 BoxWithConstraints(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(pinkGradient)
                 ) {
-                    //GeneratedPasswordLoadingScreen()
-                    GeneratedPasswordMainScreen()
+                    if (showLoading.value) {
+                        GeneratedPasswordLoadingScreen()
+                    }
+
+                    AnimatedVisibility(
+                        visible = !showLoading.value,
+                        enter = scaleIn(),
+                        exit = scaleOut()
+                    ) {
+                        GeneratedPasswordMainScreen(
+                            args.selectedText,
+                            modPassword.value
+                        )
+                    }
                 }
             }
         }
     }
 
     @Composable
-    private fun GeneratedPasswordMainScreen() {
+    private fun GeneratedPasswordMainScreen(selectedLyric: String, pwd: String) {
+        val action = GeneratedPasswordFragmentDirections
+            .actionGeneratedPasswordFragmentToActivityGame(pwd, selectedLyric)
+
         Column(
             modifier = Modifier
                 .padding(12.dp)
                 .fillMaxHeight()
-                .background(color = white, shape = RoundedCornerShape(24.dp)),
+                .background(
+                    color = white,
+                    shape = RoundedCornerShape(24.dp)
+                ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
@@ -108,14 +136,14 @@ class GeneratedPasswordFragment : Fragment() {
                     )
             ) {
                 Text(
-                    text = "One two three uh!",
+                    text = makeFirstLetterBold(selectedLyric),
                     modifier = Modifier.padding(12.dp),
                     style = smallTextItalics
                 )
             }
 
             Row(modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)) {
-                Text(text = "ottu", style = largeText)
+                Text(text = pwd, style = largeText)
             }
 
             Icon(
@@ -138,7 +166,7 @@ class GeneratedPasswordFragment : Fragment() {
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "4",
+                        text = pwd.length.toString(),
                         style = largeText,
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
@@ -157,13 +185,13 @@ class GeneratedPasswordFragment : Fragment() {
             }
 
             RegularButton(
-                onClick = {},
+                onClick = { findNavController().navigate(action) },
                 modifier = Modifier.width(230.dp),
                 buttonText = stringResource(id = R.string.next_level_button)
             )
 
             RegularButton(
-                onClick = {},
+                onClick = { findNavController().navigateUp() },
                 modifier = Modifier.width(230.dp),
                 buttonText = stringResource(id = R.string.try_again_button)
             )
@@ -180,16 +208,18 @@ class GeneratedPasswordFragment : Fragment() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 8.dp),
-            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             LottieAnimation(
                 composition = composition,
-                modifier = Modifier.size(300.dp)
+                modifier = Modifier
+                    .padding(top = 48.dp)
+                    .size(300.dp)
             )
 
             Text(
                 text = stringResource(id = R.string.just_a_sec).uppercase(),
+                modifier = Modifier.padding(top = 16.dp),
                 color = white,
                 textAlign = TextAlign.Center,
                 style = largeText
@@ -200,125 +230,7 @@ class GeneratedPasswordFragment : Fragment() {
     @Composable
     @Preview(showBackground = true, backgroundColor = 0xFFD81B60)
     private fun PreviewGenerated() {
-        GeneratedPasswordMainScreen()
+        GeneratedPasswordMainScreen("One, two, three, uh!","077u")
         //GeneratedPasswordLoadingScreen()
-    }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val args by navArgs<GeneratedPasswordFragmentArgs>()
-//
-//        viewModel.getPasswordStringFromSelectedText(args.passwordString)
-//        viewModel.passwordString.observe(viewLifecycleOwner, Observer {
-//            val modPasswordString = charReplacer(it)
-//            binding.generatedPass.text = modPasswordString
-//
-//            binding.numberOfCharacters.text = numberOfCharCalculator(it)
-//
-//            binding.helpMeRemember.setOnClickListener {
-//                val action = GeneratedPasswordFragmentDirections
-//                    .actionGeneratedPasswordFragmentToActivityGame(modPasswordString, args.selectedText)
-//                this.findNavController().navigate(action)
-//            }
-//        })
-//
-//        binding.tryAgainButton.setOnClickListener {
-//            this.findNavController().navigateUp()
-//        }
-//
-//        binding.selectedTextFromLyric.text = makeFirstLetterBold(args.selectedText)
-//    }
-
-    private fun numberOfCharCalculator(passwordString: String): String {
-        return passwordString.length.toString()
-    }
-
-    private fun makeFirstLetterBold(selectedLyric: String): SpannedString {
-        var customString = SpannedString("")
-        val regex = Regex("(\\s|\\\\n)")
-        val lyricWordsArray = selectedLyric.split(regex).toTypedArray()
-        for (word in lyricWordsArray) {
-            if (word.isBlank()) {
-                continue
-            }
-
-            val firstLetterBold = word.first()
-            val normalText = word.drop(1)
-            val customWord = SpannedString(buildSpannedString {
-                bold {
-                    append(firstLetterBold)
-                }
-                append(normalText)
-            })
-            customString = TextUtils.concat(customString, " ", customWord) as SpannedString
-        }
-        return customString.drop(1) as SpannedString
-    }
-
-    private fun charReplacer(passwordString: String): String {
-        val replaceA = arrayListOf("A", "a", "4")
-        val replaceS = arrayListOf("S", "s", "5")
-        val replaceE = arrayListOf("E", "e", "3")
-        val replaceT = arrayListOf("T", "t", "7")
-        val replaceI = arrayListOf("I", "i", "1")
-        val replaceO = arrayListOf("O", "o", "0")
-        val replaceG = arrayListOf("G", "g", "6")
-
-        return passwordString
-            .replace("A", replaceA.random())
-            .replace("Á", replaceA.random())
-            .replace("À", replaceA.random())
-            .replace("Â", replaceA.random())
-            .replace("Ä", replaceA.random())
-            .replace("á", replaceA.random())
-            .replace("à", replaceA.random())
-            .replace("â", replaceA.random())
-            .replace("ä", replaceA.random())
-            .replace("a", replaceA.random())
-            .replace("S", replaceS.random())
-            .replace("s", replaceS.random())
-            .replace("E", replaceE.random())
-            .replace("É", replaceE.random())
-            .replace("È", replaceE.random())
-            .replace("Ê", replaceE.random())
-            .replace("Ë", replaceE.random())
-            .replace("e", replaceE.random())
-            .replace("é", replaceE.random())
-            .replace("è", replaceE.random())
-            .replace("ê", replaceE.random())
-            .replace("ë", replaceE.random())
-            .replace("T", replaceT.random())
-            .replace("t", replaceT.random())
-            .replace("I", replaceI.random())
-            .replace("Í", replaceE.random())
-            .replace("Ì", replaceE.random())
-            .replace("Î", replaceE.random())
-            .replace("Ï", replaceE.random())
-            .replace("i", replaceI.random())
-            .replace("í", replaceE.random())
-            .replace("ì", replaceE.random())
-            .replace("î", replaceE.random())
-            .replace("ï", replaceE.random())
-            .replace("O", replaceO.random())
-            .replace("Ó", replaceE.random())
-            .replace("Ò", replaceE.random())
-            .replace("Ô", replaceE.random())
-            .replace("Ö", replaceE.random())
-            .replace("o", replaceO.random())
-            .replace("ó", replaceE.random())
-            .replace("ò", replaceE.random())
-            .replace("ô", replaceE.random())
-            .replace("ö", replaceE.random())
-            .replace("G", replaceG.random())
-            .replace("g", replaceG.random())
-            .replace("Ú", "U")
-            .replace("Ù", replaceE.random())
-            .replace("Û", replaceE.random())
-            .replace("Ü", replaceE.random())
-            .replace("ú", "u")
-            .replace("ù", replaceE.random())
-            .replace("û", replaceE.random())
-            .replace("ü", replaceE.random())
     }
 }
