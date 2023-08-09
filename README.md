@@ -22,7 +22,7 @@ To build this app I used:
 * Android Jetpack navigation component.
 * MVVM (Model-View-ViewModel) design pattern.
 * LiveData and Kotlin Flow.
-* View binding.
+* Jetpack Compose and view binding.
 
 Works with ```Android SDK 24+```
 
