@@ -67,8 +67,14 @@ fun SearchView(
             shape = RoundedCornerShape(18.dp),
             leadingIcon = { SearchIcon() },
             trailingIcon = {
-                AnimatedVisibility(visible = showClearButton, enter = fadeIn(), exit = fadeOut()) {
-                    ClearIcon(onClearClick = onClearClick)
+                if (query.isNotEmpty()) {
+                    AnimatedVisibility(
+                        visible = showClearButton,
+                        enter = fadeIn(),
+                        exit = fadeOut()
+                    ) {
+                        ClearIcon(onClearClick = onClearClick)
+                    }
                 }
             },
             maxLines = 1,

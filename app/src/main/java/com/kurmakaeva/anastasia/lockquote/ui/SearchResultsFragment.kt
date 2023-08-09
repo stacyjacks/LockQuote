@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -32,7 +33,9 @@ import com.kurmakaeva.anastasia.lockquote.ui.common.ErrorScreen
 import com.kurmakaeva.anastasia.lockquote.ui.common.SearchView
 import com.kurmakaeva.anastasia.lockquote.ui.common.SkeletonListItem
 import com.kurmakaeva.anastasia.lockquote.ui.theme.accent
+import com.kurmakaeva.anastasia.lockquote.ui.theme.darkGrey
 import com.kurmakaeva.anastasia.lockquote.ui.theme.lightGrey
+import com.kurmakaeva.anastasia.lockquote.ui.theme.mediumText
 import com.kurmakaeva.anastasia.lockquote.ui.theme.white
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchBoxViewModel
 import com.kurmakaeva.anastasia.lockquote.viewmodel.SearchViewModel
@@ -52,21 +55,25 @@ class SearchResultsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return ComposeView(requireContext()).apply {
             setContent {
+                val mutableQuery = remember { mutableStateOf(args.query) }
+
                 Column(modifier = Modifier
                     .background(color = accent)
                 ) {
                     val query by searchBoxViewModel.query.collectAsState()
+                    query.ifEmpty { viewModel.refresh(mutableQuery.value) }
 
                     SearchView(
                         query = query,
                         onQueryChanged = { searchBoxViewModel.onQueryChanged(it) },
-                        onClearClick = { searchBoxViewModel.onClearClick() },
+                        onClearClick = {
+                            searchBoxViewModel.onClearClick()
+                            mutableQuery.value = ""
+                        },
                         onSearchClick = { viewModel.refresh(it) }
                     )
 
                     Surface(modifier = Modifier.background(color = lightGrey)) {
-                        viewModel.refresh(args.query)
-
                         val state by viewModel.searchResults.collectAsState()
 
                         LazyColumn(modifier = Modifier.background(color = lightGrey)) {
@@ -87,6 +94,19 @@ class SearchResultsFragment : Fragment() {
                                             songData = (state as SearchViewState.Success)
                                                 .listOfSongs[index]) {
                                             navigateToSearchResult(index)
+                                        }
+                                    }
+                                    if ((state as SearchViewState.Success).listOfSongs.isEmpty()) {
+                                        item {
+                                            Text(
+                                                text = stringResource(id = R.string.no_results),
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(16.dp),
+                                                color = darkGrey,
+                                                textAlign = TextAlign.Center,
+                                                style = mediumText
+                                            )
                                         }
                                     }
                                 }

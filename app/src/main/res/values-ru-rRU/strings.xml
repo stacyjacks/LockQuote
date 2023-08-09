@@ -41,4 +41,5 @@
     <string name="characters">знаков</string>
     <string name="copied_to_clipboard">Пароль скопирован в буфер обмена</string>
     <string name="memorisation_game_fragment">Запоминание в курсе…</string>
+    <string name="no_results">Без результатов.</string>
 </resources>
