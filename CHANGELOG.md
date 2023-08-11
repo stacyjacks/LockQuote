@@ -10,9 +10,9 @@ Migrated first, second, fourth, and final screen to Jetpack Compose (still using
 
 Updated various dependencies, including:
 
-Kotlin to 1.8.10
-Java 17
-Target API 33
+Kotlin to 1.8.10,
+Java 17,
+Target API 33,
 
 ### Fixed:
 Minor errors.
@@ -28,7 +28,7 @@ Single activity architecture.
 
 Updated various dependencies, including:
 
-Kotlin to 1.6.0
+Kotlin to 1.6.0,
 Target API to 31
 
 ### Fixed:
