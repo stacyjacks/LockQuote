@@ -5,6 +5,10 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+val extraLargeText = TextStyle(
+    fontSize = 32.sp,
+    fontWeight = FontWeight.ExtraBold
+)
 val largeText = TextStyle(
     fontSize = 24.sp,
     fontWeight = FontWeight.ExtraBold

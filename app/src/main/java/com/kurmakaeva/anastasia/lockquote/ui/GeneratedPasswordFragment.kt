@@ -10,7 +10,6 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +18,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -42,6 +43,7 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.kurmakaeva.anastasia.lockquote.R
+import com.kurmakaeva.anastasia.lockquote.ui.common.PasswordView
 import com.kurmakaeva.anastasia.lockquote.ui.common.RegularButton
 import com.kurmakaeva.anastasia.lockquote.ui.common.makeFirstLetterBold
 import com.kurmakaeva.anastasia.lockquote.ui.theme.largeText
@@ -108,8 +110,9 @@ class GeneratedPasswordFragment : Fragment() {
 
         Column(
             modifier = Modifier
-                .padding(12.dp)
+                .padding(8.dp)
                 .fillMaxHeight()
+                .verticalScroll(rememberScrollState())
                 .background(
                     color = white,
                     shape = RoundedCornerShape(24.dp)
@@ -143,7 +146,7 @@ class GeneratedPasswordFragment : Fragment() {
             }
 
             Row(modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)) {
-                Text(text = pwd, style = largeText)
+                PasswordView(text = pwd)
             }
 
             Icon(
@@ -151,6 +154,7 @@ class GeneratedPasswordFragment : Fragment() {
                 contentDescription = null,
                 tint = lightGrey,
             )
+
             Row(modifier = Modifier
                 .padding(bottom = 8.dp)
                 .background(
@@ -171,7 +175,7 @@ class GeneratedPasswordFragment : Fragment() {
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
                     Text(
-                        text = "characters",
+                        text = stringResource(id = R.string.characters),
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
                 }

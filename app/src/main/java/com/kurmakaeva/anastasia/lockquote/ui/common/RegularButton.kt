@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kurmakaeva.anastasia.lockquote.ui.theme.accent
@@ -29,7 +30,10 @@ fun RegularButton(onClick: () -> Unit, modifier: Modifier, buttonText: String, e
             disabledContentColor = lightGrey
         )
     ) {
-        Text(text = buttonText.uppercase())
+        Text(
+            text = buttonText.uppercase(),
+            textAlign = TextAlign.Center
+        )
     }
 }
 

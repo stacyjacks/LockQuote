@@ -28,6 +28,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kurmakaeva.anastasia.lockquote.R
+import com.kurmakaeva.anastasia.lockquote.hideKeyboard
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
 import com.kurmakaeva.anastasia.lockquote.ui.common.ErrorScreen
 import com.kurmakaeva.anastasia.lockquote.ui.common.SearchView
@@ -52,7 +53,13 @@ class SearchResultsFragment : Fragment() {
 
     private val args by navArgs<SearchResultsFragmentArgs>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        hideKeyboard(requireActivity())
+
         return ComposeView(requireContext()).apply {
             setContent {
                 val mutableQuery = remember { mutableStateOf(args.query) }

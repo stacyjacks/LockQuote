@@ -6,6 +6,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 
+const val ASTERISK = "* "
+
 fun makeFirstLetterBold(text: String): AnnotatedString {
     val annotatedString = buildAnnotatedString {
         val boldLetter = SpanStyle(
