@@ -45,4 +45,9 @@
     <string name="memorisation_game_fragment">Memorisation in progress…</string>
     <string name="copied_to_clipboard">Password copied to clipboard</string>
     <string name="no_results">No results.</string>
+    <string name="lightbulb_cd">Lightbulb info icon</string>
+    <string name="broken_heart_cd">Picture of a broken heart</string>
+    <string name="memorisation_cd">Iconographic description of the memorisation process</string>
+    <string name="search_cd">Search icon</string>
+    <string name="clear_cd">Clear text</string>
 </resources>

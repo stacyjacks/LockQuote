@@ -181,7 +181,7 @@ class GeneratedPasswordFragment : Fragment() {
                 }
                 Image(
                     painter = painterResource(id = R.drawable.cerebro),
-                    contentDescription = "",
+                    contentDescription = stringResource(id = R.string.memorisation_cd),
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                         .size(60.dp)

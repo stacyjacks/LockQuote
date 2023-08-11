@@ -100,7 +100,10 @@ fun SearchView(
 
 @Composable
 fun SearchIcon() {
-    Icon(imageVector = Icons.Default.Search, contentDescription = "Search icon")
+    Icon(
+        imageVector = Icons.Default.Search,
+        contentDescription = stringResource(id = R.string.search_cd)
+    )
 }
 
 @Composable
@@ -108,7 +111,7 @@ fun ClearIcon(onClearClick: () -> Unit) {
     IconButton(onClick = { onClearClick() }) {
         Icon(
             imageVector = Icons.Filled.Close,
-            contentDescription = "Clear text icon"
+            contentDescription = stringResource(id = R.string.clear_cd)
         )
     }
 }

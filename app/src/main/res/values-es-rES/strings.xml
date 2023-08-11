@@ -42,4 +42,9 @@
     <string name="copied_to_clipboard">Contraseña copiada al portapapeles</string>
     <string name="lyric_selection">Selecciona un fragmento</string>
     <string name="no_results">No hay resultados.</string>
+    <string name="lightbulb_cd">Info-icono de bombilla</string>
+    <string name="broken_heart_cd">Imagen de un corazón roto</string>
+    <string name="memorisation_cd">Descripción gráfica del proceso de memorización</string>
+    <string name="search_cd">Icono de búsqueda</string>
+    <string name="clear_cd">Borrar texto</string>
 </resources>

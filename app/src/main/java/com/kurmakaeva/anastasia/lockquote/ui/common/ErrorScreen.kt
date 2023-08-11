@@ -32,7 +32,7 @@ fun ErrorScreen() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.broken_heart),
-            contentDescription = "",
+            contentDescription = stringResource(id = R.string.broken_heart_cd),
             modifier = Modifier
                 .padding(top = 50.dp)
                 .size(100.dp, 100.dp)
@@ -46,7 +46,7 @@ fun ErrorScreen() {
         )
         Image(
             painter = painterResource(id = R.drawable.broken_heart),
-            contentDescription = "",
+            contentDescription = stringResource(id = R.string.broken_heart_cd),
             modifier = Modifier
                 .padding(bottom = 50.dp)
                 .size(100.dp, 100.dp)

@@ -42,4 +42,9 @@
     <string name="copied_to_clipboard">Пароль скопирован в буфер обмена</string>
     <string name="memorisation_game_fragment">Запоминание в курсе…</string>
     <string name="no_results">Без результатов.</string>
+    <string name="lightbulb_cd">Инфо-иконка лампочка</string>
+    <string name="broken_heart_cd">Картинка разбитого сердца</string>
+    <string name="memorisation_cd">Графическое описание процесса запоминания</string>
+    <string name="search_cd">Значок поиска</string>
+    <string name="clear_cd">Очистить текст</string>
 </resources>

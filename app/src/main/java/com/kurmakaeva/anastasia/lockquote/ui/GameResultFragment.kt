@@ -152,7 +152,7 @@ class GameResultFragment: Fragment() {
                         )
                         Image(
                             painter = painterResource(id = R.drawable.ic_lightbulb),
-                            contentDescription = "",
+                            contentDescription = stringResource(id = R.string.lightbulb_cd),
                             modifier = Modifier
                                 .padding(horizontal = 4.dp)
                                 .size(30.dp)

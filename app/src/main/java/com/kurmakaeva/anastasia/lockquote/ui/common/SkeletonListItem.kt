@@ -31,7 +31,7 @@ fun SkeletonListItem() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.lockquote_bw),
-            contentDescription = "",
+            contentDescription = null,
             modifier = Modifier
                 .padding(8.dp)
                 .width(60.dp)
