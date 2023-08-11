@@ -16,6 +16,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.kurmakaeva.anastasia.lockquote.R
 import com.google.android.material.textfield.TextInputEditText
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskFiveBinding
+import com.kurmakaeva.anastasia.lockquote.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -109,7 +110,7 @@ class GameTaskFiveFragment: Fragment() {
 
     private fun onCorrectTextInputCallback(editTextFields: Array<TextInputEditText>, computedPassword: String) {
         if (args.passwordString == computedPassword) {
-            hideSoftKeyboard(this.requireActivity())
+            hideKeyboard(requireActivity())
             for (editTextField in editTextFields) {
                 editTextField.clearFocus()
                 editTextField.setOnTouchListener { view, motionEvent ->
@@ -126,13 +127,6 @@ class GameTaskFiveFragment: Fragment() {
                 successTaskFive.visibility = View.VISIBLE
             }
         }
-    }
-
-    private fun hideSoftKeyboard(activity: Activity) {
-        val inputMethodManager: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(
-            activity.currentFocus?.windowToken, 0
-        )
     }
 
     private fun onContinueTapped() {

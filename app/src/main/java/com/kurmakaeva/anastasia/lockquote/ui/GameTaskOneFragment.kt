@@ -14,6 +14,7 @@ import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.EditTextRecyclerViewAdapter
 import com.kurmakaeva.anastasia.lockquote.adapter.RecyclerViewEditTextListener
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskOneBinding
+import com.kurmakaeva.anastasia.lockquote.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,7 +55,7 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
     }
 
     override fun onCorrectTextInputCallback() {
-        hideSoftKeyboard(this.requireActivity())
+        hideKeyboard(requireActivity())
         binding.apply {
             editTextRV.addOnItemTouchListener(object : RecyclerView.SimpleOnItemTouchListener() {
                 override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
@@ -73,12 +74,5 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
                     args.modPasswordString, args.selectedLyric)
             this.findNavController().navigate(action)
         }
-    }
-
-    private fun hideSoftKeyboard(activity: Activity) {
-        val inputMethodManager: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(
-            activity.currentFocus?.windowToken, 0
-        )
     }
 }
