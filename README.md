@@ -21,7 +21,7 @@ To build this app I used:
 * Kotlin.
 * Android Jetpack navigation component.
 * MVVM (Model-View-ViewModel) design pattern.
-* LiveData and Kotlin Flow.
+* Kotlin Flow.
 * Jetpack Compose and view binding.
 
 Works with ```Android SDK 24+```
