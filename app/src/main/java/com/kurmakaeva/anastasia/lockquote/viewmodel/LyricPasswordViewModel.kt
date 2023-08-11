@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
-import com.kurmakaeva.anastasia.lockquote.repository.InterfaceGeniusRepo
+import com.kurmakaeva.anastasia.lockquote.domain.InterfaceGeniusRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

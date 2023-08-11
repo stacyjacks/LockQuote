@@ -1,5 +1,7 @@
-package com.kurmakaeva.anastasia.lockquote.repository
+package com.kurmakaeva.anastasia.lockquote.di
 
+import com.kurmakaeva.anastasia.lockquote.repository.GeniusRepo
+import com.kurmakaeva.anastasia.lockquote.domain.InterfaceGeniusRepo
 import com.kurmakaeva.anastasia.lockquote.service.GeniusSearchService
 import dagger.Module
 import dagger.Provides

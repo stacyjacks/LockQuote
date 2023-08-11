@@ -2,7 +2,7 @@ package com.kurmakaeva.anastasia.lockquote.viewmodel
 
 import android.util.Log
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
-import com.kurmakaeva.anastasia.lockquote.repository.InterfaceGeniusRepo
+import com.kurmakaeva.anastasia.lockquote.domain.InterfaceGeniusRepo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

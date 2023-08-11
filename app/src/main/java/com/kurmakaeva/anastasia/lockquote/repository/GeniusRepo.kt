@@ -1,5 +1,6 @@
 package com.kurmakaeva.anastasia.lockquote.repository
 
+import com.kurmakaeva.anastasia.lockquote.domain.InterfaceGeniusRepo
 import com.kurmakaeva.anastasia.lockquote.model.GeniusHit
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
 import com.kurmakaeva.anastasia.lockquote.service.*
@@ -15,11 +16,11 @@ class GeniusRepo(private val geniusSearchService: GeniusSearchService) : Interfa
         return listOfSongResults.hits.map {
             SongSummaryViewData(
                 id = it.result.id,
-                name = it.result.primary_artist.name,
-                api_path = it.result.api_path,
+                name = it.result.primaryArtist.name,
+                apiPath = it.result.apiPath,
                 path = it.result.path,
                 title = it.result.title,
-                header_image_thumbnail_url = it.result.header_image_thumbnail_url
+                imgThumbnailUrl = it.result.imageThumbnailUrl
             )
         }
     }
@@ -28,11 +29,11 @@ class GeniusRepo(private val geniusSearchService: GeniusSearchService) : Interfa
         return cachedSongs[index].result.let {
             SongSummaryViewData(
                 it.id,
-                it.api_path,
+                it.apiPath,
                 it.path,
                 it.title,
-                it.header_image_thumbnail_url,
-                it.primary_artist.name
+                it.imageThumbnailUrl,
+                it.primaryArtist.name
             )
         }
     }

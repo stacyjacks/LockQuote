@@ -1,7 +1,6 @@
-package com.kurmakaeva.anastasia.lockquote.service
+package com.kurmakaeva.anastasia.lockquote.di
 
-import android.content.res.Resources
-import com.kurmakaeva.anastasia.lockquote.R
+import com.kurmakaeva.anastasia.lockquote.service.GeniusSearchService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -17,7 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     private const val BASE_URL = "https://api.genius.com"
-    val token = "" // YOUR TOKEN HERE
+    val token = "YOUR TOKEN HERE"
 
     @Singleton
     @Provides

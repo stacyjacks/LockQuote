@@ -1,5 +1,7 @@
 package com.kurmakaeva.anastasia.lockquote.model
 
+import com.squareup.moshi.Json
+
 data class GeniusSearchResponse(
     val response: GeniusResponse
 )
@@ -13,12 +15,12 @@ data class GeniusHit(
 )
 
 data class GeniusHitResult(
-    val id: Long,
-    val api_path: String,
-    val path: String,
-    val title: String,
-    val header_image_thumbnail_url: String,
-    val primary_artist: GeniusPrimaryArtist
+    @Json(name = "id") val id: Long,
+    @Json(name = "api_path") val apiPath: String,
+    @Json(name = "path") val path: String,
+    @Json(name = "title") val title: String,
+    @Json(name = "header_image_thumbnail_url") val imageThumbnailUrl: String,
+    @Json(name = "primary_artist") val primaryArtist: GeniusPrimaryArtist
 )
 
 data class GeniusPrimaryArtist(

@@ -152,7 +152,7 @@ class SearchResultsFragment : Fragment() {
                         .width(75.dp)
                         .height(75.dp)
                         .padding(4.dp),
-                    imageModel = songData.header_image_thumbnail_url,
+                    imageModel = songData.imgThumbnailUrl,
                     contentScale = ContentScale.FillHeight,
                     alignment = Alignment.CenterStart,
                     placeHolder = painterResource(id = R.drawable.lockquote_bw)

@@ -1,4 +1,4 @@
-package com.kurmakaeva.anastasia.lockquote.repository
+package com.kurmakaeva.anastasia.lockquote.domain
 
 import com.kurmakaeva.anastasia.lockquote.model.SongSummaryViewData
 
