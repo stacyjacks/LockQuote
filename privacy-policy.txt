@@ -1,3 +1,4 @@
 This application does not collect or store any personal data.
+This application does not require the user to create an account in order to use it or access all its features in full. The user is never asked to provide any of their data, be it for account creation, or otherwise.
 
 If you installed this application from Google Play, then Google Play does collect some personal data. Please see the privacy policy for Google Play Services here: https://policies.google.com/privacy
