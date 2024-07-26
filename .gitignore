@@ -19,3 +19,8 @@
 .externalNativeBuild
 .cxx
 /app/src/main/res/values/api_key.xml
+.idea/codeStyles
+.idea/inspectionProfiles
+jarRepositories.xml
+kotlinc.xml
+vcs.xml

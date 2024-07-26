@@ -37,11 +37,11 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.kurmakaeva.anastasia.lockquote.BuildConfig
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.kurmakaeva.anastasia.lockquote.BuildConfig
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.ui.common.PasswordView
 import com.kurmakaeva.anastasia.lockquote.ui.common.RegularButton

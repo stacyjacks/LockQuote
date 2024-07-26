@@ -21,8 +21,8 @@
     <string name="just_a_sec">"Just a sec…</string>
     <string name="try_again_hint">Not what you wanted?</string>
     <string name="next_level_button">Help me to memorise it!</string>
-    <string name="taskOneInputFullPassword">Input the full password exactly as it appears below:</string>
-    <string name="taskTwoOrderLyrics">Put the lyrics in the correct order by dragging and dropping the word boxes below:</string>
+    <string name="taskOneInputFullPassword">Enter password exactly as it appears below:</string>
+    <string name="taskTwoOrderLyrics">Arrange the lyrics in the correct order by dragging and dropping the word boxes below:</string>
     <string name="clear_pass_button">Clear</string>
     <string name="continue_button">CONTINUE</string>
     <string name="generated_pass_fragment">Your password</string>
