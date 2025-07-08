@@ -47,12 +47,6 @@ class EditTextRecyclerViewAdapter(private val editTextInterface: RecyclerViewEdi
                 if (s.isBlank()) {
                     holder.letterBox.background = ContextCompat.getDrawable(holder.letterBox.context, R.drawable.edit_text_style)
                     holder.letterBox.focusSearch(View.FOCUS_LEFT)?.requestFocus()
-//                        holder.letterBox.setOnKeyListener { v, keyCode, event ->
-//                            if (keyCode == KeyEvent.KEYCODE_DEL) {
-//                                holder.letterBox.focusSearch(View.FOCUS_LEFT)?.requestFocus()
-//                            }
-//                            false
-//                        }
                 } else {
                     holder.letterBox.focusSearch(View.FOCUS_RIGHT)?.requestFocus()
                 }

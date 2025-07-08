@@ -1,9 +1,15 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -17,16 +23,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_main)
+
+        val root = findViewById<View>(R.id.root)
+        ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
+            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            val bottom = if (imeVisible) 0 else systemBars.bottom
+
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, bottom)
+
+            insets
+        }
 
         val navController = this.findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         supportActionBar?.elevation = 0f
-
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = (ContextCompat.getColor(this, R.color.colorAccentDark))
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -1,21 +1,25 @@
 package com.kurmakaeva.anastasia.lockquote.ui
 
-import android.app.Activity
 import android.os.Bundle
-import android.view.*
-import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.kurmakaeva.anastasia.lockquote.R
 import com.kurmakaeva.anastasia.lockquote.adapter.EditTextRecyclerViewAdapter
 import com.kurmakaeva.anastasia.lockquote.adapter.RecyclerViewEditTextListener
 import com.kurmakaeva.anastasia.lockquote.databinding.FragmentGameTaskOneBinding
 import com.kurmakaeva.anastasia.lockquote.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
@@ -43,7 +47,12 @@ class GameTaskOneFragment : Fragment(), RecyclerViewEditTextListener {
 
         adapter = EditTextRecyclerViewAdapter(this, args.modPasswordString)
         binding.editTextRV.adapter = adapter
-        binding.editTextRV.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+
+        val layoutManager = FlexboxLayoutManager(context)
+        layoutManager.flexWrap = FlexWrap.WRAP
+        layoutManager.flexDirection = FlexDirection.ROW
+
+        binding.editTextRV.layoutManager = layoutManager
 
         binding.clearPassButton.setOnClickListener {
             binding.editTextRV.adapter = null

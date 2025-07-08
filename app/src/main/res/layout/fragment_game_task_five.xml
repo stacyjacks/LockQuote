@@ -3,10 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
     <LinearLayout
         android:id="@+id/fragment_game_task_five"
         android:layout_width="match_parent"
@@ -30,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:fitsSystemWindows="true"
+            android:clipToPadding="false"
+            android:descendantFocusability="afterDescendants"
             android:overScrollMode="always">
 
             <LinearLayout
@@ -56,7 +53,7 @@
                         android:text="@string/taskFiveInputPass"
                         android:textSize="@dimen/helpful_text_font_size" />
 
-                    <LinearLayout
+                    <com.google.android.flexbox.FlexboxLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -313,7 +310,7 @@
                             android:ems="1"
                             android:fontFamily="@font/source_sans_pro_regular"
                             android:gravity="center"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionDone"
                             android:inputType="textNoSuggestions|textVisiblePassword"
                             android:maxLength="1"
                             android:paddingVertical="8dp"
@@ -321,7 +318,7 @@
                             android:textSize="16sp"
                             android:visibility="gone" />
 
-                    </LinearLayout>
+                    </com.google.android.flexbox.FlexboxLayout>
 
                     <LinearLayout
                         android:id="@+id/helpButtons"
@@ -339,7 +336,6 @@
                             android:layout_gravity="center"
                             android:layout_margin="12dp"
                             android:background="@drawable/bubble_red"
-                            android:fitsSystemWindows="true"
                             android:paddingHorizontal="8dp"
                             android:text="@string/take_me_back_button"
                             android:textColor="@color/whiteColor" />
@@ -351,7 +347,6 @@
                             android:layout_gravity="center"
                             android:layout_margin="12dp"
                             android:background="@drawable/bubble_red"
-                            android:fitsSystemWindows="true"
                             android:paddingHorizontal="8dp"
                             android:text="@string/clear_pass_button"
                             android:textColor="@color/whiteColor" />
